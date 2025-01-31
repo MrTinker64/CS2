@@ -22,4 +22,12 @@ def allButItemOfList(item, listIn: list):
             return listIn
 
 
-print(selectionSort(['aa', 'ca', 'ba']))
+# print(selectionSort(['aa', 'ca', 'ba']))
+
+def flatten(list1: list):
+    list2 = list1[0]
+    for i in list1[1:]:
+        list2 += i
+    return list2
+
+# print(flatten([[1, 2], [3, 4], [5, 6], ['f']]))
