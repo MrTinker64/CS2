@@ -22,4 +22,4 @@ def allButItemOfList(item, listIn: list):
             return listIn
 
 
-print(selectionSort(['a', 'c', 'b']))
+print(selectionSort(['aa', 'ca', 'ba']))
