@@ -31,3 +31,12 @@ def flatten(list1: list):
     return list2
 
 # print(flatten([[1, 2], [3, 4], [5, 6], ['f']]))
+
+def firstOddBack(myList):
+    for i in myList:
+        if i % 2 == 1:
+            myList.remove(i)
+            return myList + [i]
+    return 'No odd numbers'
+
+# print(firstOddBack([4, 2, 1, 7, 10]))
