@@ -30,29 +30,30 @@
 '''
    Problem 5
 '''
-def subtractor(x):
-    def inner(y):
-        return x-y
-    return inner
+# def subtractor(x):
+#     def inner(y):
+#         return x-y
+#     return inner
 
 
-def myFunc(x):
-    def rev(y):
-        if len(y)==0:
-            return x
-        else:
-            return y[-1]+rev(y[:-1])
-    return rev
+# def myFunc(x):
+#     def rev(y):
+#         if len(y)==0:
+#             return x
+#         else:
+#             return y[-1]+rev(y[:-1])
+#     return rev
 
-print(subtractor(6)(5))
-print(myFunc('way')('Urban'))
+# print(subtractor(6)(5))
+# print(myFunc('way')('Urban'))
 
 '''
    Problem 6
 '''
 def applyFuncs(myList,n):
-    #Your code here
-    return
+    return [func(n) for func in myList]
+
+print(applyFuncs([lambda x: x + x, lambda x: x*x],4))
 
 '''
    Problem 7
