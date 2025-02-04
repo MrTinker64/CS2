@@ -58,18 +58,19 @@
 '''
    Problem 7
 '''
-def summation(n,f):
-    return sum([f(num) for num in range(1,n+1)])
+# def summation(n,f):
+#     return sum([f(num) for num in range(1,n+1)])
 
-print(summation(5, lambda x: x * x * x))
-print(summation(9, lambda x: x + 1))
+# print(summation(5, lambda x: x * x * x))
+# print(summation(9, lambda x: x + 1))
 
 '''
    Problem 8
 '''
 def couple(list1,list2):
-    #Your code here
-    return
+    return [[item, list2[list1.index(item)]] for item in list1]
+
+print(couple([1,2,3],[4,5,6]))
 
 '''
    Problem 9
