@@ -22,13 +22,37 @@ Make helper blocks if you need to.
 """
 
 def preferencesFromName(name, allPreferences):
-	return [entity[1] for entity in allPreferences if entity[0] == name]
+	for entity in allPreferences:
+		if entity[0] == name:
+			return entity[1]
 
 def rogue(proposers, choosers, matchings):
 	return
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
 def findMatchings(proposers, choosers):
-	return
+	everyoneIsEngaged = False
+	tentativeMatches = []
+	unengagedProposers = deepcopy(proposers)
+	while not everyoneIsEngaged:
+		for rank in range(0, len(choosers)):
+			for proposer in unengagedProposers:
+				preferences = preferencesFromName(proposer[0], proposers)
+				highestPreference = preferences[rank]
+				tentativeMatches.append([proposer[0], highestPreference])
+			for chooser in choosers:
+				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
+				if len(includedMatches) < 1:
+					continue
+				preferences = preferencesFromName(chooser[0], choosers)
+				preferedMatch = includedMatches[0]
+				for match in includedMatches:
+					if preferences.index(match[0]) < preferences.index(preferedMatch[0]):
+						preferedMatch = match
+				for match in includedMatches:
+					if not match == preferedMatch:
+						tentativeMatches.remove(match)
+			everyoneIsEngaged = True
+	return tentativeMatches
 
-print(preferencesFromName('Lucas', peoplePreferences_4))
+print(findMatchings(animalPreferences_4, peoplePreferences_4))
