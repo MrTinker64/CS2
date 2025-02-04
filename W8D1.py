@@ -10,7 +10,7 @@
 '''
    Problem 2
 '''
-#Your code here
+print([word[0] for word in ['apple', 'banana', 'orange'] if len(word) > 5])
 
 
 '''
