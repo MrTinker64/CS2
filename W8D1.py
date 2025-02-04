@@ -23,12 +23,13 @@
 '''
    Problem 4
 '''
-def mySum(myList):
-    return [sum(nums) for nums in myList]
-print(mySum([[1,2],[-5,4]]))
+# def mySum(myList):
+#     return [sum(nums) for nums in myList]
+# print(mySum([[1,2],[-5,4]]))
 
-# Code for Problems 5
-
+'''
+   Problem 5
+'''
 def subtractor(x):
     def inner(y):
         return x-y
@@ -42,6 +43,9 @@ def myFunc(x):
         else:
             return y[-1]+rev(y[:-1])
     return rev
+
+print(subtractor(6)(5))
+print(myFunc('way')('Urban'))
 
 '''
    Problem 6
