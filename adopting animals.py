@@ -27,6 +27,7 @@ def preferencesFromName(name, allPreferences):
 def rogue(proposers, choosers, matchings):
 	return
 
+# Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
 def findMatchings(proposers, choosers):
 	return
 
