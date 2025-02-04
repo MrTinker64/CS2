@@ -1,10 +1,11 @@
 '''
    Problem 1
 '''
-print([x * 2 for x in range(4) if x % 2 == 1]) # [2, 6]
-print([letter for letter in 'Urban' if letter < 'm']) # ['U', 'b', 'a']
-print("".join([letter for letter in 'Urban' if letter < 'm'])) # Uba
-print("".join([word[0] for word in "Go Blues!".split() if not(len(word) == 2)])) # B
+# Uncomment if you want them to run
+# print([x * 2 for x in range(4) if x % 2 == 1]) # Output: [2, 6]
+# print([letter for letter in 'Urban' if letter < 'm']) # Output: ['U', 'b', 'a']
+# print("".join([letter for letter in 'Urban' if letter < 'm'])) # Output: Uba
+# print("".join([word[0] for word in "Go Blues!".split() if not(len(word) == 2)])) # Output: B
 
 '''
    Problem 2
