@@ -50,17 +50,19 @@
 '''
    Problem 6
 '''
-def applyFuncs(myList,n):
-    return [func(n) for func in myList]
+# def applyFuncs(myList,n):
+#     return [func(n) for func in myList]
 
-print(applyFuncs([lambda x: x + x, lambda x: x*x],4))
+# print(applyFuncs([lambda x: x + x, lambda x: x*x],4))
 
 '''
    Problem 7
 '''
 def summation(n,f):
-    #Your code here
-    return
+    return sum([f(num) for num in range(1,n+1)])
+
+print(summation(5, lambda x: x * x * x))
+print(summation(9, lambda x: x + 1))
 
 '''
    Problem 8
