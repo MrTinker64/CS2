@@ -16,15 +16,16 @@
 '''
    Problem 3
 '''
-nums = [3, 42]
-fav_nums = [['Richard',3],['Scott',20],['Parisa',42],['Raj',20]]
-print([teacher[0] for teacher in fav_nums if teacher[1] in nums])
+# nums = [3, 42]
+# fav_nums = [['Richard',3],['Scott',20],['Parisa',42],['Raj',20]]
+# print([teacher[0] for teacher in fav_nums if teacher[1] in nums])
 
 '''
    Problem 4
 '''
 def mySum(myList):
-    return
+    return [sum(nums) for nums in myList]
+print(mySum([[1,2],[-5,4]]))
 
 # Code for Problems 5
 
