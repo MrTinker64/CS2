@@ -10,13 +10,15 @@
 '''
    Problem 2
 '''
-print([word[0] for word in ['apple', 'banana', 'orange'] if len(word) > 5])
+# print([word[0] for word in ['apple', 'banana', 'orange'] if len(word) > 5])
 
 
 '''
    Problem 3
 '''
-#Your code here
+nums = [3, 42]
+fav_nums = [['Richard',3],['Scott',20],['Parisa',42],['Raj',20]]
+print([teacher[0] for teacher in fav_nums if teacher[1] in nums])
 
 '''
    Problem 4
