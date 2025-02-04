@@ -22,15 +22,12 @@ Make helper blocks if you need to.
 """
 
 def preferencesFromName(name, allPreferences):
-	return
-
-
+	return [entity[1] for entity in allPreferences if entity[0] == name]
 
 def rogue(proposers, choosers, matchings):
 	return
 
-
 def findMatchings(proposers, choosers):
 	return
 
-
+print(preferencesFromName('Lucas', peoplePreferences_4))
