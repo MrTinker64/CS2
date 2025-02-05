@@ -35,25 +35,25 @@ def findMatchings(proposers, choosers):
 	tentativeMatches = []
 	unengagedProposers = deepcopy(proposers)
 	while not everyoneIsEngaged:
-		for proposer in unengagedProposers:
-			preferences = preferencesFromName(proposer[0], proposers)
-			highestPreference = preferences[0]
-			tentativeMatches.append([proposer[0], highestPreference])
-		for chooser in choosers:
-			includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
-			if len(includedMatches) < 1:
-				continue
-			preferences = preferencesFromName(chooser[0], choosers)
-			preferedMatch = includedMatches[0]
-			for match in includedMatches:
-				if preferences.index(match[0]) < preferences.index(preferedMatch[0]):
-					preferedMatch = match
-			for match in includedMatches:
-				if not match == preferedMatch:
-					tentativeMatches.remove(match)
-		unengagedProposers = [proposer for proposer in proposers if not proposer[0] in [match[0] for match in tentativeMatches]]
-		print(unengagedProposers)
-		everyoneIsEngaged = True # len(tentativeMatches) >= len(choosers)
+		for rank in range(0, len(choosers)):
+			for proposer in unengagedProposers:
+				preferences = preferencesFromName(proposer[0], proposers)
+				highestPreference = preferences[rank]
+				tentativeMatches.append([proposer[0], highestPreference])
+			for chooser in choosers:
+				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
+				if len(includedMatches) < 1:
+					continue
+				preferences = preferencesFromName(chooser[0], choosers)
+				preferedMatch = includedMatches[0]
+				for match in includedMatches:
+					if preferences.index(match[0]) < preferences.index(preferedMatch[0]):
+						preferedMatch = match
+				for match in includedMatches:
+					if not match == preferedMatch:
+						tentativeMatches.remove(match)
+			unengagedProposers = [proposer for proposer in proposers if not proposer[0] in [match[0] for match in tentativeMatches]]
+			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
 
 print(findMatchings(animalPreferences_4, peoplePreferences_4))
