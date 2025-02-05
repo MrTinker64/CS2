@@ -56,4 +56,16 @@ def findMatchings(proposers, choosers):
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
 
-print(findMatchings(animalPreferences_4, peoplePreferences_4))
+def findMatchingsWithInt(int):
+	if int == 4:
+		return findMatchings(animalPreferences_4, peoplePreferences_4)
+	elif int == 8:
+		return findMatchings(animalPreferences_8, peoplePreferences_8)
+	elif int == 20:
+		return findMatchings(animalPreferences_20, peoplePreferences_20)
+	elif int == 40:
+		return findMatchings(animalPreferences_40, peoplePreferences_40)
+	else:
+		return "Bad input"
+	
+print(findMatchingsWithInt(4))
