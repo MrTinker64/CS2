@@ -26,8 +26,15 @@ def preferencesFromName(name, allPreferences):
 		if entity[0] == name:
 			return entity[1]
 
+# Matches are proposers first choosers second
 def rogue(proposers, choosers, matchings):
-	return
+	print(matchings)
+	roguePairs = []
+	for match in matchings:
+		if preferencesFromName(match[0], proposers)[0] == match[1] or preferencesFromName(match[1], choosers)[0] == match[0]:
+			continue
+		roguePairs.append(match)
+	return roguePairs
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
 def findMatchings(proposers, choosers):
@@ -68,4 +75,4 @@ def findMatchingsWithInt(int):
 	else:
 		return "Bad input"
 	
-print(findMatchingsWithInt(4))
+print(rogue(animalPreferences_4, peoplePreferences_4, findMatchingsWithInt(4)))
