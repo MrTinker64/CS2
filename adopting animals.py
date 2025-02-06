@@ -22,9 +22,7 @@ Make helper blocks if you need to.
 """
 
 def preferencesFromName(name, allPreferences) -> list:
-	for entity in allPreferences:
-		if entity[0] == name:
-			return entity[1]
+	return [entity for entity in allPreferences if entity[0] == name][0][1]
 
 # Matches are in the form [proposer, chooser]
 # Reference https://www.youtube.com/watch?v=Qcv1IqHWAzg
