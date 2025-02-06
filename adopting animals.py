@@ -56,6 +56,7 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 	return False
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
+# TODO figure out problem with findMatchings
 def findMatchings(proposers, choosers):
 	everyoneIsEngaged = False
 	tentativeMatches = []
@@ -70,14 +71,18 @@ def findMatchings(proposers, choosers):
 				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
 				if len(includedMatches) < 2:
 					continue
+				print(f"\n{chooser[0]} is included in: {includedMatches}")
 				preferences = preferencesFromName(chooser[0], choosers)
 				preferredMatch = includedMatches[0]
 				for match in includedMatches:
 					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
 						preferredMatch = match
+				print(f"Preferred match: {preferredMatch}")
+				print(f"Tentative before: {tentativeMatches}")
 				for match in includedMatches:
 					if not match == preferredMatch:
 						tentativeMatches.remove(match)
+				print(f"Tentative after: {tentativeMatches}")
 			unengagedProposers = [proposer for proposer in proposers if not proposer[0] in [match[0] for match in tentativeMatches]]
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
