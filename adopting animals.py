@@ -57,29 +57,36 @@ def findMatchings(proposers, choosers):
 	tentativeMatches = []
 	unengagedProposers = list(deepcopy(proposers))
 	while not everyoneIsEngaged:
-		for rank in range(0, len(choosers)):
-			for proposer in unengagedProposers:
-				preferences = proposer[1]
-				highestPreference = preferences[rank]
-				tentativeMatches.append([proposer[0], highestPreference])
-			unengagedProposers = []
-			for chooser in choosers:
-				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
-				if len(includedMatches) < 2:
-					continue
-				preferences = list(chooser[1])
-				copyOfTentativeMatches = deepcopy(tentativeMatches)
-				preferredMatch = includedMatches[0]
-				for match in includedMatches[1:]:
-					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
-						unengagedProposers.append([preferredMatch[0], preferencesFromName(preferredMatch[0], proposers)])
-						copyOfTentativeMatches.remove(preferredMatch)
-						preferredMatch = match
-					else:
-						unengagedProposers.append([match[0], preferencesFromName(match[0], proposers)])
-						copyOfTentativeMatches.remove(match)
-				tentativeMatches = copyOfTentativeMatches
-			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
+		print(f"\n\nUnengaged Proposers Before: {[item[0] for item in unengagedProposers]}\n")
+		for proposer in unengagedProposers:
+			preferences = proposer[1]
+			highestPreference = preferences[rank]
+			tentativeMatches.append([proposer[0], highestPreference])
+		unengagedProposers = []
+		print(f"Tentative Matches Before Choosers: {tentativeMatches}")
+		for chooser in choosers:
+			print(f"\nChooser: {chooser[0]}")
+			includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
+			print(f"Included in: {includedMatches}")
+			if len(includedMatches) < 2:
+				continue
+			preferences = list(chooser[1])
+			print(f"With prefs: {preferences}")
+			copyOfTentativeMatches = deepcopy(tentativeMatches)
+			preferredMatch = includedMatches[0]
+			for match in includedMatches[1:]:
+				if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
+					unengagedProposers.append([preferredMatch[0], preferencesFromName(preferredMatch[0], proposers)])
+					copyOfTentativeMatches.remove(preferredMatch)
+					preferredMatch = match
+				else:
+					unengagedProposers.append([match[0], preferencesFromName(match[0], proposers)])
+					copyOfTentativeMatches.remove(match)
+			tentativeMatches = copyOfTentativeMatches
+			print(f"Preferred Match: {preferredMatch}")
+		print(f"\nTentative Matches After Choosers: {tentativeMatches}\n")
+		everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
+	print(f"Length of Choosers: {len(choosers)}")
 	return tentativeMatches
 
 def findMatchingsWithInt(int):
@@ -106,4 +113,4 @@ def rogueWithInt(int):
 	else:
 		return "Bad input"
 	
-print(rogueWithInt(8))
+print(findMatchingsWithInt(8))
