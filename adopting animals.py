@@ -52,7 +52,6 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 	return False
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
-# TODO figure out problem with findMatchings
 def findMatchings(proposers, choosers):
 	everyoneIsEngaged = False
 	tentativeMatches = []
