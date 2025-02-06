@@ -63,19 +63,23 @@ def findMatchings(proposers, choosers):
 				preferences = proposer[1]
 				highestPreference = preferences[rank]
 				tentativeMatches.append([proposer[0], highestPreference])
-				unengagedProposers.remove(proposer)
+			unengagedProposers = []
 			for chooser in choosers:
 				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
 				if len(includedMatches) < 2:
 					continue
-				preferences = preferencesFromName(chooser[0], choosers)
+				preferences = list(chooser[1])
+				copyOfTentativeMatches = deepcopy(tentativeMatches)
 				preferredMatch = includedMatches[0]
-				for match in includedMatches:
+				for match in includedMatches[1:]:
 					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
 						unengagedProposers.append([preferredMatch[0], preferencesFromName(preferredMatch[0], proposers)])
-						tentativeMatches.remove(preferredMatch)
-						unengagedProposers.append(preferencesFromName(preferredMatch[0], proposers))
+						copyOfTentativeMatches.remove(preferredMatch)
 						preferredMatch = match
+					else:
+						unengagedProposers.append([match[0], preferencesFromName(match[0], proposers)])
+						copyOfTentativeMatches.remove(match)
+				tentativeMatches = copyOfTentativeMatches
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
 
