@@ -106,4 +106,4 @@ def rogueWithInt(int):
 	else:
 		return "Bad input"
 	
-print(rogueWithInt(8))
+print(findMatchingsWithInt(8))
