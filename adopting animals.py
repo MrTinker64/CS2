@@ -27,7 +27,6 @@ def preferencesFromName(name, allPreferences) -> list:
 # Matches are in the form [proposer, chooser]
 # Reference https://www.youtube.com/watch?v=Qcv1IqHWAzg
 def rogue(proposers, choosers, matchings):
-	print(matchings)
 	roguePairs = []
 	for match in matchings:
 		if preferencesFromName(match[0], proposers)[0] == match[1] or preferencesFromName(match[1], choosers)[0] == match[0]:
