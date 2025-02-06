@@ -34,7 +34,7 @@ def rogue(proposers, choosers, matchings):
 	for match in matchings:
 		if preferencesFromName(match[0], proposers)[0] == match[1] or preferencesFromName(match[1], choosers)[0] == match[0]:
 			continue
-		if checkForRogue(match[0], proposers, match[1], choosers, 0, 1, matchings) or checkForRogue(match[1], proposers, match[0], choosers, 1, 0, matchings):
+		if checkForRogue(match[0], proposers, match[1], choosers, 0, 1, matchings) or checkForRogue(match[1], choosers, match[0], proposers, 1, 0, matchings):
 			roguePairs.append(match)
 	return roguePairs
 
