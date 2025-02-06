@@ -26,7 +26,7 @@ def preferencesFromName(name, allPreferences):
 		if entity[0] == name:
 			return entity[1]
 
-# Matches are proposers first choosers second
+# Matches are in the form [proposer, chooser]
 # Reference https://www.youtube.com/watch?v=Qcv1IqHWAzg
 def rogue(proposers, choosers, matchings):
 	print(matchings)
