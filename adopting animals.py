@@ -72,6 +72,7 @@ def findMatchings(proposers, choosers):
 				preferredMatch = includedMatches[0]
 				for match in includedMatches:
 					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
+						unengagedProposers.append([preferredMatch[0], preferencesFromName(preferredMatch[0], proposers)])
 						tentativeMatches.remove(preferredMatch)
 						unengagedProposers.append(preferencesFromName(preferredMatch[0], proposers))
 						preferredMatch = match
