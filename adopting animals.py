@@ -52,26 +52,23 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 	return False
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
-def findMatchings(proposers, choosers):
+def findMatchings(proposers: list, choosers):
 	everyoneIsEngaged = False
 	tentativeMatches = []
 	unengagedProposers = list(deepcopy(proposers))
+	ranksProposedTo = [0 for i in range(0, len(proposers))]
 	while not everyoneIsEngaged:
-		print(f"\n\nUnengaged Proposers Before: {[item[0] for item in unengagedProposers]}\n")
 		for proposer in unengagedProposers:
 			preferences = proposer[1]
-			highestPreference = preferences[rank]
+			highestPreference = preferences[ranksProposedTo[proposers.index(proposer)]]
+			ranksProposedTo[proposers.index(proposer)] += 1
 			tentativeMatches.append([proposer[0], highestPreference])
 		unengagedProposers = []
-		print(f"Tentative Matches Before Choosers: {tentativeMatches}")
 		for chooser in choosers:
-			print(f"\nChooser: {chooser[0]}")
 			includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
-			print(f"Included in: {includedMatches}")
 			if len(includedMatches) < 2:
 				continue
 			preferences = list(chooser[1])
-			print(f"With prefs: {preferences}")
 			copyOfTentativeMatches = deepcopy(tentativeMatches)
 			preferredMatch = includedMatches[0]
 			for match in includedMatches[1:]:
@@ -83,10 +80,7 @@ def findMatchings(proposers, choosers):
 					unengagedProposers.append([match[0], preferencesFromName(match[0], proposers)])
 					copyOfTentativeMatches.remove(match)
 			tentativeMatches = copyOfTentativeMatches
-			print(f"Preferred Match: {preferredMatch}")
-		print(f"\nTentative Matches After Choosers: {tentativeMatches}\n")
 		everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
-	print(f"Length of Choosers: {len(choosers)}")
 	return tentativeMatches
 
 def findMatchingsWithInt(int):
@@ -103,14 +97,14 @@ def findMatchingsWithInt(int):
 
 def rogueWithInt(int):
 	if int == 4:
-		return rogue(animalPreferences_4, peoplePreferences_4, findMatchingsWithInt(4))
+		return f"\nRogue pairs: {rogue(animalPreferences_4, peoplePreferences_4, findMatchingsWithInt(4))}\n\nMatches: {findMatchingsWithInt(4)}\n"
 	elif int == 8:
-		return rogue(animalPreferences_8, peoplePreferences_8, findMatchingsWithInt(8))
+		return f"\nRogue pairs: {rogue(animalPreferences_8, peoplePreferences_8, findMatchingsWithInt(8))}\n\nMatches: {findMatchingsWithInt(8)}\n"
 	elif int == 20:
-		return rogue(animalPreferences_20, peoplePreferences_20, findMatchingsWithInt(20))
+		return f"\nRogue pairs: {rogue(animalPreferences_20, peoplePreferences_20, findMatchingsWithInt(20))}\n\nMatches: {findMatchingsWithInt(20)}\n"
 	elif int == 40:
-		return rogue(animalPreferences_40, peoplePreferences_40, findMatchingsWithInt(40))
+		return f"\nRogue pairs: {rogue(animalPreferences_40, peoplePreferences_40, findMatchingsWithInt(40))}\n\nMatches: {findMatchingsWithInt(40)}\n"
 	else:
 		return "Bad input"
 	
-print(findMatchingsWithInt(8))
+print(rogueWithInt(8))
