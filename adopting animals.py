@@ -50,6 +50,7 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 
 		preferredEntityPreferences = preferencesFromName(preferredEntity, listOfOppositeEntities)
 		if preferredEntityPreferences.index(partnerOfPreferredEntity) > preferredEntityPreferences.index(entity):
+			print(f"\n{entity} prefers {preferredEntity} over {partner} and {preferredEntity} prefers {entity} over {partnerOfPreferredEntity}\n")
 			return True
 		
 	return False
@@ -105,4 +106,4 @@ def rogueWithInt(int):
 	else:
 		return "Bad input"
 	
-print(rogueWithInt(4))
+print(rogueWithInt(8))
