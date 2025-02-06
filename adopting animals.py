@@ -21,7 +21,7 @@ DO NOT change the data structure.
 Make helper blocks if you need to.
 """
 
-def preferencesFromName(name, allPreferences):
+def preferencesFromName(name, allPreferences) -> list:
 	for entity in allPreferences:
 		if entity[0] == name:
 			return entity[1]
@@ -60,7 +60,7 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 def findMatchings(proposers, choosers):
 	everyoneIsEngaged = False
 	tentativeMatches = []
-	unengagedProposers = deepcopy(proposers)
+	unengagedProposers = list(deepcopy(proposers))
 	while not everyoneIsEngaged:
 		for rank in range(0, len(choosers)):
 			for proposer in unengagedProposers:
@@ -76,14 +76,12 @@ def findMatchings(proposers, choosers):
 				preferredMatch = includedMatches[0]
 				for match in includedMatches:
 					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
+						tentativeMatches.remove(preferredMatch)
+						unengagedProposers.append(preferredMatch[0])
 						preferredMatch = match
 				print(f"Preferred match: {preferredMatch}")
 				print(f"Tentative before: {tentativeMatches}")
-				for match in includedMatches:
-					if not match == preferredMatch:
-						tentativeMatches.remove(match)
 				print(f"Tentative after: {tentativeMatches}")
-			unengagedProposers = [proposer for proposer in proposers if not proposer[0] in [match[0] for match in tentativeMatches]]
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
 
