@@ -92,5 +92,17 @@ def findMatchingsWithInt(int):
 		return findMatchings(animalPreferences_40, peoplePreferences_40)
 	else:
 		return "Bad input"
+
+def rogueWithInt(int):
+	if int == 4:
+		return rogue(animalPreferences_4, peoplePreferences_4, findMatchingsWithInt(4))
+	elif int == 8:
+		return rogue(animalPreferences_8, peoplePreferences_8, findMatchingsWithInt(8))
+	elif int == 20:
+		return rogue(animalPreferences_20, peoplePreferences_20, findMatchingsWithInt(20))
+	elif int == 40:
+		return rogue(animalPreferences_40, peoplePreferences_40, findMatchingsWithInt(40))
+	else:
+		return "Bad input"
 	
-print(rogue(animalPreferences_4, peoplePreferences_4, findMatchingsWithInt(4)))
+print(rogueWithInt(4))
