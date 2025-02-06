@@ -68,7 +68,7 @@ def findMatchings(proposers, choosers):
 				tentativeMatches.append([proposer[0], highestPreference])
 			for chooser in choosers:
 				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
-				if len(includedMatches) < 1:
+				if len(includedMatches) < 2:
 					continue
 				preferences = preferencesFromName(chooser[0], choosers)
 				preferredMatch = includedMatches[0]
