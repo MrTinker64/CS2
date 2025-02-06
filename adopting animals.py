@@ -1,4 +1,5 @@
 from copy import deepcopy
+import time
 
 animals = ['Hippopotamus', 'Camel', 'Koala', 'Mandrill', 'Chimpanzee', 'Cheetah', 'Ocelot', 'Jackrabbit', 'Raccoon', 'Goatfish', 'Nile Monitor Lizard', 'Candy Darter', 'Jaguar', 'Brown Pelican', 'Red Squirrel', 'Red Fox', 'Red-billed Hornbill', 'Praying Mantis', 'Scottish Highland Sheep', 'Orange-striped Triggerfish', 'Walrus', 'Raven', 'Oedemera', 'Gray', 'Wolf', 'Puffin', 'Kookaburra', 'Yellow-throated Longclaw', 'Bison', 'Golden Hamlet Lion', 'Caracal', 'Masked Weaver', 'Caterpillar', 'Kodiak Brown Bear', 'Turkey Vulture', 'Secretary Bird', 'Waterbuck', 'Emu', 'Dragonfly', 'Black Lechwe']
 names = ['Emma', 'Liam', 'Olivia', 'Noah', 'Ava', 'Lucas', 'Isabella', 'Mason', 'Sophia', 'Logan', 'Mia', 'Oliver', 'Amelia', 'Ethan', 'Charlotte', 'Elijah', 'Harper', 'Aiden', 'Aria', 'James', 'Ella', 'Benjamin', 'Abigail', 'Sebastian', 'Evelyn', 'Alexander', 'Emily', 'Jackson', 'Avery', 'Jacob', 'Madison', 'Carter', 'Scarlett', 'Michael', 'Chloe', 'Daniel', 'Sofia', 'Jayden', 'Lily', 'Matthew']
@@ -106,8 +107,25 @@ def rogueWithInt(int):
 		return f"\nRogue pairs: {rogue(animalPreferences_40, peoplePreferences_40, findMatchingsWithInt(40))}\n\nMatches: {findMatchingsWithInt(40)}\n"
 	else:
 		return "Bad input"
-
+	
+start = time.time()
 print(rogueWithInt(4))	
+end = time.time()
+dt4 = end - start
+
+start = time.time()
 print(rogueWithInt(8))
+end = time.time()
+dt8 = end - start
+
+start = time.time()
 print(rogueWithInt(20))
+end = time.time()
+dt20 = end - start
+
+start = time.time()
 print(rogueWithInt(40))
+end = time.time()
+dt40 = end - start
+
+print(f"Times:\n 4: {dt4}\n 8: {dt8}\n20: {dt20}\n40: {dt40}")
