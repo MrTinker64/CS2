@@ -27,6 +27,7 @@ def preferencesFromName(name, allPreferences):
 			return entity[1]
 
 # Matches are proposers first choosers second
+# Reference https://www.youtube.com/watch?v=Qcv1IqHWAzg
 def rogue(proposers, choosers, matchings):
 	print(matchings)
 	roguePairs = []
@@ -35,6 +36,22 @@ def rogue(proposers, choosers, matchings):
 			continue
 		roguePairs.append(match)
 	return roguePairs
+
+def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entityIndexInAMatch, partnerIndexInAMatch, matchings):
+	preferences = preferencesFromName(entity, listOfEntities)
+	partnerIndex = preferences.index(partner)
+	higherPreferences = [p for p in preferences if preferences.index(p) < partnerIndex]
+
+	for preferedEntity in higherPreferences:
+		for match in matchings:
+			if match[partnerIndexInAMatch] == preferedEntity:
+				partnerOfPreferedEntity = match[entityIndexInAMatch]
+
+		preferedEntityPreferences = preferencesFromName(preferedEntity, listOfOppositeEntities)
+		if preferedEntityPreferences.index(partnerOfPreferedEntity) > preferedEntityPreferences.index(entity):
+			return True
+		
+	return False
 
 # Reference: https://en.wikipedia.org/wiki/Stable_marriage_problem
 def findMatchings(proposers, choosers):
