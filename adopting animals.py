@@ -48,7 +48,6 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 
 		preferredEntityPreferences = preferencesFromName(preferredEntity, listOfOppositeEntities)
 		if preferredEntityPreferences.index(partnerOfPreferredEntity) > preferredEntityPreferences.index(entity):
-			print(f"\n{entity} prefers {preferredEntity} over {partner} and {preferredEntity} prefers {entity} over {partnerOfPreferredEntity}\n")
 			return True
 		
 	return False
@@ -62,24 +61,21 @@ def findMatchings(proposers, choosers):
 	while not everyoneIsEngaged:
 		for rank in range(0, len(choosers)):
 			for proposer in unengagedProposers:
-				preferences = preferencesFromName(proposer[0], proposers)
+				preferences = proposer[1]
 				highestPreference = preferences[rank]
 				tentativeMatches.append([proposer[0], highestPreference])
+				unengagedProposers.remove(proposer)
 			for chooser in choosers:
 				includedMatches = [match for match in tentativeMatches if match[1] == chooser[0]]
 				if len(includedMatches) < 2:
 					continue
-				print(f"\n{chooser[0]} is included in: {includedMatches}")
 				preferences = preferencesFromName(chooser[0], choosers)
 				preferredMatch = includedMatches[0]
 				for match in includedMatches:
 					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
 						tentativeMatches.remove(preferredMatch)
-						unengagedProposers.append(preferredMatch[0])
+						unengagedProposers.append(preferencesFromName(preferredMatch[0], proposers))
 						preferredMatch = match
-				print(f"Preferred match: {preferredMatch}")
-				print(f"Tentative before: {tentativeMatches}")
-				print(f"Tentative after: {tentativeMatches}")
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
 	return tentativeMatches
 
@@ -107,4 +103,4 @@ def rogueWithInt(int):
 	else:
 		return "Bad input"
 	
-print(findMatchingsWithInt(8))
+print(rogueWithInt(8))
