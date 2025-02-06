@@ -42,13 +42,13 @@ def checkForRogue(entity, listOfEntities, partner, listOfOppositeEntities, entit
 	partnerIndex = preferences.index(partner)
 	higherPreferences = [p for p in preferences if preferences.index(p) < partnerIndex]
 
-	for preferedEntity in higherPreferences:
+	for preferredEntity in higherPreferences:
 		for match in matchings:
-			if match[partnerIndexInAMatch] == preferedEntity:
-				partnerOfPreferedEntity = match[entityIndexInAMatch]
+			if match[partnerIndexInAMatch] == preferredEntity:
+				partnerOfPreferredEntity = match[entityIndexInAMatch]
 
-		preferedEntityPreferences = preferencesFromName(preferedEntity, listOfOppositeEntities)
-		if preferedEntityPreferences.index(partnerOfPreferedEntity) > preferedEntityPreferences.index(entity):
+		preferredEntityPreferences = preferencesFromName(preferredEntity, listOfOppositeEntities)
+		if preferredEntityPreferences.index(partnerOfPreferredEntity) > preferredEntityPreferences.index(entity):
 			return True
 		
 	return False
@@ -69,12 +69,12 @@ def findMatchings(proposers, choosers):
 				if len(includedMatches) < 1:
 					continue
 				preferences = preferencesFromName(chooser[0], choosers)
-				preferedMatch = includedMatches[0]
+				preferredMatch = includedMatches[0]
 				for match in includedMatches:
-					if preferences.index(match[0]) < preferences.index(preferedMatch[0]):
-						preferedMatch = match
+					if preferences.index(match[0]) < preferences.index(preferredMatch[0]):
+						preferredMatch = match
 				for match in includedMatches:
-					if not match == preferedMatch:
+					if not match == preferredMatch:
 						tentativeMatches.remove(match)
 			unengagedProposers = [proposer for proposer in proposers if not proposer[0] in [match[0] for match in tentativeMatches]]
 			everyoneIsEngaged = len(tentativeMatches) >= len(choosers)
