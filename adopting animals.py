@@ -106,5 +106,8 @@ def rogueWithInt(int):
 		return f"\nRogue pairs: {rogue(animalPreferences_40, peoplePreferences_40, findMatchingsWithInt(40))}\n\nMatches: {findMatchingsWithInt(40)}\n"
 	else:
 		return "Bad input"
-	
+
+print(rogueWithInt(4))	
 print(rogueWithInt(8))
+print(rogueWithInt(20))
+print(rogueWithInt(40))
