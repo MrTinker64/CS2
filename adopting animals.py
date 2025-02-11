@@ -109,22 +109,22 @@ def rogueWithInt(int):
 		return "Bad input"
 	
 start = time.time()
-print(rogueWithInt(4))	
+print(findMatchingsWithInt(4))	
 end = time.time()
 dt4 = end - start
 
 start = time.time()
-print(rogueWithInt(8))
+print(findMatchingsWithInt(8))
 end = time.time()
 dt8 = end - start
 
 start = time.time()
-print(rogueWithInt(20))
+print(findMatchingsWithInt(20))
 end = time.time()
 dt20 = end - start
 
 start = time.time()
-print(rogueWithInt(40))
+print(findMatchingsWithInt(40))
 end = time.time()
 dt40 = end - start
 
