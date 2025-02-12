@@ -39,4 +39,5 @@ def generateGraph(n):
             graph += [[v[i] for v in graph] + [0] + [random.randrange(0, 2, 1) for _ in range(n-i-1)]]
     return graph
 
-print(generateGraph(4))
+graph = generateGraph(3)
+print(graph, isWalk(0, 1, graph), isWalk(1, 2, graph))
