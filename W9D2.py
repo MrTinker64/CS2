@@ -19,4 +19,4 @@ def neighborhood(vertex,graph):
             connections.append(i)
     return connections
 
-print(neighborhood(0, adj))
+print(neighborhood(1, adj))
