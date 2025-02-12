@@ -10,4 +10,13 @@ def vertexDegree(vertex, graph):
 def numberOddDegreeVertices(graph):
     return len([v for v in adj if vertexDegree(graph.index(v), graph) % 2 != 0])
 
-print(numberOddDegreeVertices(adj))
+def neighborhood(vertex,graph):
+    edges = graph[vertex]
+    connections = []
+    for i in range(len(edges)):
+        edge = edges[i]
+        if edge != 0:
+            connections.append(i)
+    return connections
+
+print(neighborhood(0, adj))
