@@ -1,3 +1,5 @@
+import random
+
 adj = [[0,1,0,0,1],[1,0,1,1,1],[0,1,0,1,0],[0,1,1,0,1],[1,1,0,1,0]]
 
 def vertexDegree(vertex, graph):
@@ -28,5 +30,13 @@ def isWalk(a, b, graph):
                 return True
     return False
 
-adj = [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
-print(isWalk(0, 2, adj))
+def generateGraph(n):
+    graph = []
+    for i in range(n):
+        if i == 0:
+            graph = [[0] + [random.randrange(0, 2, 1) for _ in range(n-1)]]
+        else:
+            graph += [[v[i] for v in graph] + [0] + [random.randrange(0, 2, 1) for _ in range(n-i-1)]]
+    return graph
+
+print(generateGraph(4))
