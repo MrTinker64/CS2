@@ -8,7 +8,7 @@ def vertexDegree(vertex, graph):
     return degreeCount
 
 def numberOddDegreeVertices(graph):
-    return len([v for v in adj if vertexDegree(graph.index(v), graph) % 2 != 0])
+    return len([v for v in range(len(adj)) if vertexDegree(v, graph) % 2 != 0])
 
 def neighborhood(vertex,graph):
     edges = graph[vertex]
