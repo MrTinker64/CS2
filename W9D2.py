@@ -19,4 +19,14 @@ def neighborhood(vertex,graph):
             connections.append(i)
     return connections
 
-print(neighborhood(1, adj))
+def isWalk(a, b, graph):
+    if graph[a][b] != 0:
+        return True
+    else:
+        for v in neighborhood(a, graph):
+            if graph[v][b]:
+                return True
+    return False
+
+adj = [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
+print(isWalk(0, 2, adj))
