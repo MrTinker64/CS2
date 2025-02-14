@@ -56,4 +56,6 @@ def generateDirectedGraph(n):
             graph += [[random.randrange(0, 2, 1) for _ in range(i)] + [0] + [random.randrange(0, 2, 1) for _ in range(n-i-1)]]
     return graph
 
-print(generateDirectedGraph(4))
+# print(generateDirectedGraph(4))
+graph = generateGraph(3)
+print(graph, isWalk(0, 1, graph), isWalk(1, 2, graph), isWalk(0, 2, graph))
