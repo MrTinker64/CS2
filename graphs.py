@@ -39,5 +39,12 @@ def generateGraph(n):
             graph += [[v[i] for v in graph] + [0] + [random.randrange(0, 2, 1) for _ in range(n-i-1)]]
     return graph
 
-graph = generateGraph(3)
-print(graph, isWalk(0, 1, graph), isWalk(1, 2, graph))
+def isClique(cq, graph):
+    for vertex in cq:
+        neighbors = neighborhood(vertex, graph)
+        for v in cq:
+            if neighbors.count(v) < 1 and v != vertex:
+                return False
+    return True
+
+print(isClique([0,1,2], [[0,1,0],[1,0,0],[0,0,0]]))
