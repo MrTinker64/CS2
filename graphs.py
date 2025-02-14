@@ -57,5 +57,6 @@ def generateDirectedGraph(n):
     return graph
 
 # print(generateDirectedGraph(4))
-graph = generateGraph(3)
-print(graph, isWalk(0, 1, graph), isWalk(1, 2, graph), isWalk(0, 2, graph))
+graph = generateGraph(4)
+for i in graph:
+    print(f"{i}")
