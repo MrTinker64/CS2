@@ -26,7 +26,7 @@ def isWalk(a, b, graph):
         return True
     else:
         for v in neighborhood(a, graph):
-            if graph[v][b]:
+            if graph[v][b] != 0:
                 return True
     return False
 
