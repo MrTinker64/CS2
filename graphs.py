@@ -47,4 +47,13 @@ def isClique(cq, graph):
                 return False
     return True
 
-print(isClique([0,1,2], [[0,1,0],[1,0,0],[0,0,0]]))
+def generateDirectedGraph(n):
+    graph = []
+    for i in range(n):
+        if i == 0:
+            graph = [[0] + [random.randrange(0, 2, 1) for _ in range(n-1)]]
+        else:
+            graph += [[random.randrange(0, 2, 1) for _ in range(i)] + [0] + [random.randrange(0, 2, 1) for _ in range(n-i-1)]]
+    return graph
+
+print(generateDirectedGraph(4))
