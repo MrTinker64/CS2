@@ -37,15 +37,15 @@ def allPaths(a, b, graph):
 graph =  map(3)
 for line in graph:
     print(line)
-# a = 0
-# b = 1
-# c = 2
-# if isPath(a, b, graph):
-#     string = "a PATH"
-# else:
-#     string = "NOT a path"
-# if isPath(a, c, graph):
-#     string2 = "a PATH"
-# else:
-#     string2 = "NOT a path"
-# print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
+a = 0
+b = 5
+c = 3
+if isPath(a, b, graph):
+    string = "a PATH"
+else:
+    string = "NOT a path"
+if isPath(a, c, graph):
+    string2 = "a PATH"
+else:
+    string2 = "NOT a path"
+print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
