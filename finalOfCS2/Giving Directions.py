@@ -26,17 +26,6 @@ def isPath(a, b, graph):
                 return isPath(v, b, copyOfGraph)
     return False
 
-def subIsPath(vertex, b, graph, a):
-    if graph[vertex][b] != 0:
-        return True
-    else:
-        for v in neighborhood(vertex, graph):
-            if graph[vertex][b] != 0 and not v == a:
-                return True
-            else:
-                return subIsPath(vertex, b, graph, a)
-    return False
-
 def checkNeighborsForConnection(a, b, graph):
     if graph[a][b] != 0:
         return [a, b]
@@ -45,6 +34,8 @@ def checkNeighborsForConnection(a, b, graph):
             if graph[v][b] != 0:
                 return [a, b]
             else:
+                copyOfGraph = deepcopy(graph)
+                copyOfGraph.pop(a)
                 [a] + checkNeighborsForConnection(v, b, graph)
     return []
 
