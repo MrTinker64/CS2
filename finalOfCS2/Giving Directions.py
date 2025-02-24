@@ -1,4 +1,5 @@
 import random
+from copy import deepcopy
 
 def map(n):
     graph = []
@@ -10,7 +11,7 @@ def map(n):
     return graph
 
 def randomWeights(i) -> list:
-    return [random.randint(0, 5) for _ in range(i)]
+    return [random.randint(0, 1) for _ in range(i)]
 
 def isPath(a, b, graph):
     if graph[a][b] != 0:
@@ -19,7 +20,33 @@ def isPath(a, b, graph):
         for v in neighborhood(a, graph):
             if graph[v][b] != 0:
                 return True
+            else:
+                copyOfGraph = deepcopy(graph)
+                copyOfGraph.remove
+                return isPath(v, b, graph)
     return False
+
+def subIsPath(vertex, b, graph, a):
+    if graph[vertex][b] != 0:
+        return True
+    else:
+        for v in neighborhood(vertex, graph):
+            if graph[vertex][b] != 0 and not v == a:
+                return True
+            else:
+                return subIsPath(vertex, b, graph, a)
+    return False
+
+def checkNeighborsForConnection(a, b, graph):
+    if graph[a][b] != 0:
+        return [a, b]
+    else:
+        for v in neighborhood(a, graph):
+            if graph[v][b] != 0:
+                return [a, b]
+            else:
+                [a] + checkNeighborsForConnection(v, b, graph)
+    return []
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
@@ -34,7 +61,12 @@ def allPaths(a, b, graph):
     if not isPath(a, b, graph):
         return []
 
-graph =  map(3)
+graph =  [[0, 0, 1, 0, 0, 0],
+[0, 0, 1, 1, 0, 0],
+[1, 0, 0, 1, 1, 0],
+[1, 1, 1, 0, 1, 0],
+[0, 0, 1, 1, 0, 1],
+[1, 1, 1, 0, 1, 0]]
 for line in graph:
     print(line)
 a = 0
