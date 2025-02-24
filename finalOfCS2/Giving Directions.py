@@ -30,6 +30,10 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
+def allPaths(a, b, graph):
+    if not isPath(a, b, graph):
+        return []
+
 graph =  map(3)
 for line in graph:
     print(line)
