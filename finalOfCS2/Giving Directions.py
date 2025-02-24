@@ -10,7 +10,7 @@ def map(n):
     return graph
 
 def randomWeights(i) -> list:
-    return [random.randint(0, 9) for _ in range(i)]
+    return [random.randint(0, 5) for _ in range(i)]
 
 def isPath(a, b, graph):
     if graph[a][b] != 0:
