@@ -22,8 +22,8 @@ def isPath(a, b, graph):
                 return True
             else:
                 copyOfGraph = deepcopy(graph)
-                copyOfGraph.remove
-                return isPath(v, b, graph)
+                copyOfGraph.pop(a)
+                return isPath(v, b, copyOfGraph)
     return False
 
 def subIsPath(vertex, b, graph, a):
