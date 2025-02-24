@@ -21,7 +21,7 @@ def isPath(a, b, graph):
                 return True
     return False
 
-def neighborhood(vertex,graph):
+def neighborhood(vertex, graph):
     edges = graph[vertex]
     connections = []
     for i in range(len(edges)):
