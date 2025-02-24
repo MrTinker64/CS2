@@ -29,3 +29,7 @@ def neighborhood(vertex, graph):
         if edge != 0:
             connections.append(i)
     return connections
+
+myMap =  map(3)
+for line in myMap:
+    print(line)
