@@ -43,10 +43,17 @@ def checkNeighborsForConnection(a, b, graph):
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
                 paths = checkNeighborsForConnection(v, b, copyOfGraph)
                 passables = []
-                for path in paths:
-                    if len(path) > 0:
-                        if path[-1] == graph[b]:
-                            passables.append[[v] + path]
+                if len(paths) > 0:
+                    if paths[0].__class__ == list.__class__:
+                        for path in paths:
+                            if len(path) > 0:
+                                if path[-1] == graph[b]:
+                                    passables.append([v] + path)
+                    else:
+                        if paths[-1] == b:
+                            print(passables)
+                            passables += [v] + paths
+                print(passables)
                 return passables
     return []
                 
@@ -63,19 +70,21 @@ def neighborhood(vertex, graph):
 # def allPaths(a, b, graph):
 #     if not isPath(a, b, graph):
 #         return []
-#     if graph[a][b] != 0:
-#         return [a, b]
-#     for vertex in len(graph):
-#         for neighbor in neighborhood(vertex, graph):
+#     for neighbor in neighborhood(a, graph):
+#         if neighbor == b:
+#             return [a, b]
+    # for vertex in len(graph):
 
-graph =  [[0, 0, 1, 0, 0, 0],
-[0, 0, 1, 1, 0, 0],
-[1, 0, 0, 1, 1, 0],
-[1, 1, 1, 0, 1, 0],
-[0, 0, 1, 1, 0, 1],
-[1, 1, 1, 0, 1, 0]]
+
+graph =  [[0, 1, 0, 0, 1, 0],
+[1, 0, 0, 0, 0, 1],
+[0, 1, 0, 1, 1, 0],
+[0, 0, 0, 0, 1, 1],
+[0, 1, 1, 0, 0, 0],
+[1, 1, 1, 1, 0, 0]]
 for line in graph:
     print(line)
+
 a = 0
 b = 5
 c = 3
@@ -88,4 +97,6 @@ if isPath(a, c, graph):
 else:
     string2 = "NOT a path"
 print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
-print(f"Path from {a} to {b}: {checkNeighborsForConnection(a, b, graph)}")
+
+print(f"Path from {a} to {b}: {[0] + checkNeighborsForConnection(a, b, graph)}")
+print(f"Path from {a} to {c}: {[0] + checkNeighborsForConnection(a, c, graph)}")
