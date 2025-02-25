@@ -112,17 +112,12 @@ def shortestPath(a, b, graph):
     return shortestPath
 
 
-graph = [
-    [0, 0, 4, 1],
-    [5, 0, 3, 4],
-    [2, 4, 0, 1],
-    [4, 0, 4, 0],
-]
+graph = map(10)
 for line in graph:
     print(f"{line},")
 
-a = 2
-b = 3
+a = 0
+b = 9
 
 print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
 print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
