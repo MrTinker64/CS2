@@ -104,8 +104,8 @@ def shortestPath(a, b, graph):
     costOfShortestPath = float("inf")
     for path in allPaths(a, b, graph):
         cost = 0
-        for v in path[:-1]:
-            cost += graph[v][v + 1]
+        for i in range(len(path[:-1])):
+            cost += graph[path[i]][path[i + 1]]
         if cost < costOfShortestPath:
             shortestPath = path
             costOfShortestPath = cost
@@ -121,7 +121,7 @@ graph = [
 for line in graph:
     print(f"{line},")
 
-a = 0
+a = 2
 b = 3
 
 print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
