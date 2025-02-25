@@ -26,7 +26,7 @@ def isPath(a, b, graph):
                 return isPath(v, b, copyOfGraph)
     return False
 
-def checkNeighborsForConnection(a, b, graph):
+def checkNeighborsForConnection(a, b, graph, ogGraph):
     print(a, b)
     print(graph)
     if graph[a][b] != 0:
@@ -38,12 +38,12 @@ def checkNeighborsForConnection(a, b, graph):
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph.pop(a)
+                bCopy = b
                 if b > a:
-                    b -= 1
+                    bCopy -= 1
                 if v > a:
                     v -= 1
-                [a] + checkNeighborsForConnection(v, b, copyOfGraph)
-    return []
+                return [ogGraph.index(graph[a])] + checkNeighborsForConnection(v, bCopy, copyOfGraph, ogGraph)
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
@@ -78,4 +78,4 @@ if isPath(a, c, graph):
 else:
     string2 = "NOT a path"
 print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
-print(f"Path from {a} to {b}: {checkNeighborsForConnection(a, b, graph)}")
+print(f"Path from {a} to {b}: {checkNeighborsForConnection(a, b, graph, graph)}")
