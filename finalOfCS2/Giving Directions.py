@@ -34,7 +34,10 @@ def findAllPaths(a, b, graph, isFirst):
     else:
         for v in neighborhood(a, graph):
             if graph[v][b] != 0:
-                return [v, b]
+                if isFirst:
+                    return [0, v, b]
+                else:
+                    return [v, b]
             elif graph[v] == [0 for _ in range(len(graph))]:
                 continue
             else:
