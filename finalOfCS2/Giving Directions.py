@@ -41,32 +41,29 @@ def allPaths(a, b, graph):
 def findAllPaths(a, b, graph, isFirst):
     passables = []
     for v in neighborhood(a, graph):
+        if graph[v] == [0 for _ in range(len(graph))]:
+            continue
         if v == b:
             passables = addToPassables(passables, [b], a, False)
-            continue
-        elif graph[v] == [0 for _ in range(len(graph))]:
-            continue
-        elif graph[v][b] != 0:
+        if graph[v][b] != 0:
             passables = addToPassables(passables, [b], v, isFirst)
-            continue
-        else:
-            copyOfGraph = deepcopy(graph)
-            copyOfGraph[a] = [0 for _ in range(len(graph))]
-            paths = findAllPaths(v, b, copyOfGraph, False)
-            if len(paths) > 0:
-                if type(paths[0]) == type(0):  # is paths a 2D list?
-                    for path in paths:
-                        if len(path) > 0:
-                            if path[-1] == graph[b]:
-                                passables = addToPassables(passables, path, v, isFirst)
-                else:
-                    if paths[-1] == b:
-                        passables = addToPassables(passables, paths, v, isFirst)
+        copyOfGraph = deepcopy(graph)
+        copyOfGraph[a] = [0 for _ in range(len(graph))]
+        paths = findAllPaths(v, b, copyOfGraph, False)
+        if len(paths) > 0:
+            if type(paths[0]) != type(0):  # is paths a 2D list?
+                for path in paths:
+                    if len(path) > 0:
+                        if path[-1] == graph[b]:
+                            passables = addToPassables(passables, path, v, isFirst)
+            else:
+                if paths[-1] == b:
+                    passables = addToPassables(passables, paths, v, isFirst)
     return passables
 
 
 def addToPassables(passables, path, v, isFirst):
-    print("\n", passables, path)
+    # print("\n", passables, path)
     if isFirst:
         if len(passables) > 0:
             if type(passables[0]) == type(0):
@@ -83,7 +80,7 @@ def addToPassables(passables, path, v, isFirst):
                 passables = passables + [[v] + path]
         else:
             passables = [v] + path
-    print(passables)
+    # print(passables)
     return passables
 
 
@@ -97,13 +94,17 @@ def neighborhood(vertex, graph):
     return connections
 
 
-graph = map(10)
+graph = [
+    [0, 0, 2],
+    [3, 0, 1],
+    [3, 0, 0],
+]
 for line in graph:
     print(f"{line},")
 
 a = 0
-b = 5
-c = 9
+b = 1
+c = 2
 if isPath(a, b, graph):
     string = "a PATH"
 else:
