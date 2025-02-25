@@ -99,22 +99,30 @@ def neighborhood(vertex, graph):
     return connections
 
 
-graph = map(10)
+def shortestPath(a, b, graph):
+    shortestPath = []
+    costOfShortestPath = float("inf")
+    for path in allPaths(a, b, graph):
+        cost = 0
+        for v in path[:-1]:
+            cost += graph[v][v + 1]
+        if cost < costOfShortestPath:
+            shortestPath = path
+            costOfShortestPath = cost
+    return shortestPath
+
+
+graph = [
+    [0, 0, 4, 1],
+    [5, 0, 3, 4],
+    [2, 4, 0, 1],
+    [4, 0, 4, 0],
+]
 for line in graph:
     print(f"{line},")
 
-a = 4
-b = 9
-c = 0
-# if isPath(a, b, graph):
-#     string = "a PATH"
-# else:
-#     string = "NOT a path"
-# if isPath(a, c, graph):
-#     string2 = "a PATH"
-# else:
-#     string2 = "NOT a path"
-# print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
+a = 0
+b = 3
 
-print(f"Path from {a} to {b}: {allPaths(a, b, graph)}")
-print(f"Path from {a} to {c}: {allPaths(a, c, graph)}")
+print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
+print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
