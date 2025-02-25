@@ -32,6 +32,7 @@ def findAllPaths(a, b, graph, isFirst):
     if graph[a][b] != 0:
         return [a, b]
     else:
+        passables = []
         for v in neighborhood(a, graph):
             if graph[v][b] != 0:
                 if isFirst:
@@ -44,7 +45,6 @@ def findAllPaths(a, b, graph, isFirst):
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
                 paths = findAllPaths(v, b, copyOfGraph, False)
-                passables = []
                 if len(paths) > 0:
                     if paths[0].__class__ == list.__class__:
                         for path in paths:
@@ -60,8 +60,7 @@ def findAllPaths(a, b, graph, isFirst):
                                 passables += [0, v] + paths
                             else:
                                 passables += [v] + paths
-                return passables
-    return []                
+        return passables                
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
@@ -81,7 +80,12 @@ def neighborhood(vertex, graph):
     # for vertex in len(graph):
 
 
-graph =  map(6)
+graph =  [[0, 1, 1, 0, 0, 0],
+[0, 0, 1, 0, 1, 0],
+[1, 1, 0, 0, 1, 1],
+[1, 1, 1, 0, 1, 0],
+[1, 0, 0, 1, 0, 0],
+[1, 0, 0, 0, 0, 0]]
 for line in graph:
     print(line)
 
