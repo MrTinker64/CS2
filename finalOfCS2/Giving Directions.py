@@ -1,17 +1,20 @@
 import random
 from copy import deepcopy
 
+
 def map(n):
     graph = []
     for i in range(n):
         if i == 0:
-            graph = [[0] + randomWeights(n-1)]
+            graph = [[0] + randomWeights(n - 1)]
         else:
-            graph += [randomWeights(i) + [0] + randomWeights(n-i-1)]
+            graph += [randomWeights(i) + [0] + randomWeights(n - i - 1)]
     return graph
+
 
 def randomWeights(i) -> list:
     return [random.randint(0, 5) for _ in range(i)]
+
 
 def isPath(a, b, graph):
     return len(allPaths(a, b, graph)) > 0
@@ -30,8 +33,10 @@ def isPath(a, b, graph):
     #             return isPath(v, b, copyOfGraph)
     # return False
 
+
 def allPaths(a, b, graph):
     return findAllPaths(a, b, graph, True)
+
 
 def findAllPaths(a, b, graph, isFirst):
     passables = []
@@ -49,7 +54,7 @@ def findAllPaths(a, b, graph, isFirst):
             copyOfGraph[a] = [0 for _ in range(len(graph))]
             paths = findAllPaths(v, b, copyOfGraph, False)
             if len(paths) > 0:
-                if paths[0].__class__ == list.__class__: # is paths a 2D list?
+                if paths[0].__class__ == list.__class__:  # is paths a 2D list?
                     for path in paths:
                         if len(path) > 0:
                             if path[-1] == graph[b]:
@@ -57,7 +62,8 @@ def findAllPaths(a, b, graph, isFirst):
                 else:
                     if paths[-1] == b:
                         passables = addToPassables(passables, paths, v, isFirst)
-    return passables  
+    return passables
+
 
 def addToPassables(passables, path, v, isFirst):
     if isFirst:
@@ -80,6 +86,7 @@ def addToPassables(passables, path, v, isFirst):
             print(passables)
     return passables
 
+
 def neighborhood(vertex, graph):
     edges = graph[vertex]
     connections = []
@@ -89,7 +96,8 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
-graph =  map(10)
+
+graph = map(10)
 for line in graph:
     print(f"{line},")
 
