@@ -22,7 +22,7 @@ def isPath(a, b, graph):
                 return True
             else:
                 copyOfGraph = deepcopy(graph)
-                copyOfGraph.pop(a)
+                copyOfGraph[a] = [0 for _ in range(len(graph))]
                 return isPath(v, b, copyOfGraph)
     return False
 
