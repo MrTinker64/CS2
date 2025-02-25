@@ -14,19 +14,20 @@ def randomWeights(i) -> list:
     return [random.randint(0, 1) for _ in range(i)]
 
 def isPath(a, b, graph):
-    if graph[a][b] != 0:
-        return True
-    else:
-        for v in neighborhood(a, graph):
-            if graph[v][b] != 0:
-                return True
-            elif graph[v] == [0 for _ in range(len(graph))]:
-                continue
-            else:
-                copyOfGraph = deepcopy(graph)
-                copyOfGraph[a] = [0 for _ in range(len(graph))]
-                return isPath(v, b, copyOfGraph)
-    return False
+    return len(allPaths(a, b, graph)) > 0
+    # if graph[a][b] != 0:
+    #     return True
+    # else:
+    #     for v in neighborhood(a, graph):
+    #         if graph[v][b] != 0:
+    #             return True
+    #         elif graph[v] == [0 for _ in range(len(graph))]:
+    #             continue
+    #         else:
+    #             copyOfGraph = deepcopy(graph)
+    #             copyOfGraph[a] = [0 for _ in range(len(graph))]
+    #             return isPath(v, b, copyOfGraph)
+    # return False
 
 def allPaths(a, b, graph):
     return findAllPaths(a, b, graph, True)
