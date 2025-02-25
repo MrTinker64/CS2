@@ -36,10 +36,20 @@ def checkNeighborsForConnection(a, b, graph):
         for v in neighborhood(a, graph):
             if graph[v][b] != 0:
                 return [v, b]
+            elif graph[v] == [0 for _ in range(len(graph))]:
+                continue
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
-                return [v] + checkNeighborsForConnection(v, b, copyOfGraph)
+                paths = checkNeighborsForConnection(v, b, copyOfGraph)
+                passables = []
+                for path in paths:
+                    if len(path) > 0:
+                        if path[-1] == graph[b]:
+                            passables.append[[v] + path]
+                return passables
+    return []
+                
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
