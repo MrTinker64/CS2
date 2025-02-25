@@ -15,6 +15,7 @@ def randomWeights(i) -> list:
 
 def isPath(a, b, graph):
     return len(allPaths(a, b, graph)) > 0
+    # TODO need to make this return a list like how allPaths does
     # if graph[a][b] != 0:
     #     return True
     # else:
