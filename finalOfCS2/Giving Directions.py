@@ -66,24 +66,18 @@ def findAllPaths(a, b, graph, isFirst):
 
 
 def addToPassables(passables, path, v, isFirst):
+    print("\n", passables, path)
     if isFirst:
         if len(passables) > 0:
-            print("\n", passables, path)
             passables = [passables] + [[0, v] + path]
-            print(passables)
         else:
-            print("\n", passables, path)
             passables = [0, v] + path
-            print(passables)
     else:
         if len(passables) > 0:
-            print("\n", passables, path)
             passables = [passables] + [[v] + path]
-            print(passables)
         else:
-            print("\n", passables, path)
             passables = [v] + path
-            print(passables)
+    print(passables)
     return passables
 
 
