@@ -28,7 +28,7 @@ def isPath(a, b, graph):
                 return isPath(v, b, copyOfGraph)
     return False
 
-def checkNeighborsForConnection(a, b, graph, isFirst):
+def findAllPaths(a, b, graph, isFirst):
     if graph[a][b] != 0:
         return [a, b]
     else:
@@ -40,7 +40,7 @@ def checkNeighborsForConnection(a, b, graph, isFirst):
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
-                paths = checkNeighborsForConnection(v, b, copyOfGraph, False)
+                paths = findAllPaths(v, b, copyOfGraph, False)
                 passables = []
                 if len(paths) > 0:
                     if paths[0].__class__ == list.__class__:
@@ -96,5 +96,5 @@ else:
     string2 = "NOT a path"
 print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
 
-print(f"Path from {a} to {b}: {checkNeighborsForConnection(a, b, graph, True)}")
-print(f"Path from {a} to {c}: {checkNeighborsForConnection(a, c, graph, True)}")
+print(f"Path from {a} to {b}: {findAllPaths(a, b, graph, True)}")
+print(f"Path from {a} to {c}: {findAllPaths(a, c, graph, True)}")
