@@ -20,6 +20,8 @@ def isPath(a, b, graph):
         for v in neighborhood(a, graph):
             if graph[v][b] != 0:
                 return True
+            elif graph[v] == [0 for _ in range(len(graph))]:
+                continue
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
