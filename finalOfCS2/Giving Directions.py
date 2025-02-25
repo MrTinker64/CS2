@@ -49,7 +49,7 @@ def findAllPaths(a, b, graph, isFirst):
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
                 paths = findAllPaths(v, b, copyOfGraph, False)
                 if len(paths) > 0:
-                    if paths[0].__class__ == list.__class__:
+                    if paths[0].__class__ == list.__class__: # is paths a 2D list?
                         for path in paths:
                             if len(path) > 0:
                                 if path[-1] == graph[b]:
