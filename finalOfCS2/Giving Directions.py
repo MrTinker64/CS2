@@ -90,7 +90,7 @@ graph =  [[0, 1, 1, 0, 0, 0],
 [1, 0, 0, 1, 0, 0],
 [1, 0, 0, 0, 0, 0]]
 for line in graph:
-    print(line)
+    print(f"{line},")
 
 a = 0
 b = 5
