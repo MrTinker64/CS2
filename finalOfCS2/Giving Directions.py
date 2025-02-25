@@ -61,9 +61,15 @@ def findAllPaths(a, b, graph, isFirst):
                     else:
                         if paths[-1] == b:
                             if isFirst:
-                                passables += [0, v] + paths
+                                if len(passables) > 0:
+                                    passables = [passables] + [[0, v] + paths]
+                                else:
+                                    passables = [0, v] + paths
                             else:
-                                passables += [v] + paths
+                                if len(passables) > 0:
+                                    passables = [passables] + [[v] + paths]
+                                else:
+                                    passables = [v] + paths
         return passables                
 
 def neighborhood(vertex, graph):
@@ -75,14 +81,12 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
-
-
-graph =  [[0, 1, 1, 0, 0, 0],
-[0, 0, 1, 0, 1, 0],
-[1, 1, 0, 0, 1, 1],
-[1, 1, 1, 0, 1, 0],
-[1, 0, 0, 1, 0, 0],
-[1, 0, 0, 0, 0, 0]]
+graph =  [[0, 1, 0, 1, 1, 0],
+[0, 0, 1, 1, 1, 0],
+[0, 1, 0, 0, 1, 1],
+[1, 1, 0, 0, 1, 0],
+[0, 1, 1, 1, 0, 0],
+[0, 1, 0, 1, 1, 0],]
 for line in graph:
     print(f"{line},")
 
