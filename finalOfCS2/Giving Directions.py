@@ -58,8 +58,7 @@ def findAllPaths(a, b, graph, isFirst):
                             else:
                                 passables += [v] + paths
                 return passables
-    return []
-                
+    return []                
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
