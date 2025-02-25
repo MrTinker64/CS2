@@ -67,7 +67,7 @@ def findAllPaths(a, b, graph, isFirst, start):
 
 
 def addToPassables(passables, path, v, isFirst, start):
-    print("\n", passables, [v] + path, isFirst)
+    # print("\n", passables, [v] + path, isFirst)
     if path[0] == v:
         return passables
     if isFirst:
@@ -86,7 +86,7 @@ def addToPassables(passables, path, v, isFirst, start):
                 passables = passables + [[v] + path]
         else:
             passables = [v] + path
-    print(passables)
+    # print(passables)
     return passables
 
 
@@ -100,26 +100,22 @@ def neighborhood(vertex, graph):
     return connections
 
 
-graph = [
-    [0, 0, 2],
-    [3, 0, 1],
-    [3, 0, 0],
-]
+graph = map(10)
 for line in graph:
     print(f"{line},")
 
-a = 1
-b = 2
+a = 4
+b = 9
 c = 0
-if isPath(a, b, graph):
-    string = "a PATH"
-else:
-    string = "NOT a path"
-if isPath(a, c, graph):
-    string2 = "a PATH"
-else:
-    string2 = "NOT a path"
-print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
+# if isPath(a, b, graph):
+#     string = "a PATH"
+# else:
+#     string = "NOT a path"
+# if isPath(a, c, graph):
+#     string2 = "a PATH"
+# else:
+#     string2 = "NOT a path"
+# print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
 
 print(f"Path from {a} to {b}: {allPaths(a, b, graph)}")
 print(f"Path from {a} to {c}: {allPaths(a, c, graph)}")
