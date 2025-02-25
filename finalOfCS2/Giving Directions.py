@@ -69,12 +69,18 @@ def addToPassables(passables, path, v, isFirst):
     print("\n", passables, path)
     if isFirst:
         if len(passables) > 0:
-            passables = [passables] + [[0, v] + path]
+            if type(passables[0]) == type(0):
+                passables = [passables] + [[0, v] + path]
+            else:
+                passables = passables + [[0, v] + path]
         else:
             passables = [0, v] + path
     else:
         if len(passables) > 0:
-            passables = [passables] + [[v] + path]
+            if type(passables[0]) == type(0):
+                passables = [passables] + [[v] + path]
+            else:
+                passables = passables + [[v] + path]
         else:
             passables = [v] + path
     print(passables)
