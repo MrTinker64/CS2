@@ -11,7 +11,7 @@ def map(n):
     return graph
 
 def randomWeights(i) -> list:
-    return [random.randint(0, 1) for _ in range(i)]
+    return [random.randint(0, 5) for _ in range(i)]
 
 def isPath(a, b, graph):
     return len(allPaths(a, b, graph)) > 0
@@ -82,18 +82,13 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
-graph =  [[0, 1, 0, 1, 1, 0],
-[0, 0, 1, 1, 1, 0],
-[0, 1, 0, 0, 1, 1],
-[1, 1, 0, 0, 1, 0],
-[0, 1, 1, 1, 0, 0],
-[0, 1, 0, 1, 1, 0],]
+graph =  map(10)
 for line in graph:
     print(f"{line},")
 
 a = 0
 b = 5
-c = 3
+c = 9
 if isPath(a, b, graph):
     string = "a PATH"
 else:
