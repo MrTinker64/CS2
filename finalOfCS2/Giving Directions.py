@@ -35,43 +35,45 @@ def isPath(a, b, graph):
 
 
 def allPaths(a, b, graph):
-    return findAllPaths(a, b, graph, True)
+    return findAllPaths(a, b, graph, True, a)
 
 
-def findAllPaths(a, b, graph, isFirst):
+def findAllPaths(a, b, graph, isFirst, start):
     passables = []
     for v in neighborhood(a, graph):
         if graph[v] == [0 for _ in range(len(graph))]:
             continue
         if v == b:
-            passables = addToPassables(passables, [b], a, False)
+            passables = addToPassables(passables, [b], a, False, start)
         if graph[v][b] != 0:
-            passables = addToPassables(passables, [b], v, isFirst)
+            passables = addToPassables(passables, [b], v, isFirst, start)
         copyOfGraph = deepcopy(graph)
         copyOfGraph[a] = [0 for _ in range(len(graph))]
-        paths = findAllPaths(v, b, copyOfGraph, False)
+        paths = findAllPaths(v, b, copyOfGraph, False, start)
         if len(paths) > 0:
             if type(paths[0]) != type(0):  # is paths a 2D list?
                 for path in paths:
                     if len(path) > 0:
                         if path[-1] == graph[b]:
-                            passables = addToPassables(passables, path, v, isFirst)
+                            passables = addToPassables(
+                                passables, path, v, isFirst, start
+                            )
             else:
                 if paths[-1] == b:
-                    passables = addToPassables(passables, paths, v, isFirst)
+                    passables = addToPassables(passables, paths, v, isFirst, start)
     return passables
 
 
-def addToPassables(passables, path, v, isFirst):
-    # print("\n", passables, path)
+def addToPassables(passables, path, v, isFirst, start):
+    print("\n", passables, path)
     if isFirst:
         if len(passables) > 0:
             if type(passables[0]) == type(0):
-                passables = [passables] + [[0, v] + path]
+                passables = [passables] + [[start, v] + path]
             else:
-                passables = passables + [[0, v] + path]
+                passables = passables + [[start, v] + path]
         else:
-            passables = [0, v] + path
+            passables = [start, v] + path
     else:
         if len(passables) > 0:
             if type(passables[0]) == type(0):
@@ -80,7 +82,7 @@ def addToPassables(passables, path, v, isFirst):
                 passables = passables + [[v] + path]
         else:
             passables = [v] + path
-    # print(passables)
+    print(passables)
     return passables
 
 
@@ -102,9 +104,9 @@ graph = [
 for line in graph:
     print(f"{line},")
 
-a = 0
-b = 1
-c = 2
+a = 1
+b = 2
+c = 0
 if isPath(a, b, graph):
     string = "a PATH"
 else:
