@@ -28,7 +28,10 @@ def isPath(a, b, graph):
                 return isPath(v, b, copyOfGraph)
     return False
 
-def allPaths(a, b, graph, isFirst):
+def allPaths(a, b, graph):
+    return findAllPaths(a, b, graph, True)
+
+def findAllPaths(a, b, graph, isFirst):
     if graph[a][b] != 0:
         return [a, b]
     else:
@@ -44,7 +47,7 @@ def allPaths(a, b, graph, isFirst):
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
-                paths = allPaths(v, b, copyOfGraph, False)
+                paths = findAllPaths(v, b, copyOfGraph, False)
                 if len(paths) > 0:
                     if paths[0].__class__ == list.__class__:
                         for path in paths:
@@ -102,5 +105,5 @@ else:
     string2 = "NOT a path"
 print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
 
-print(f"Path from {a} to {b}: {allPaths(a, b, graph, True)}")
-print(f"Path from {a} to {c}: {allPaths(a, c, graph, True)}")
+print(f"Path from {a} to {b}: {allPaths(a, b, graph)}")
+print(f"Path from {a} to {c}: {allPaths(a, c, graph)}")
