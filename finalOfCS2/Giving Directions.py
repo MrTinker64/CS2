@@ -74,13 +74,6 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
-# def allPaths(a, b, graph):
-#     if not isPath(a, b, graph):
-#         return []
-#     for neighbor in neighborhood(a, graph):
-#         if neighbor == b:
-#             return [a, b]
-    # for vertex in len(graph):
 
 
 graph =  [[0, 1, 1, 0, 0, 0],
