@@ -34,44 +34,51 @@ def allPaths(a, b, graph):
     return findAllPaths(a, b, graph, True)
 
 def findAllPaths(a, b, graph, isFirst):
-    if graph[a][b] != 0:
-        return [a, b]
-    else:
-        passables = []
-        for v in neighborhood(a, graph):
-            if graph[v][b] != 0:
-                if isFirst:
-                    return [0, v, b]
+    passables = []
+    for v in neighborhood(a, graph):
+        if v == b:
+            passables = addToPassables(passables, [b], a, False)
+            continue
+        elif graph[v] == [0 for _ in range(len(graph))]:
+            continue
+        elif graph[v][b] != 0:
+            passables = addToPassables(passables, [b], v, isFirst)
+            continue
+        else:
+            copyOfGraph = deepcopy(graph)
+            copyOfGraph[a] = [0 for _ in range(len(graph))]
+            paths = findAllPaths(v, b, copyOfGraph, False)
+            if len(paths) > 0:
+                if paths[0].__class__ == list.__class__: # is paths a 2D list?
+                    for path in paths:
+                        if len(path) > 0:
+                            if path[-1] == graph[b]:
+                                passables = addToPassables(passables, path, v, isFirst)
                 else:
-                    return [v, b]
-            elif graph[v] == [0 for _ in range(len(graph))]:
-                continue
-            else:
-                copyOfGraph = deepcopy(graph)
-                copyOfGraph[a] = [0 for _ in range(len(graph))]
-                paths = findAllPaths(v, b, copyOfGraph, False)
-                if len(paths) > 0:
-                    if paths[0].__class__ == list.__class__: # is paths a 2D list?
-                        for path in paths:
-                            if len(path) > 0:
-                                if path[-1] == graph[b]:
-                                    if isFirst:
-                                        passables.append([0, v] + path)
-                                    else:
-                                        passables.append([v] + path)
-                    else:
-                        if paths[-1] == b:
-                            if isFirst:
-                                if len(passables) > 0:
-                                    passables = [passables] + [[0, v] + paths]
-                                else:
-                                    passables = [0, v] + paths
-                            else:
-                                if len(passables) > 0:
-                                    passables = [passables] + [[v] + paths]
-                                else:
-                                    passables = [v] + paths
-        return passables                
+                    if paths[-1] == b:
+                        passables = addToPassables(passables, paths, v, isFirst)
+    return passables  
+
+def addToPassables(passables, path, v, isFirst):
+    if isFirst:
+        if len(passables) > 0:
+            print("\n", passables, path)
+            passables = [passables] + [[0, v] + path]
+            print(passables)
+        else:
+            print("\n", passables, path)
+            passables = [0, v] + path
+            print(passables)
+    else:
+        if len(passables) > 0:
+            print("\n", passables, path)
+            passables = [passables] + [[v] + path]
+            print(passables)
+        else:
+            print("\n", passables, path)
+            passables = [v] + path
+            print(passables)
+    return passables
 
 def neighborhood(vertex, graph):
     edges = graph[vertex]
