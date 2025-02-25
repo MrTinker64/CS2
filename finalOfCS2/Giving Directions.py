@@ -40,6 +40,8 @@ def allPaths(a, b, graph):
 
 def findAllPaths(a, b, graph, isFirst, start):
     passables = []
+    if a == b:
+        return []
     for v in neighborhood(a, graph):
         if graph[v] == [0 for _ in range(len(graph))]:
             continue
