@@ -28,10 +28,7 @@ def isPath(a, b, graph):
                 return isPath(v, b, copyOfGraph)
     return False
 
-def checkNeighborsForConnection(a, b, graph):
-    print("\n")
-    print(a, b)
-    print(graph)
+def checkNeighborsForConnection(a, b, graph, isFirst):
     if graph[a][b] != 0:
         return [a, b]
     else:
@@ -43,19 +40,23 @@ def checkNeighborsForConnection(a, b, graph):
             else:
                 copyOfGraph = deepcopy(graph)
                 copyOfGraph[a] = [0 for _ in range(len(graph))]
-                paths = checkNeighborsForConnection(v, b, copyOfGraph)
+                paths = checkNeighborsForConnection(v, b, copyOfGraph, False)
                 passables = []
                 if len(paths) > 0:
                     if paths[0].__class__ == list.__class__:
                         for path in paths:
                             if len(path) > 0:
                                 if path[-1] == graph[b]:
-                                    passables.append([v] + path)
+                                    if isFirst:
+                                        passables.append([0, v] + path)
+                                    else:
+                                        passables.append([v] + path)
                     else:
                         if paths[-1] == b:
-                            print(passables)
-                            passables += [v] + paths
-                print(passables)
+                            if isFirst:
+                                passables += [0, v] + paths
+                            else:
+                                passables += [v] + paths
                 return passables
     return []
                 
@@ -78,12 +79,7 @@ def neighborhood(vertex, graph):
     # for vertex in len(graph):
 
 
-graph =  [[0, 1, 0, 0, 1, 0],
-[1, 0, 0, 0, 0, 1],
-[0, 1, 0, 1, 1, 0],
-[0, 0, 0, 0, 1, 1],
-[0, 1, 1, 0, 0, 0],
-[1, 1, 1, 1, 0, 0]]
+graph =  map(6)
 for line in graph:
     print(line)
 
@@ -100,5 +96,5 @@ else:
     string2 = "NOT a path"
 print(f"{a} to {b} is {string}\n{a} to {c} is {string2}")
 
-print(f"Path from {a} to {b}: {[0] + checkNeighborsForConnection(a, b, graph)}")
-print(f"Path from {a} to {c}: {[0] + checkNeighborsForConnection(a, c, graph)}")
+print(f"Path from {a} to {b}: {checkNeighborsForConnection(a, b, graph, True)}")
+print(f"Path from {a} to {c}: {checkNeighborsForConnection(a, c, graph, True)}")
