@@ -50,9 +50,13 @@ def neighborhood(vertex, graph):
             connections.append(i)
     return connections
 
-def allPaths(a, b, graph):
-    if not isPath(a, b, graph):
-        return []
+# def allPaths(a, b, graph):
+#     if not isPath(a, b, graph):
+#         return []
+#     if graph[a][b] != 0:
+#         return [a, b]
+#     for vertex in len(graph):
+#         for neighbor in neighborhood(vertex, graph):
 
 graph =  [[0, 0, 1, 0, 0, 0],
 [0, 0, 1, 1, 0, 0],
