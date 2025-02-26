@@ -39,11 +39,8 @@ def findCombinations(graph):
     subsets = []
     for n in range(len(graph)):
         copyOfSubsets = deepcopy(subsets)
-        print(n)
         n = len(graph) - n - 1
-        print(n)
         for set in copyOfSubsets:
-            print(set)
             subsets.append([n] + set)
         subsets.append([n])
     return subsets
@@ -51,15 +48,14 @@ def findCombinations(graph):
 
 def largestCliqueIn(graph):
     longestSet = []
-    longestLen = float("inf")
     for set in findCombinations(graph):
-        if isClique(set, graph) and len(set) < longestLen:
+        if isClique(set, graph) and len(set) > len(longestSet):
             longestSet = set
-            longestLen = len(set)
     return longestSet
 
-# cq = [0, 1, 2]
 
-# print(f"Is {cq} clique: {isClique(cq, graph)}")
+graph = friends(4)
+for line in graph:
+    print(f"{line},")
 
-print(findCombinations([i for i in range(4)]))
+print(largestCliqueIn(graph))
