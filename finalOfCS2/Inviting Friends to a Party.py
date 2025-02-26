@@ -49,9 +49,14 @@ def findCombinations(graph):
     return subsets
 
 
-# graph = friends(3)
-# for line in graph:
-#     print(f"{line},")
+def largestCliqueIn(graph):
+    longestSet = []
+    longestLen = float("inf")
+    for set in findCombinations(graph):
+        if isClique(set, graph) and len(set) < longestLen:
+            longestSet = set
+            longestLen = len(set)
+    return longestSet
 
 # cq = [0, 1, 2]
 
