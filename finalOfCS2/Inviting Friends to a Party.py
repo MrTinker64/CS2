@@ -54,8 +54,11 @@ def largestCliqueIn(graph):
     return longestSet
 
 
-graph = friends(4)
-for line in graph:
-    print(f"{line},")
+def myParty(n):
+    graph = friends(n)
+    for line in graph:
+        print(f"{line},")
+    return largestCliqueIn(graph)
 
-print(largestCliqueIn(graph))
+
+print(myParty(4))
