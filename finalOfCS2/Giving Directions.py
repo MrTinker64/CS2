@@ -35,16 +35,6 @@ def allPaths(a, b, graph):
     return copyOfSubsets
 
 
-def neighborhood(vertex, graph):
-    edges = graph[vertex]
-    connections = []
-    for i in range(len(edges)):
-        edge = edges[i]
-        if edge != 0:
-            connections.append(i)
-    return connections
-
-
 def shortestPath(a, b, graph):
     shortestPath = []
     costOfShortestPath = float("inf")
@@ -130,3 +120,12 @@ print(f"all paths: {allPaths(a, b, graph)}")
 #             passables = [v] + path
 #     # print(passables)
 #     return passables
+
+# def neighborhood(vertex, graph):
+#     edges = graph[vertex]
+#     connections = []
+#     for i in range(len(edges)):
+#         edge = edges[i]
+#         if edge != 0:
+#             connections.append(i)
+#     return connections
