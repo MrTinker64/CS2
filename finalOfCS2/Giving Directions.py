@@ -16,77 +16,24 @@ def randomWeights(i) -> list:
     return [random.randint(0, 5) for _ in range(i)]
 
 
-def isPath(a, b, graph):
-    return len(allPaths(a, b, graph)) > 0
-    # if graph[a][b] != 0:
-    #     return True
-    # else:
-    #     for v in neighborhood(a, graph):
-    #         if graph[v][b] != 0:
-    #             return True
-    #         elif graph[v] == [0 for _ in range(len(graph))]:
-    #             continue
-    #         else:
-    #             copyOfGraph = deepcopy(graph)
-    #             copyOfGraph[a] = [0 for _ in range(len(graph))]
-    #             return isPath(v, b, copyOfGraph)
-    # return False
-
-
 def allPaths(a, b, graph):
-    return findAllPaths(a, b, graph, True, a)
-
-
-def findAllPaths(a, b, graph, isFirst, start):
-    passables = []
-    if a == b:
-        return []
-    for v in neighborhood(a, graph):
-        if graph[v] == [0 for _ in range(len(graph))]:
+    subsets = []
+    for n in range(len(graph)):
+        copyOfSubsets = deepcopy(subsets)
+        n = len(graph) - n - 1
+        for set in copyOfSubsets:
+            subsets.append([n] + set)
+        subsets.append([n])
+    copyOfSubsets = deepcopy(subsets)
+    for set in subsets:
+        print(set)
+        if set[0] == a and set[-1] == b:
+            for i in len(set[:-1]):
+                if not graph[set[i]][set[i + 1]]:
+                    copyOfSubsets.remove(set)
             continue
-        if v == b:
-            passables = addToPassables(passables, [b], a, False, start)
-        if graph[v][b] != 0:
-            passables = addToPassables(passables, [b], v, isFirst, start)
-        copyOfGraph = deepcopy(graph)
-        copyOfGraph[a] = [0 for _ in range(len(graph))]
-        paths = findAllPaths(v, b, copyOfGraph, False, start)
-        if len(paths) > 0:
-            if type(paths[0]) != type(0):  # is paths a 2D list?
-                for path in paths:
-                    if len(path) > 0:
-                        if path[-1] == graph[b]:
-                            passables = addToPassables(
-                                passables, path, v, isFirst, start
-                            )
-            else:
-                if paths[-1] == b:
-                    passables = addToPassables(passables, paths, v, isFirst, start)
-    return passables
-
-
-def addToPassables(passables, path, v, isFirst, start):
-    # print("\n", passables, [v] + path, isFirst)
-    if path[0] == v:
-        return passables
-    if isFirst:
-        if len(passables) > 0:
-            if type(passables[0]) == type(0):
-                passables = [passables] + [[start, v] + path]
-            else:
-                passables = passables + [[start, v] + path]
-        else:
-            passables = [start, v] + path
-    else:
-        if len(passables) > 0:
-            if type(passables[0]) == type(0):
-                passables = [passables] + [[v] + path]
-            else:
-                passables = passables + [[v] + path]
-        else:
-            passables = [v] + path
-    # print(passables)
-    return passables
+        copyOfSubsets.remove(set)
+    return copyOfSubsets
 
 
 def neighborhood(vertex, graph):
@@ -115,12 +62,72 @@ def shortestPath(a, b, graph):
     return shortestPath
 
 
-graph = map(10)
+graph = map(4)
 for line in graph:
     print(f"{line},")
 
 a = 0
 b = 3
 
-print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
-print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+print(allPaths(a, b, graph))
+
+# print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
+# print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+
+
+# * Old Code (this solution didn't work very well)
+
+# def allPaths(a, b, graph):
+#     return findAllPaths(a, b, graph, True, a)
+
+
+# def findAllPaths(a, b, graph, isFirst, start):
+#     passables = []
+#     if a == b:
+#         return []
+#     for v in neighborhood(a, graph):
+#         if graph[v] == [0 for _ in range(len(graph))]:
+#             continue
+#         if v == b:
+#             passables = addToPassables(passables, [b], a, False, start)
+#         if graph[v][b] != 0:
+#             passables = addToPassables(passables, [b], v, isFirst, start)
+#         copyOfGraph = deepcopy(graph)
+#         copyOfGraph[a] = [0 for _ in range(len(graph))]
+#         paths = findAllPaths(v, b, copyOfGraph, False, start)
+#         if len(paths) > 0:
+#             if type(paths[0]) != type(0):  # is paths a 2D list?
+#                 for path in paths:
+#                     if len(path) > 0:
+#                         if path[-1] == graph[b]:
+#                             passables = addToPassables(
+#                                 passables, path, v, isFirst, start
+#                             )
+#             else:
+#                 if paths[-1] == b:
+#                     passables = addToPassables(passables, paths, v, isFirst, start)
+#     return passables
+
+
+# def addToPassables(passables, path, v, isFirst, start):
+#     # print("\n", passables, [v] + path, isFirst)
+#     if path[0] == v:
+#         return passables
+#     if isFirst:
+#         if len(passables) > 0:
+#             if type(passables[0]) == type(0):
+#                 passables = [passables] + [[start, v] + path]
+#             else:
+#                 passables = passables + [[start, v] + path]
+#         else:
+#             passables = [start, v] + path
+#     else:
+#         if len(passables) > 0:
+#             if type(passables[0]) == type(0):
+#                 passables = [passables] + [[v] + path]
+#             else:
+#                 passables = passables + [[v] + path]
+#         else:
+#             passables = [v] + path
+#     # print(passables)
+#     return passables
