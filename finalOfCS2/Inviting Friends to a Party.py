@@ -1,4 +1,5 @@
 import random
+from copy import deepcopy
 
 
 def friends(n):
@@ -34,10 +35,26 @@ def neighborhood(vertex, graph):
     return connections
 
 
-graph = friends(3)
-for line in graph:
-    print(f"{line},")
+def findCombinations(graph):
+    subsets = []
+    for n in range(len(graph)):
+        copyOfSubsets = deepcopy(subsets)
+        print(n)
+        n = len(graph) - n
+        print(n)
+        for set in copyOfSubsets:
+            print(set)
+            subsets.append([n] + set)
+        subsets.append([n])
+    return subsets
 
-cq = [0, 1, 2]
 
-print(f"Is {cq} clique: {isClique(cq, graph)}")
+# graph = friends(3)
+# for line in graph:
+#     print(f"{line},")
+
+# cq = [0, 1, 2]
+
+# print(f"Is {cq} clique: {isClique(cq, graph)}")
+
+print(findCombinations([i for i in range(4)]))
