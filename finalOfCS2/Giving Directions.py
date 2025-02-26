@@ -106,18 +106,16 @@ def shortestPath(a, b, graph):
         cost = 0
         for i in range(len(path[:-1])):
             cost += graph[path[i]][path[i + 1]]
-        if cost <= costOfShortestPath:
+        if cost < costOfShortestPath:
+            shortestPath = path
+            costOfShortestPath = cost
+        if cost == costOfShortestPath and len(path) < len(shortestPath):
             shortestPath = path
             costOfShortestPath = cost
     return shortestPath
 
 
-graph = [
-    [0, 2, 2, 4],
-    [2, 0, 0, 2],
-    [5, 1, 0, 2],
-    [1, 3, 3, 0],
-]
+graph = map(10)
 for line in graph:
     print(f"{line},")
 
