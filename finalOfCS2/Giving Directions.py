@@ -26,10 +26,9 @@ def allPaths(a, b, graph):
         subsets.append([n])
     copyOfSubsets = deepcopy(subsets)
     for set in subsets:
-        print(set)
         if set[0] == a and set[-1] == b:
-            for i in len(set[:-1]):
-                if not graph[set[i]][set[i + 1]]:
+            for i in range(len(set[:-1])):
+                if graph[set[i]][set[i + 1]] == 0:
                     copyOfSubsets.remove(set)
             continue
         copyOfSubsets.remove(set)
@@ -69,7 +68,7 @@ for line in graph:
 a = 0
 b = 3
 
-print(allPaths(a, b, graph))
+print(f"all paths: {allPaths(a, b, graph)}")
 
 # print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
 # print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
