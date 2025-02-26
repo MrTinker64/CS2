@@ -58,7 +58,7 @@ for line in graph:
 a = 0
 b = 3
 
-print(f"all paths: {allPaths(a, b, graph)}")
+print(f"shortest path: {shortestPath(a, b, graph)}")
 
 # print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
 # print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
