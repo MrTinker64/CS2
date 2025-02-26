@@ -40,7 +40,7 @@ def findCombinations(graph):
     for n in range(len(graph)):
         copyOfSubsets = deepcopy(subsets)
         print(n)
-        n = len(graph) - n
+        n = len(graph) - n - 1
         print(n)
         for set in copyOfSubsets:
             print(set)
