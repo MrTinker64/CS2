@@ -70,7 +70,7 @@ def test(n):
         end = time.time()
         deltaTimes += [end - start]
     average = sum(deltaTimes) / len(deltaTimes)
-    return f"\n{n}: {average}"
+    return f"\n{n}: {round(average, 3)}"
 
 
 print(f"Times:{test(16)}{test(17)}{test(18)}{test(19)}")
