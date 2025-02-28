@@ -30,6 +30,7 @@ def allPaths(a, b, graph):
             for i in range(len(set[:-1])):
                 if graph[set[i]][set[i + 1]] == 0:
                     copyOfSubsets.remove(set)
+                    break
             continue
         copyOfSubsets.remove(set)
     return copyOfSubsets
@@ -51,14 +52,14 @@ def shortestPath(a, b, graph):
     return shortestPath
 
 
-graph = map(4)
+graph = map(10)
 for line in graph:
     print(f"{line},")
 
 a = 0
-b = 3
+b = len(graph) - 1
 
-print(f"shortest path: {shortestPath(a, b, graph)}")
+print(f"shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
 
 # print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
 # print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
