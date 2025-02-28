@@ -66,7 +66,7 @@ def test(n):
     deltaTimes = []
     for i in range(4):
         start = time.time()
-        print(myParty(n))
+        myParty(n)
         end = time.time()
         deltaTimes += [end - start]
     average = sum(deltaTimes) / len(deltaTimes)

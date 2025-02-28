@@ -62,7 +62,7 @@ def test(n):
         a = 0
         b = len(graph) - 1
 
-        print(f"shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+        # print(f"shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
         end = time.time()
         deltaTimes += [end - start]
     average = sum(deltaTimes) / len(deltaTimes)
