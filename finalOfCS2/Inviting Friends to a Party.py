@@ -1,5 +1,6 @@
 import random
 from copy import deepcopy
+import time
 
 
 def friends(n):
@@ -56,9 +57,20 @@ def largestCliqueIn(graph):
 
 def myParty(n):
     graph = friends(n)
-    for line in graph:
-        print(f"{line},")
+    # for line in graph:
+    #     print(f"{line},")
     return largestCliqueIn(graph)
 
 
-print(myParty(4))
+def test(n):
+    deltaTimes = []
+    for i in range(4):
+        start = time.time()
+        print(myParty(n))
+        end = time.time()
+        deltaTimes += [end - start]
+    average = sum(deltaTimes) / len(deltaTimes)
+    return f"\n{n}: {average}"
+
+
+print(f"Times:{test(16)}{test(17)}{test(18)}{test(19)}")
