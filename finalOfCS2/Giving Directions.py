@@ -1,5 +1,6 @@
 import random
 from copy import deepcopy
+import time
 
 
 def map(n):
@@ -52,17 +53,23 @@ def shortestPath(a, b, graph):
     return shortestPath
 
 
-graph = map(10)
-for line in graph:
-    print(f"{line},")
+def test(n):
+    deltaTimes = []
+    for i in range(4):
+        start = time.time()
+        graph = map(n)
 
-a = 0
-b = len(graph) - 1
+        a = 0
+        b = len(graph) - 1
 
-print(f"shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+        print(f"shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+        end = time.time()
+        deltaTimes += [end - start]
+    average = sum(deltaTimes) / len(deltaTimes)
+    return f"\n{n}: {average}"
 
-# print(f"Paths from {a} to {b}: {allPaths(a, b, graph)}")
-# print(f"Shortest path from {a} to {b}: {shortestPath(a, b, graph)}")
+
+print(f"Times:{test(14)}{test(15)}{test(16)}{test(17)}")
 
 
 # * Old Code (this solution didn't work very well)
