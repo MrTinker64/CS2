@@ -8,9 +8,11 @@ def f2(N):
         return f2(N / 2)
 
 
-# 7a Algorithm 3 = O(n)
-# n/2, n/4, n/8 ... geometric series
-# 7b Algorithm 3 = O(n)
+""" 
+7a Algorithm 3 = O(n)
+n/2, n/4, n/8 ... geometric series
+7b Algorithm 3 = O(n)
+"""
 
 
 def swap_values(A, B):
