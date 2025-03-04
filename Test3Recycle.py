@@ -43,18 +43,10 @@ print(mystery(2, [[0, 1, 1], [1, 0, 1], [1, 1, 0]]))  # [0, 2]
 def count_change(amount, bills):
     if len(bills) < 1:
         return 0
-    elif amount % bills[-1] == 0:
-        return 1 + count_change(amount, bills[:-1])
-    elif amount % bills[-1] >= amount:
-        return count_change(amount, bills[:-1])
-    else:
-        combinations = 0
-        for n in range(floor(amount / bills[-1])):
-            leftover = amount % bills[-1] + bills[-1] * n
-            for bill in bills[:-1]:
-                if leftover % bill == 0:
-                    combinations += 1
-        return combinations + count_change(amount, bills[:-1])
+    extra = 0
+    if amount / bills[-1] >= 1:
+        extra = floor(amount / bills[-1])
+    return extra + count_change(amount, bills[:-1])
 
 
 print(count_change(12, [1, 5, 10, 20]))
