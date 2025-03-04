@@ -41,8 +41,8 @@ print(mystery(2, [[0, 1, 1], [1, 0, 1], [1, 1, 0]]))  # [0, 2]
 
 
 def count_change(amount, bills):
-    if len(bills) < 1:
-        return 0
+    if len(bills) < 2:
+        return 1
     extra = 0
     if amount / bills[-1] >= 1:
         extra = floor(amount / bills[-1])
