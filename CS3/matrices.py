@@ -8,4 +8,7 @@ def add(X, Y):
 def subtract(X, Y):
     return [[X[i][j] - Y[i][j] for j in range(len(X))] for i in range(len(X))]
 
-print(subtract(A, B))
+def scalarMulitply(c, X):
+    return [[c*X[i][j] for j in range(len(X))] for i in range(len(X))]
+
+print(scalarMulitply(2, A))
