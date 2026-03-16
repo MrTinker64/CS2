@@ -5,4 +5,7 @@ L = [[9, -18, 27], [36, 55, 54]]
 def add(X, Y):
     return [[X[i][j] + Y[i][j] for j in range(len(X))] for i in range(len(X))]
 
-print(add(A, B))
+def subtract(X, Y):
+    return [[X[i][j] - Y[i][j] for j in range(len(X))] for i in range(len(X))]
+
+print(subtract(A, B))
