@@ -11,4 +11,9 @@ def subtract(X, Y):
 def scalarMulitply(c, X):
     return [[c*X[i][j] for j in range(len(X))] for i in range(len(X))]
 
-print(scalarMulitply(2, A))
+def mulitply(X, Y):
+    rLen = len(X) - 1
+    cLen = len(X[0]) - 1
+    return [[X[r][c]*Y[r][c] + X[r][cLen-c]*Y[rLen-r][c] for c in range(cLen)] for r in range(rLen)]
+
+print(mulitply(A, B))
