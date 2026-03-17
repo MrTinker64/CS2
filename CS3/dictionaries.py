@@ -10,7 +10,7 @@ class_dict = {'Math':'1A', 'English': 'Shakespeare', 'CS':'3'}
 fav_numbers = {'Henri': 68, 'Richard': 19, 'Parisa': 42, 'Jessica': 4}
 nums = [68, 42]
 
-for person in fav_numbers:
-    fav_numbers[person] += len(list(person))
+# for person in fav_numbers:
+#     fav_numbers[person] += len(list(person))
     
-print(fav_numbers)
+print([person for person in fav_numbers if nums.__contains__(fav_numbers[person])])
