@@ -24,4 +24,13 @@ def merge_dicts(dict1, dict2):
         newDict[key] = newDict.get(key, 0) + val
     return newDict
         
-print(merge_dicts(dictA, dictB))
+# print(merge_dicts(dictA, dictB))
+
+"""
+a. 4
+b. ['fruit', 'veggie', 'beverage', 'grain']
+c. error
+d. true and false
+e. true and true
+f. nothing. you need to do food_dict[food]
+"""
