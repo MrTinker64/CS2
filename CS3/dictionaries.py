@@ -33,4 +33,7 @@ c. error
 d. true and false
 e. true and true
 f. nothing. you need to do food_dict[food]
+
+8. an empty list bc copy is just a reference to food_dict not an actual copy
+9. error bc you can't have a dictionary key/value pairing as a value
 """
