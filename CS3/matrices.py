@@ -13,7 +13,6 @@ def scalarMulitply(c, X):
 
 def mulitply(X, Y):
     rLen = len(X) - 1
-    cLen = len(X[0]) - 1
-    return [[X[r][c]*Y[r][c] + X[r][cLen-c]*Y[rLen-r][c] for c in range(cLen)] for r in range(rLen)]
+    return [[X[r][0]*Y[0][c] + X[r][rLen]*Y[rLen][c] for c in range(len(X[0]))] for r in range(len(X))]
 
 print(mulitply(A, B))
