@@ -13,4 +13,15 @@ nums = [68, 42]
 # for person in fav_numbers:
 #     fav_numbers[person] += len(list(person))
     
-print([person for person in fav_numbers if nums.__contains__(fav_numbers[person])])
+# print([person for person in fav_numbers if nums.__contains__(fav_numbers[person])])
+
+dictA = {'Dan':3, 'Charlotte': 15}
+dictB = {'Lauren': 3, 'Charlotte': -1, 'Dan': 2}
+
+def merge_dicts(dict1, dict2):
+    newDict = dict1.copy()
+    for key, val in dict2.items():
+        newDict[key] = newDict.get(key, 0) + val
+    return newDict
+        
+print(merge_dicts(dictA, dictB))
