@@ -13,10 +13,19 @@ def scalarMulitply(c, X):
     return [[c*X[i][j] for j in range(len(X))] for i in range(len(X))]
 
 def mulitply(X, Y):
+    cMax = len(Y) - 1
     rMax = len(X[0]) - 1
-    return [[X[r][0]*Y[0][c] + X[r][rMax]*Y[rMax][c] for c in range(len(Y[0]))] for r in range(len(X))]
+    return [[X[r][0]*Y[0][c] + X[r][cMax]*Y[rMax][c] for c in range(len(Y[0]))] for r in range(len(X))]
 
 def transpose(X):
     return [[X[c][r] for c in range(len(X))] for r in range(len(X[0]))]
 
-print(mulitply(A, D))
+
+
+# Should work
+# print(mulitply(A, D))
+# print(mulitply(A, L))
+
+# Should throw errors
+# print(mulitply(D, A))
+# print(mulitply(L, A))
