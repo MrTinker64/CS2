@@ -16,4 +16,7 @@ def mulitply(X, Y):
     rLen = len(X) - 1
     return [[X[r][0]*Y[0][c] + X[r][rLen]*Y[rLen][c] for c in range(len(X[0]))] for r in range(len(X))]
 
+def transpose(X):
+    return [[X[j][i] for j in range(len(X))] for i in range(len(X))]
+
 print(mulitply(A, B))
