@@ -20,5 +20,17 @@ s.bgcolor('skyblue')
 
 # s.onscreenclick(doSomething)
 
+def square(length):
+    t.penup()
+    t.right(135)
+    t.forward(length * (2 ** 0.5) / 2)
+    t.left(135)
+    t.pendown()
+    for i in range(4):
+        t.forward(length)
+        t.left(90)
+        
+square(100)
+
 turtle.update()
 turtle.mainloop()
