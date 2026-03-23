@@ -1,7 +1,11 @@
 import turtle
 
+turtle.tracer(0)
 t = turtle.Turtle()
 
-t.forward(100)
+for i in range(360):
+    t.forward(1)
+    t.left(1)
 
+turtle.update()
 turtle.done()
