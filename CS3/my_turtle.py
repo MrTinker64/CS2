@@ -9,18 +9,34 @@ s.bgcolor('skyblue')
 
 turtle.tracer(0, 0)
 
+leftAngle = 20
+rightAngle = 30
+
 def tree(level, size):
     t.forward(size)
     if level > 0:
-        t.left(45)
-        tree(level-1, size/2)
-        t.right(90)
-        tree(level-1, size/2)
-        t.left(45)
+        t.left(leftAngle)
+        tree(level-1, size*0.9)
+        t.right(leftAngle + rightAngle)
+        tree(level-1, size*0.9)
+        t.left(rightAngle)
     t.back(size)
 
 t.setheading(90)        
-tree(10, 100)
+tree(10, 45)
+
+# def tree(level, size):
+#     t.forward(size)
+#     if level > 0:
+#         t.left(45)
+#         tree(level-1, size/2)
+#         t.right(90)
+#         tree(level-1, size/2)
+#         t.left(45)
+#     t.back(size)
+
+# t.setheading(90)        
+# tree(10, 100)
 
 # def outline():
 #     s.bgcolor('red')
