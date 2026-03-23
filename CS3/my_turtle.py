@@ -7,9 +7,20 @@ s.setup(1000,1000)
 s.title('CS 3')
 s.bgcolor('skyblue')
 
-turtle.tracer(0)
+turtle.tracer(0, 0)
 
+def tree(level, size):
+    t.forward(size)
+    if level > 0:
+        t.left(45)
+        tree(level-1, size/2)
+        t.right(90)
+        tree(level-1, size/2)
+        t.left(45)
+    t.back(size)
 
+t.setheading(90)        
+tree(10, 100)
 
 # def outline():
 #     s.bgcolor('red')
