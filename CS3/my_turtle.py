@@ -7,18 +7,35 @@ s.setup(1000,1000)
 s.title('CS 3')
 s.bgcolor('skyblue')
 
-def squareOnClick(x, y):
-    turtle.tracer(0)
-    length = 100
-    t.penup()
-    t.goto(x-length/2, y-length/2)
-    t.pendown()
-    for i in range(4):
-        t.forward(length)
-        t.left(90)
-    turtle.update()
+turtle.tracer(0)
 
-s.onscreenclick(squareOnClick)
+
+
+# def outline():
+#     s.bgcolor('red')
+#     t.shape("turtle")
+#     t.shapesize(2)
+#     t.hideturtle()
+#     t.color('blue')
+#     t.stamp()
+#     t.shapesize(1.5)
+#     t.color('red')
+#     t.stamp()
+    
+# outline()
+
+# def squareOnClick(x, y):
+#     turtle.tracer(0)
+#     length = 100
+#     t.penup()
+#     t.goto(x-length/2, y-length/2)
+#     t.pendown()
+#     for i in range(4):
+#         t.forward(length)
+#         t.left(90)
+#     turtle.update()
+
+# s.onscreenclick(squareOnClick)
 
 # for i in range(360):
 #     t.forward(1)
@@ -55,4 +72,5 @@ s.onscreenclick(squareOnClick)
 # square1(100)
 # square2(110)
 
+turtle.update()
 turtle.mainloop()
