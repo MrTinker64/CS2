@@ -9,18 +9,20 @@ s.bgcolor('skyblue')
 
 turtle.tracer(0, 0)
 
-def tree(level, size, sizeFactor, leftAngle, rightAngle):
+def tree(level, size, sizeFactor, leftAngle, rightAngle, numberOfBranches):
     t.forward(size)
     if level > 0:
-        t.left(leftAngle)
-        tree(level-1, size*sizeFactor, sizeFactor, leftAngle, rightAngle)
-        t.right(leftAngle + rightAngle)
-        tree(level-1, size*sizeFactor, sizeFactor, leftAngle, rightAngle)
-        t.left(rightAngle)
+        t.left(rightAngle*(numberOfBranches-1)/2)
+        for i in range(numberOfBranches-1):
+            t.left(leftAngle)
+            tree(level-1, size*sizeFactor, sizeFactor, leftAngle, rightAngle, numberOfBranches)
+            t.right(leftAngle + rightAngle)
+            tree(level-1, size*sizeFactor, sizeFactor, leftAngle, rightAngle, numberOfBranches)
+        t.left(rightAngle*(numberOfBranches-1)/2)
     t.back(size)
 
 t.setheading(90)
-tree(4, 200, 0.75, 90, 90)
+tree(4, 100, 0.6, 0, 15, 5)
 
 # 5a: tree(4, 45, 0.9, 30, -10)
 # 5c: tree(4, 10, 1.7, 15, 15)
