@@ -22,12 +22,17 @@ def tree(level, size, sizeFactor, leftAngle, rightAngle, numberOfBranches):
     t.back(size)
 
 t.setheading(90)
-tree(4, 100, 0.6, 0, 15, 5)
 
-# 5a: tree(4, 45, 0.9, 30, -10)
-# 5c: tree(4, 10, 1.7, 15, 15)
-# 5d: tree(10, 45, 0.9, 22.5, 22.5)
-# 5e: tree(4, 200, 0.75, 90, 90)
+# 5a: 
+# tree(4, 45, 0.9, 30, -10, 2)
+# 5b:
+# tree(4, 100, 0.6, 0, 15, 5)
+# 5c: 
+# tree(4, 10, 1.7, 15, 15, 2)
+# 5d: 
+# tree(10, 45, 0.9, 22.5, 22.5, 2)
+# 5e: 
+# tree(4, 200, 0.75, 90, 90, 2)
 
 # def tree(level, size):
 #     t.forward(size)
