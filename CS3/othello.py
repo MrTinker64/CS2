@@ -39,11 +39,11 @@ def drawBoard():
         t.pendown()
         t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
 
-def whichRow(y):
-    return -(y - kHalfBoard) // kCellSize
-
 def whichColumn(x):
     return (x + kHalfBoard) // kCellSize
+
+def whichRow(y):
+    return -(y - kHalfBoard) // kCellSize
 
 def xFromColumn(col):
     return  -kHalfBoard + kCellSize / 2 + col*kCellSize
@@ -54,7 +54,7 @@ def yFromRow(row):
 def test(x, y):
     print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
 
-def stampPlayer(row, col, player):
+def stampPlayer(col, row, player):
     t.penup()
     t.goto(xFromColumn(col), yFromRow(row))
     if player > 0:
@@ -109,5 +109,6 @@ def MM(board, depth, alpha, beta, max, current, move):
 # initialize()
 drawBoard()
 s.tracer(1)
-s.onclick(test)
+# s.onclick(test)
+# s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
