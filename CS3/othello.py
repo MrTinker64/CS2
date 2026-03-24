@@ -26,17 +26,17 @@ s.tracer(0,0)
 # Functions
 
 def drawBoard():
-    for i in range(5):
+    for i in range(9):
         # columns
         t.penup()
-        t.goto(i*kCellSize, 0)
+        t.goto(i*kCellSize-kBoardSize / 2, -kBoardSize / 2)
         t.pendown()
-        t.goto(i*kCellSize, kBoardSize / 2)
+        t.goto(i*kCellSize-kBoardSize / 2, kBoardSize / 2)
         # rows
         t.penup()
-        t.goto(0, i*kCellSize)
+        t.goto(-kBoardSize / 2, i*kCellSize-kBoardSize / 2)
         t.pendown()
-        t.goto(kBoardSize / 2, i*kCellSize)
+        t.goto(kBoardSize / 2, i*kCellSize-kBoardSize / 2)
     pass
 
 def whichRow(y):
