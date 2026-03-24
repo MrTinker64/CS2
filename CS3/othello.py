@@ -11,6 +11,7 @@ import copy
 kScreenSize = 600
 kCellSize = 60
 kBoardSize = 8*kCellSize # 480
+kHalfBoard = kBoardSize / 2
 currentPlayer = 1
 gameBoard = []
 
@@ -29,30 +30,39 @@ def drawBoard():
     for i in range(9):
         # columns
         t.penup()
-        t.goto(i*kCellSize-kBoardSize / 2, -kBoardSize / 2)
+        t.goto(i*kCellSize-kHalfBoard, -kHalfBoard)
         t.pendown()
-        t.goto(i*kCellSize-kBoardSize / 2, kBoardSize / 2)
+        t.goto(i*kCellSize-kHalfBoard, kHalfBoard)
         # rows
         t.penup()
-        t.goto(-kBoardSize / 2, i*kCellSize-kBoardSize / 2)
+        t.goto(-kHalfBoard, i*kCellSize-kHalfBoard)
         t.pendown()
-        t.goto(kBoardSize / 2, i*kCellSize-kBoardSize / 2)
-    pass
+        t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
 
 def whichRow(y):
-    pass
+    return kBoardSize % (kHalfBoard - y)
 
 def whichColumn(x):
-    pass
+    return kBoardSize % (kHalfBoard + x)
 
 def xFromColumn(col):
-    pass
+    return kBoardSize % (col + 1) - kHalfBoard
 
 def yFromRow(row):
-    pass
+    return kBoardSize % (row + 1) - kHalfBoard
+
+def test(x, y):
+    print(f"x,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
 
 def stampPlayer(row, col, player):
-    pass
+    t.penup()
+    t.goto(xFromColumn(col), yFromRow(row))
+    if player > 0:
+        t.color('black')
+    else:
+        t.color('white')
+    t.shape('circle')
+    t.stamp()
 
 def allMoves(board,player):
     pass
@@ -99,4 +109,5 @@ def MM(board, depth, alpha, beta, max, current, move):
 # initialize()
 drawBoard()
 s.tracer(1)
+s.onclick(test)
 turtle.mainloop()
