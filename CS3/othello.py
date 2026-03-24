@@ -40,19 +40,19 @@ def drawBoard():
         t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
 
 def whichRow(y):
-    return kBoardSize % (kHalfBoard - y)
+    return -(y - kHalfBoard) // kCellSize
 
 def whichColumn(x):
-    return kBoardSize % (kHalfBoard + x)
+    return (x - kHalfBoard) // kCellSize
 
 def xFromColumn(col):
-    return kBoardSize % (col + 1) - kHalfBoard
+    return  -kBoardSize // (col + 1) + kHalfBoard
 
 def yFromRow(row):
-    return kBoardSize % (row + 1) - kHalfBoard
+    return kBoardSize // (row + 1) - kHalfBoard
 
 def test(x, y):
-    print(f"x,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
+    print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
 
 def stampPlayer(row, col, player):
     t.penup()
