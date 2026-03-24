@@ -13,7 +13,7 @@ kCellSize = 60
 kBoardSize = 8*kCellSize # 480
 kHalfBoard = kBoardSize / 2
 currentPlayer = 1
-gameBoard = []
+gameBoard = [[0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
 
 
 # Turtle and Screen Initialization
