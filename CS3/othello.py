@@ -43,13 +43,13 @@ def whichRow(y):
     return -(y - kHalfBoard) // kCellSize
 
 def whichColumn(x):
-    return (x - kHalfBoard) // kCellSize
+    return (x + kHalfBoard) // kCellSize
 
 def xFromColumn(col):
-    return  -kBoardSize // (col + 1) + kHalfBoard
+    return  -kHalfBoard + kCellSize / 2 + col*kCellSize
 
 def yFromRow(row):
-    return kBoardSize // (row + 1) - kHalfBoard
+    return kHalfBoard - kCellSize / 2 - row*kCellSize
 
 def test(x, y):
     print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
