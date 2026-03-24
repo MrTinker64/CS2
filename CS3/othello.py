@@ -8,7 +8,9 @@ import copy
     black = 1
     white = -1
 '''
-boardsize = 600
+kScreenSize = 600
+kCellSize = 60
+kBoardSize = 8*kCellSize # 480
 currentPlayer = 1
 gameBoard = []
 
@@ -17,13 +19,24 @@ gameBoard = []
 t = turtle.Turtle()
 s = turtle.Screen()
 s.bgcolor('forest green')
-s.setup(boardsize, boardsize)
+s.setup(kScreenSize, kScreenSize)
 # t.hideturtle()
 s.tracer(0,0)
 
 # Functions
 
 def drawBoard():
+    for i in range(5):
+        # columns
+        t.penup()
+        t.goto(i*kCellSize, 0)
+        t.pendown()
+        t.goto(i*kCellSize, kBoardSize / 2)
+        # rows
+        t.penup()
+        t.goto(0, i*kCellSize)
+        t.pendown()
+        t.goto(kBoardSize / 2, i*kCellSize)
     pass
 
 def whichRow(y):
@@ -83,5 +96,7 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 
-#s.tracer(1)
-initialize()
+# initialize()
+drawBoard()
+s.tracer(1)
+turtle.mainloop()
