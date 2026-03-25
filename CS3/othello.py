@@ -55,6 +55,8 @@ def test(x, y):
     print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
 
 def stampPlayer(col, row, player):
+    if col > 7 or row > 7 or col < 0 or row < 0:
+        return
     t.penup()
     t.goto(xFromColumn(col), yFromRow(row))
     if player > 0:
@@ -110,5 +112,5 @@ def MM(board, depth, alpha, beta, max, current, move):
 drawBoard()
 s.tracer(1)
 # s.onclick(test)
-# s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
+s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
