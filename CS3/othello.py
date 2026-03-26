@@ -13,7 +13,7 @@ kCellSize = 60
 kBoardSize = 8*kCellSize # 480
 kHalfBoard = kBoardSize / 2
 currentPlayer = 1
-gameBoard = [[0,1,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
+gameBoard = [[0,1,1,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
 
 
 # Turtle and Screen Initialization
@@ -74,23 +74,36 @@ def allMoves(board,player):
             piece = board[y][x]
             if piece != 0:
                 continue
-            piece_surroundings = surroundings(x, y)
-            for y in range(-1, 2):
-                for x in range(-1, 2):
-                    if piece_surroundings
-                
+            piece_surroundings = surroundings(x, y, board)
+            for xAdd in range(-1, 2):
+                for yAdd in range(-1, 2):
+                    if piece_surroundings[1+xAdd][1+yAdd] == -player:
+                        if recursiveCheck(x, y, board, [xAdd, yAdd], player):
+                            moves_list.append([x, y])
+                            break
             
 # Look at surrounding squares (x & y -1 to +1) to see if any have your opponents color
 # then keep looking until you find a blank spot or your piece
-def surroundings(ogCol, ogRow):
+def surroundings(ogCol, ogRow, board):
     my_list = []
-    for y in range(-1, 2):
-        for x in range(-1, 2):
-            my_list.append(gameBoard[int(ogRow + y)][int(ogCol + x)])
+    for x in range(-1, 2):
+        for y in range(-1, 2):
+            my_list.append(board[int(ogRow + y)][int(ogCol + x)])
     return my_list
 
+def recursiveCheck(ogCol, ogRow, board, direction, player):
+    new_row = ogRow + direction[1]
+    new_col = ogCol + direction[0]
+    next_piece = board[new_row][new_col]
+    if next_piece == 0:
+        return True
+    elif next_piece == -player:
+        return recursiveCheck(new_col, new_row, board, direction, player)
+    else:
+        return False
+
 def test(x, y):
-    print(surroundings(whichColumn(x), whichRow(y)))
+    print(surroundings(whichColumn(x), whichRow(y), gameBoard))
 
 def stampAllMoveS(player):
     pass
