@@ -43,7 +43,7 @@ def drawBoard():
         for row in range(8):
             # numbers
             t.goto(xFromColumn(col), yFromRow(row))
-            t.write(f"{gameBoard[row][col]}", align="center", font=("Arial", 20, "normal"))
+            t.write(f"{gameBoard[row][col]}", font=("Arial", 20, "normal"))
 
 def whichColumn(x):
     return (x + kHalfBoard) // kCellSize
@@ -141,8 +141,15 @@ def recursiveCheck(ogCol, ogRow, board, direction, player):
     else:
         return False
 
-def stampAllMoveS(player):
-    pass
+def stampAllMoves(player):
+    radius = 15
+    for move in allMoves(gameBoard, player):
+        t.penup()
+        t.goto(xFromColumn(move[1]), yFromRow(move[0]) - radius)
+        t.pencolor('black')
+        t.pensize(1)
+        t.pendown()
+        t.circle(radius)
 
 def validMove(player,row,col):
     pass
@@ -182,7 +189,7 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 # initialize()
 drawBoard()
+print(stampAllMoves(-1))
 s.tracer(1)
-print(allMoves(gameBoard, -1))
 # s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
