@@ -13,7 +13,7 @@ kCellSize = 60
 kBoardSize = 8*kCellSize # 480
 kHalfBoard = kBoardSize / 2
 currentPlayer = 1
-gameBoard = [[0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
+gameBoard = [[0,1,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
 
 
 # Turtle and Screen Initialization
@@ -51,8 +51,8 @@ def xFromColumn(col):
 def yFromRow(row):
     return kHalfBoard - kCellSize / 2 - row*kCellSize
 
-def test(x, y):
-    print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
+# def test(x, y):
+#     print(f"\nx,y: {x}, {y}\ncol,row: {whichColumn(x)}, {whichRow(y)}\ncalc x,y: {xFromColumn(whichColumn(x))}, {yFromRow(whichRow(y))}")
 
 def stampPlayer(col, row, player):
     if col > 7 or row > 7 or col < 0 or row < 0:
@@ -65,9 +65,32 @@ def stampPlayer(col, row, player):
         t.color('white')
     t.shape('circle')
     t.stamp()
+    gameBoard[row][col] = player
 
 def allMoves(board,player):
-    pass
+    moves_list = []
+    for x in range(8):
+        for y in range(8):
+            piece = board[y][x]
+            if piece != 0:
+                continue
+            piece_surroundings = surroundings(x, y)
+            for y in range(-1, 2):
+                for x in range(-1, 2):
+                    if piece_surroundings
+                
+            
+# Look at surrounding squares (x & y -1 to +1) to see if any have your opponents color
+# then keep looking until you find a blank spot or your piece
+def surroundings(ogCol, ogRow):
+    my_list = []
+    for y in range(-1, 2):
+        for x in range(-1, 2):
+            my_list.append(gameBoard[int(ogRow + y)][int(ogCol + x)])
+    return my_list
+
+def test(x, y):
+    print(surroundings(whichColumn(x), whichRow(y)))
 
 def stampAllMoveS(player):
     pass
@@ -111,6 +134,6 @@ def MM(board, depth, alpha, beta, max, current, move):
 # initialize()
 drawBoard()
 s.tracer(1)
-# s.onclick(test)
-s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
+s.onclick(test)
+# s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
