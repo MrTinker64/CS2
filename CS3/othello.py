@@ -75,27 +75,64 @@ def stampPlayer(col, row, player):
 
 def allMoves(board,player):
     moves_list = []
-    for x in range(8):
-        for y in range(8):
-            piece = board[y][x]
+    for col in range(8):
+        for row in range(8):
+            piece = board[row][col]
             if piece != 0:
                 continue
-            piece_surroundings = surroundings(x, y, board)
-            for xAdd in range(-1, 2):
-                for yAdd in range(-1, 2):
-                    if piece_surroundings[1+xAdd][1+yAdd] == -player:
-                        if recursiveCheck(x, y, board, [xAdd, yAdd], player):
-                            moves_list.append([x, y])
+            piece_surroundings = surroundings(col, row, board)
+            
+            print(piece_surroundings)
+            
+            cMin = -1
+            cMax = 2
+            if col == 0:
+                cMin = 0
+            elif col == 7:
+                cMax = 1
+
+            rMin = -1
+            rMax = 2
+            if row == 0:
+                rMin = 0
+            elif row == 7:
+                rMax = 1
+            
+            for cAdd in range(cMin, cMax):
+                for rAdd in range(rMin, rMax):
+                    if rAdd == 0 and cAdd == 0:
+                        continue
+                    print(f"{cAdd}, {rAdd}")
+                    if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
+                        if recursiveCheck(col, row, board, [rAdd, cAdd], player):
+                            moves_list.append([row, col])
                             break
+    return moves_list
             
 # Look at surrounding squares (x & y -1 to +1) to see if any have your opponents color
 # then keep looking until you find a blank spot or your piece
 def surroundings(ogCol, ogRow, board):
-    return [[board[int(ogRow + x)][int(ogCol + y)] for y in range(-1, 2)] for x in range(-1, 2)]
+    rMin = -1
+    rMax = 2
+    if ogRow == 0:
+        rMin = 0
+    elif ogRow == 7:
+        rMax = 1
+
+    cMin = -1
+    cMax = 2
+    if ogCol == 0:
+        cMin = 0
+    elif ogCol == 7:
+        cMax = 1
+
+    return [[board[int(ogRow + row)][int(ogCol + col)] for col in range(cMin, cMax)] for row in range(rMin, rMax)]
 
 def recursiveCheck(ogCol, ogRow, board, direction, player):
     new_row = ogRow + direction[1]
     new_col = ogCol + direction[0]
+    if new_col > 7 or new_row > 7 or new_col < 0 or new_row < 0:
+        return
     next_piece = board[new_row][new_col]
     if next_piece == 0:
         return True
@@ -103,9 +140,6 @@ def recursiveCheck(ogCol, ogRow, board, direction, player):
         return recursiveCheck(new_col, new_row, board, direction, player)
     else:
         return False
-
-def test(x, y):
-    print(surroundings(whichColumn(x), whichRow(y), gameBoard))
 
 def stampAllMoveS(player):
     pass
@@ -149,6 +183,6 @@ def MM(board, depth, alpha, beta, max, current, move):
 # initialize()
 drawBoard()
 s.tracer(1)
-s.onclick(test)
+print(allMoves(gameBoard, -1))
 # s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
