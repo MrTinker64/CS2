@@ -43,7 +43,7 @@ def drawBoard():
         for row in range(8):
             # numbers
             t.goto(xFromColumn(col), yFromRow(row))
-            t.write(f"{gameBoard[row][col]}")
+            t.write(f"{gameBoard[row][col]}", align="center", font=("Arial", 20, "normal"))
 
 def whichColumn(x):
     return (x + kHalfBoard) // kCellSize
