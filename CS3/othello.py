@@ -13,7 +13,7 @@ kCellSize = 60
 kBoardSize = 8*kCellSize # 480
 kHalfBoard = kBoardSize / 2
 currentPlayer = 1
-gameBoard = [[0,1,1,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
+gameBoard = [[0,0,0,0,0,0,0,0], [0,1,1,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
 
 
 # Turtle and Screen Initialization
@@ -38,6 +38,12 @@ def drawBoard():
         t.goto(-kHalfBoard, i*kCellSize-kHalfBoard)
         t.pendown()
         t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
+    t.penup()
+    for col in range(8):
+        for row in range(8):
+            # numbers
+            t.goto(xFromColumn(col), yFromRow(row))
+            t.write(f"{gameBoard[row][col]}")
 
 def whichColumn(x):
     return (x + kHalfBoard) // kCellSize
@@ -85,11 +91,7 @@ def allMoves(board,player):
 # Look at surrounding squares (x & y -1 to +1) to see if any have your opponents color
 # then keep looking until you find a blank spot or your piece
 def surroundings(ogCol, ogRow, board):
-    my_list = []
-    for x in range(-1, 2):
-        for y in range(-1, 2):
-            my_list.append(board[int(ogRow + y)][int(ogCol + x)])
-    return my_list
+    return [[board[int(ogRow + x)][int(ogCol + y)] for y in range(-1, 2)] for x in range(-1, 2)]
 
 def recursiveCheck(ogCol, ogRow, board, direction, player):
     new_row = ogRow + direction[1]
