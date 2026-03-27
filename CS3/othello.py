@@ -13,7 +13,47 @@ kCellSize = 60
 kBoardSize = 8*kCellSize # 480
 kHalfBoard = kBoardSize / 2
 currentPlayer = 1
-gameBoard = [[0,0,-1,-1,0,0,1,0], [0,1,1,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
+# gameBoard = [[0,0,-1,-1,0,0,1,0], [0,1,1,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]]
+gameBoard = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0,-1, 1, 0, 0, 0],
+    [0, 0, 0, 1,-1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+]
+# gameBoard = [
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 1,-1, 0, 0, 0, 0],
+#     [0, 0,-1,-1, 1, 0, 0, 0],
+#     [0, 1,-1, 1,-1, 0, 0, 0],
+#     [0, 0, 0, 1, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+# ]
+# gameBoard = [
+#     [ 1,-1, 0, 0, 0, 0,-1, 1],
+#     [-1,-1, 0, 0, 0, 0, 1, 0],
+#     [ 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0,-1, 1, 0, 0, 0],
+#     [0, 0, 0, 1,-1, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [ 0, 1, 0, 0, 0, 0,-1, 0],
+#     [-1,-1, 0, 0, 0, 0,-1, 1],
+# ]
+# gameBoard = [
+#     [ 1, 0, 0, 0, 0, 0, 0, 0],
+#     [ 0,-1, 0, 0, 0, 0, 0, 0],
+#     [ 0, 0,-1, 0, 0, 0, 0, 0],
+#     [ 0, 0, 0,-1, 0, 0, 0, 0],
+#     [ 0, 0, 0, 0,-1, 0, 0, 0],
+#     [ 0, 0, 0, 0, 0,-1, 0, 0],
+#     [ 0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+# ]
 
 
 # Turtle and Screen Initialization
@@ -98,14 +138,18 @@ def allMoves(board,player):
             elif row == 7:
                 rMax = 1
             
+            found = False
             for cAdd in range(cMin, cMax):
+                if found:
+                    break
                 for rAdd in range(rMin, rMax):
                     if rAdd == 0 and cAdd == 0:
                         continue
                     print(f"{cAdd}, {rAdd}")
                     if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
-                        if recursiveCheck(col, row, board, [rAdd, cAdd], player):
+                        if recursiveCheck(col, row, board, [cAdd, rAdd], player):
                             moves_list.append([row, col])
+                            found = True
                             break
     return moves_list
             
@@ -129,12 +173,12 @@ def surroundings(ogCol, ogRow, board):
     return [[board[int(ogRow + row)][int(ogCol + col)] for col in range(cMin, cMax)] for row in range(rMin, rMax)]
 
 def recursiveCheck(ogCol, ogRow, board, direction, player):
-    new_row = ogRow + direction[1]
     new_col = ogCol + direction[0]
+    new_row = ogRow + direction[1]
     if new_col > 7 or new_row > 7 or new_col < 0 or new_row < 0:
-        return
+        return False
     next_piece = board[new_row][new_col]
-    if next_piece == 0:
+    if next_piece == player:
         return True
     elif next_piece == -player:
         return recursiveCheck(new_col, new_row, board, direction, player)
