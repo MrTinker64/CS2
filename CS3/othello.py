@@ -120,7 +120,6 @@ def allMoves(board,player):
             piece = board[row][col]
             if piece != 0:
                 continue
-            piece_surroundings = surroundings(col, row, board)
             
             cMin = -1
             cMax = 2
@@ -136,6 +135,9 @@ def allMoves(board,player):
             elif row == 7:
                 rMax = 1
             
+            # Look at surrounding squares (col & row -1 to +1) to see if any have your opponents color
+            piece_surroundings = [[board[int(row + r)][int(col + c)] for c in range(cMin, cMax)] for r in range(rMin, rMax)]
+            
             found = False
             for cAdd in range(cMin, cMax):
                 if found:
@@ -149,26 +151,8 @@ def allMoves(board,player):
                             found = True
                             break
     return moves_list
-            
-# Look at surrounding squares (x & y -1 to +1) to see if any have your opponents color
-# then keep looking until you find a blank spot or your piece
-def surroundings(ogCol, ogRow, board):
-    rMin = -1
-    rMax = 2
-    if ogRow == 0:
-        rMin = 0
-    elif ogRow == 7:
-        rMax = 1
 
-    cMin = -1
-    cMax = 2
-    if ogCol == 0:
-        cMin = 0
-    elif ogCol == 7:
-        cMax = 1
-
-    return [[board[int(ogRow + row)][int(ogCol + col)] for col in range(cMin, cMax)] for row in range(rMin, rMax)]
-
+# keep looking in that direction until you find a blank spot or your piece
 def recursiveCheck(ogCol, ogRow, board, direction, player):
     new_col = ogCol + direction[0]
     new_row = ogRow + direction[1]
