@@ -2,27 +2,7 @@ import turtle
 import math
 import copy
 
-
-# Constants and Global Variables
-'''
-    black = 1
-    white = -1
-'''
-kScreenSize = 600
-kCellSize = 60
-kBoardSize = 8*kCellSize # 480
-kHalfBoard = kBoardSize / 2
-currentPlayer = 1
-gameBoard = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0,-1, 1, 0, 0, 0],
-    [0, 0, 0, 1,-1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-]
+# * Test boards
 # gameBoard = [
 #     [0, 0, 0, 0, 0, 0, 0, 0],
 #     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,6 +33,27 @@ gameBoard = [
 #     [ 0, 0, 0, 0, 0, 0, 0, 0],
 #     [0, 0, 0, 0, 0, 0, 0, 0],
 # ]
+
+# Constants and Global Variables
+'''
+    black = 1
+    white = -1
+'''
+kScreenSize = 600
+kCellSize = 60
+kBoardSize = 8*kCellSize # 480
+kHalfBoard = kBoardSize / 2
+currentPlayer = 1
+gameBoard = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0,-1, 1, 0, 0, 0],
+    [0, 0, 0, 1,-1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+]
 
 
 # Turtle and Screen Initialization
