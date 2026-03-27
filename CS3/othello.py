@@ -122,8 +122,6 @@ def allMoves(board,player):
                 continue
             piece_surroundings = surroundings(col, row, board)
             
-            print(piece_surroundings)
-            
             cMin = -1
             cMax = 2
             if col == 0:
@@ -145,7 +143,6 @@ def allMoves(board,player):
                 for rAdd in range(rMin, rMax):
                     if rAdd == 0 and cAdd == 0:
                         continue
-                    print(f"{cAdd}, {rAdd}")
                     if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
                         if recursiveCheck(col, row, board, [cAdd, rAdd], player):
                             moves_list.append([row, col])
