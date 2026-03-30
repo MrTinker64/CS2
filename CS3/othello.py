@@ -182,7 +182,47 @@ def validMove(player,row,col):
     return False
 
 def nextBoard(board,player,move):
-    pass
+    new_board = copy.copy(board)
+    
+    row = move[0]
+    col = move[1]
+    
+    cMin = -1
+    cMax = 2
+    if col == 0:
+        cMin = 0
+    elif col == 7:
+        cMax = 1
+
+    rMin = -1
+    rMax = 2
+    if row == 0:
+        rMin = 0
+    elif row == 7:
+        rMax = 1
+    
+    # Look at surrounding squares (col & row -1 to +1) to see if any have your opponents color
+    piece_surroundings = [[new_board[int(row + r)][int(col + c)] for c in range(cMin, cMax)] for r in range(rMin, rMax)]
+    
+    for cAdd in range(cMin, cMax):
+        for rAdd in range(rMin, rMax):
+            if rAdd == 0 and cAdd == 0:
+                continue
+            if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
+                recursiveCheckWithFlipping(col, row, new_board, [cAdd, rAdd], player)
+
+# keep looking in that direction until you find a blank spot or your piece
+def recursiveCheckWithFlipping(ogCol, ogRow, board, direction, player):
+    new_col = ogCol + direction[0]
+    new_row = ogRow + direction[1]
+    if new_col > 7 or new_row > 7 or new_col < 0 or new_row < 0:
+        return
+    next_piece = board[new_row][new_col]
+    if next_piece == -player:
+        next_piece = player
+        return recursiveCheck(new_col, new_row, board, direction, player)
+    else:
+        return
 
 def updateGameBoard(player,move):
     pass
