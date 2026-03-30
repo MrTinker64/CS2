@@ -69,16 +69,15 @@ s.tracer(0,0)
 def drawBoard():
     for i in range(9):
         # columns
-        t.penup()
         t.goto(i*kCellSize-kHalfBoard, -kHalfBoard)
         t.pendown()
         t.goto(i*kCellSize-kHalfBoard, kHalfBoard)
-        # rows
         t.penup()
+        # rows
         t.goto(-kHalfBoard, i*kCellSize-kHalfBoard)
         t.pendown()
         t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
-    t.penup()
+        t.penup()
     for col in range(8):
         for row in range(8):
             # numbers
@@ -103,7 +102,6 @@ def yFromRow(row):
 def stampPlayer(col, row, player):
     if col > 7 or row > 7 or col < 0 or row < 0:
         return
-    t.penup()
     t.goto(xFromColumn(col), yFromRow(row))
     if player > 0:
         t.color('black')
@@ -169,12 +167,12 @@ def recursiveCheck(ogCol, ogRow, board, direction, player):
 def stampAllMoves(player):
     radius = 15
     for move in allMoves(gameBoard, player):
-        t.penup()
         t.goto(xFromColumn(move[1]), yFromRow(move[0]) - radius)
         t.pencolor('black')
         t.pensize(1)
         t.pendown()
         t.circle(radius)
+        t.penup()
 
 def validMove(player,row,col):
     if (row, col) in allMoves(gameBoard, player):
@@ -247,7 +245,11 @@ def calculateScores(board):
     return [black_score, white_score]
 
 def stampScores():
-    pass
+    scores = calculateScores(gameBoard)
+    t.goto(-200, 500)
+    t.write(scores[0])
+    t.goto(200, 500)
+    t.write(scores[0])
 
 def initialize():
     pass
