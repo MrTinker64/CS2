@@ -177,7 +177,9 @@ def stampAllMoves(player):
         t.circle(radius)
 
 def validMove(player,row,col):
-    pass
+    if (row, col) in allMoves(gameBoard, player):
+        return True
+    return False
 
 def nextBoard(board,player,move):
     pass
