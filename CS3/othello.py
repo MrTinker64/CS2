@@ -227,7 +227,8 @@ def recursiveCheckWithFlipping(ogCol, ogRow, board, direction, player):
         return
 
 def updateGameBoard(player,move):
-    pass
+    global gameBoard
+    gameBoard = nextBoard(gameBoard, player, move)
 
 def stampBoard():
     pass
