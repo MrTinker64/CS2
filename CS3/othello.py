@@ -236,7 +236,15 @@ def stampBoard():
             stampPlayer(col, row, gameBoard[row][col])
 
 def calculateScores(board):
-    pass
+    black_score = 0
+    white_score = 0
+    for row in range(8):
+        for col in range(8):
+            if board[row][col] == 1:
+                black_score += 1
+            if board[row][col] == -1:
+                white_score += 1
+    return [black_score, white_score]
 
 def stampScores():
     pass
