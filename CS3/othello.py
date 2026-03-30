@@ -61,9 +61,10 @@ t = turtle.Turtle()
 s = turtle.Screen()
 s.bgcolor('forest green')
 s.setup(kScreenSize, kScreenSize)
-# t.hideturtle()
+
 t.penup()
-# s.tracer(0,0)
+t.hideturtle()
+s.tracer(0,0)
 
 # Functions
 
@@ -247,10 +248,10 @@ def calculateScores(board):
 
 def stampScores():
     scores = calculateScores(gameBoard)
-    t.goto(-150, 250)
-    t.write(scores[0])
-    t.goto(150, 250)
-    t.write(scores[0])
+    t.goto(-150, 260)
+    t.write(scores[0], font=("Arial", 15, "normal"))
+    t.goto(150, 260)
+    t.write(scores[0], font=("Arial", 15, "normal"))
 
 def initialize():
     pass
@@ -271,9 +272,9 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 # initialize()
-stampScores()
 drawBoard()
 stampAllMoves(-1)
+stampScores()
 s.tracer(1)
 # s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
 turtle.mainloop()
