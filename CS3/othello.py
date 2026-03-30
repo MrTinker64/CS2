@@ -231,7 +231,9 @@ def updateGameBoard(player,move):
     gameBoard = nextBoard(gameBoard, player, move)
 
 def stampBoard():
-    pass
+    for row in range(8):
+        for col in range(8):
+            stampPlayer(col, row, gameBoard[row][col])
 
 def calculateScores(board):
     pass
