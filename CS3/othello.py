@@ -254,6 +254,7 @@ def stampScores():
     t.write(scores[0], font=("Arial", 15, "normal"))
 
 def initialize():
+    global gameBoard
     gameBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -271,6 +272,7 @@ def initialize():
     stampAllMoves(currentPlayer)
 
 def playMove(x,y):
+    global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
     if validMove(currentPlayer,row, col):
@@ -280,7 +282,6 @@ def playMove(x,y):
     else:
         # throw error
         return
-    global currentPlayer
     currentPlayer *= -1
     if len(allMoves(gameBoard, currentPlayer)) == 0:
         currentPlayer *= -1
@@ -299,10 +300,7 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 
-# initialize()
-drawBoard()
-stampAllMoves(-1)
-stampScores()
-s.tracer(1)
-# s.onclick(lambda x, y: stampPlayer(whichColumn(x), whichRow(y), 1))
+initialize()
+turtle.onscreenclick(playMove)
+# s.tracer(1)
 turtle.mainloop()
