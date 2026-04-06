@@ -254,7 +254,21 @@ def stampScores():
     t.write(scores[0], font=("Arial", 15, "normal"))
 
 def initialize():
-    pass
+    gameBoard = [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0,-1, 1, 0, 0, 0],
+        [0, 0, 0, 1,-1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+    drawBoard()
+    stampBoard()
+    stampScores()
+    # update current player as needed
+    stampAllMoves(currentPlayer)
 
 def playMove(x,y):
     pass
