@@ -81,11 +81,11 @@ def drawBoard():
         t.pendown()
         t.goto(kHalfBoard, i*kCellSize-kHalfBoard)
         t.penup()
-    for col in range(8):
-        for row in range(8):
-            # numbers
-            t.goto(xFromColumn(col), yFromRow(row))
-            t.write(f"{gameBoard[row][col]}", font=("Arial", 20, "normal"))
+    # for col in range(8):
+    #     for row in range(8):
+    #         # numbers
+    #         t.goto(xFromColumn(col), yFromRow(row))
+    #         t.write(f"{gameBoard[row][col]}", font=("Arial", 20, "normal"))
 
 def whichColumn(x):
     return (x + kHalfBoard) // kCellSize
@@ -278,7 +278,6 @@ def initialize():
     stampScores()
     # update current player as needed
     stampAllMoves(currentPlayer)
-    s.update()
 
 def playMove(x,y):
     global currentPlayer
@@ -298,7 +297,6 @@ def playMove(x,y):
         currentPlayer *= -1
         # print something about not having moves
     stampAllMoves(currentPlayer)
-    s.update()
 
 def evaluate(board):
     pass
