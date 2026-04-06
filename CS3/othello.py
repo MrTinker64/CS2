@@ -233,7 +233,9 @@ def updateGameBoard(player,move):
 def stampBoard():
     for row in range(8):
         for col in range(8):
-            stampPlayer(col, row, gameBoard[row][col])
+            player = gameBoard[row][col]
+            if player != 0:
+                stampPlayer(col, row, gameBoard[row][col])
 
 def calculateScores(board):
     black_score = 0
