@@ -278,6 +278,7 @@ def initialize():
     stampScores()
     # update current player as needed
     stampAllMoves(currentPlayer)
+    s.update()
 
 def playMove(x,y):
     global currentPlayer
@@ -285,7 +286,7 @@ def playMove(x,y):
     row = whichRow(y)
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
-        s.clear()
+        t.clear()
         drawBoard()
         stampScores()
         stampBoard()
@@ -296,7 +297,8 @@ def playMove(x,y):
     if len(allMoves(gameBoard, currentPlayer)) == 0:
         currentPlayer *= -1
         # print something about not having moves
-    stampAllMoves(currentPlayer) 
+    stampAllMoves(currentPlayer)
+    s.update()
 
 def evaluate(board):
     pass
