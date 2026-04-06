@@ -271,7 +271,21 @@ def initialize():
     stampAllMoves(currentPlayer)
 
 def playMove(x,y):
-    pass
+    col = whichColumn(x)
+    row = whichRow(y)
+    if validMove(currentPlayer,row, col):
+        updateGameBoard(currentPlayer, [row, col])
+        stampScores()
+        stampBoard()
+    else:
+        # throw error
+        return
+    global currentPlayer
+    currentPlayer *= -1
+    if len(allMoves(gameBoard, currentPlayer)) == 0:
+        currentPlayer *= -1
+        # print something about not having moves
+    stampAllMoves(currentPlayer) 
 
 def evaluate(board):
     pass
