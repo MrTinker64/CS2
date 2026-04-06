@@ -59,16 +59,17 @@ gameBoard = [
 # Turtle and Screen Initialization
 t = turtle.Turtle()
 s = turtle.Screen()
-s.bgcolor('forest green')
 s.setup(kScreenSize, kScreenSize)
 
 t.penup()
 t.hideturtle()
-s.tracer(0,0)
+s.tracer(0)
 
 # Functions
 
 def drawBoard():
+    s.tracer(0)
+    s.bgcolor('forest green')
     for i in range(9):
         # columns
         t.goto(i*kCellSize-kHalfBoard, -kHalfBoard)
@@ -284,6 +285,8 @@ def playMove(x,y):
     row = whichRow(y)
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
+        s.clear()
+        drawBoard()
         stampScores()
         stampBoard()
     else:
@@ -308,6 +311,6 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 initialize()
-s.tracer(1)
+# s.tracer(1)
 turtle.onscreenclick(playMove)
 turtle.mainloop()
