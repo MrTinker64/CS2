@@ -211,7 +211,7 @@ def nextBoard(board,player,move):
             if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
                 recursiveCheckWithFlipping(col, row, new_board, [cAdd, rAdd], player)
 
-    new_board[row][col] = player
+    new_board[int(row)][int(col)] = player
     return new_board
 
 # keep looking in that direction until you find a blank spot or your piece
@@ -220,12 +220,12 @@ def recursiveCheckWithFlipping(ogCol, ogRow, board, direction, player):
     new_row = ogRow + direction[1]
     if new_col > 7 or new_row > 7 or new_col < 0 or new_row < 0:
         return False
-    next_piece = board[new_row][new_col]
+    next_piece = board[int(new_row)][int(new_col)]
     if next_piece == player:
         return True
     elif next_piece == -player:
         if recursiveCheckWithFlipping(new_col, new_row, board, direction, player):
-            board[new_row][new_col] = player
+            board[int(new_row)][int(new_col)] = player
             return True
         return False
     else:
