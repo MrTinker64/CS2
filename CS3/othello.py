@@ -177,12 +177,12 @@ def stampAllMoves(player):
         t.penup()
 
 def validMove(player,row,col):
-    if (row, col) in allMoves(gameBoard, player):
+    if [row, col] in allMoves(gameBoard, player):
         return True
     return False
 
 def nextBoard(board,player,move):
-    new_board = copy.copy(board)
+    new_board = copy.deepcopy(board)
     
     row = move[0]
     col = move[1]
@@ -211,6 +211,7 @@ def nextBoard(board,player,move):
             if piece_surroundings[-rMin+rAdd][-cMin+cAdd] == -player:
                 recursiveCheckWithFlipping(col, row, new_board, [cAdd, rAdd], player)
 
+    new_board[row][col] = player
     return new_board
 
 # keep looking in that direction until you find a blank spot or your piece
@@ -218,13 +219,17 @@ def recursiveCheckWithFlipping(ogCol, ogRow, board, direction, player):
     new_col = ogCol + direction[0]
     new_row = ogRow + direction[1]
     if new_col > 7 or new_row > 7 or new_col < 0 or new_row < 0:
-        return
+        return False
     next_piece = board[new_row][new_col]
-    if next_piece == -player:
-        next_piece = player
-        return recursiveCheck(new_col, new_row, board, direction, player)
+    if next_piece == player:
+        return True
+    elif next_piece == -player:
+        if recursiveCheckWithFlipping(new_col, new_row, board, direction, player):
+            board[new_row][new_col] = player
+            return True
+        return False
     else:
-        return
+        return False
 
 def updateGameBoard(player,move):
     global gameBoard
@@ -303,6 +308,6 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 initialize()
+s.tracer(1)
 turtle.onscreenclick(playMove)
-# s.tracer(1)
 turtle.mainloop()
