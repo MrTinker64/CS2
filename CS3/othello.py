@@ -310,18 +310,22 @@ def playMove(x,y):
     stampScores()
     stampBoard()
     stampAllMoves(currentPlayer)
+    print(currentPlayer)
+    print(bestMove(gameBoard, currentPlayer))
     s.update()
     turtle.onscreenclick(playMove)
 
 def evaluate(board, player):
-    return calculateScores(board)[(1-player)/2]
+    return calculateScores(board)[int((1-player)/2)]
 
 def bestMove(board,player):
     best_move = [0, 0]
     best_score = 0
     for move in allMoves(board, player):
-        if evaluate(nextBoard(board, player, move), player) > best_score:
+        move_score = evaluate(nextBoard(board, player, move), player)
+        if move_score > best_score:
             best_move = move
+            best_score = move_score
     return best_move
 
 def MM(board, depth, alpha, beta, max, current, move):
