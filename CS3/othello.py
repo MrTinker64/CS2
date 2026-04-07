@@ -256,14 +256,12 @@ def calculateScores(board):
 
 def stampScores():
     scores = calculateScores(gameBoard)
-    if currentPlayer < 0:
-        t.color('black')
-    else:
-        t.color('white')
     t.goto(-150, 260)
+    t.color('black')
     t.write(scores[0], font=("Arial", 15, "normal"))
     t.goto(150, 260)
-    t.write(scores[0], font=("Arial", 15, "normal"))
+    t.color('white')
+    t.write(scores[1], font=("Arial", 15, "normal"))
 
 def initialize():
     global gameBoard
