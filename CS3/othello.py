@@ -301,6 +301,10 @@ def playMove(x,y):
             currentPlayer *= -1
         else:
             stampCurrentPlayer()
+        if currentPlayer == -1:
+            computer_move = bestMove(gameBoard, currentPlayer)
+            playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
+            return
     else:
         t.goto(0, 260)
         t.color('red')
