@@ -283,6 +283,7 @@ def initialize():
     s.update()
 
 def playMove(x,y):
+    turtle.onscreenclick(None) # type: ignore
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
@@ -293,13 +294,15 @@ def playMove(x,y):
         stampScores()
         stampBoard()
     else:
-        # throw error
+        turtle.onscreenclick(playMove)
         return
     currentPlayer *= -1
     if len(allMoves(gameBoard, currentPlayer)) == 0:
         currentPlayer *= -1
         # print something about not having moves
     stampAllMoves(currentPlayer)
+    s.update()
+    turtle.onscreenclick(playMove)
 
 def evaluate(board):
     pass
