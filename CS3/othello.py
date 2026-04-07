@@ -304,8 +304,8 @@ def playMove(x,y):
     s.update()
     turtle.onscreenclick(playMove)
 
-def evaluate(board):
-    pass
+def evaluate(board, player):
+    return calculateScores(board)[(1-player)/2]
 
 def bestMove(board,player):
     pass
