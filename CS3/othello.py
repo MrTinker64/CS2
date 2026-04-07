@@ -300,7 +300,6 @@ def playMove(x,y):
         currentPlayer *= -1
         # print something about not having moves
     stampAllMoves(currentPlayer)
-    s.update()
 
 def evaluate(board):
     pass
