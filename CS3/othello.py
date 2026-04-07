@@ -311,7 +311,12 @@ def evaluate(board, player):
     return calculateScores(board)[(1-player)/2]
 
 def bestMove(board,player):
-    pass
+    best_move = [0, 0]
+    best_score = 0
+    for move in allMoves(board, player):
+        if evaluate(nextBoard(board, player, move), player) > best_score:
+            best_move = move
+    return best_move
 
 def MM(board, depth, alpha, beta, max, current, move):
     pass
