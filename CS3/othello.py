@@ -176,6 +176,13 @@ def stampAllMoves(player):
         t.pendown()
         t.circle(radius)
         t.penup()
+    t.goto(0, 260)
+    if currentPlayer > 0:
+        t.color('black')
+        t.write(f"black's move", align="center", font=("Arial", 15, "normal"))
+    else:
+        t.color('white')
+        t.write(f"white's move", align="center", font=("Arial", 15, "normal"))
 
 def validMove(player,row,col):
     if [row, col] in allMoves(gameBoard, player):
