@@ -172,13 +172,6 @@ def stampAllMoves(player):
         t.goto(xFromColumn(move[1]), yFromRow(move[0]))
         t.dot(30, 'black')
         t.dot(28, 'forest green')
-    t.goto(0, 260)
-    if currentPlayer > 0:
-        t.color('black')
-        t.write(f"black's move", align="center", font=("Arial", 15, "normal"))
-    else:
-        t.color('white')
-        t.write(f"white's move", align="center", font=("Arial", 15, "normal"))
 
 def validMove(player,row,col):
     if [row, col] in allMoves(gameBoard, player):
@@ -265,6 +258,15 @@ def stampScores():
     t.goto(150, 260)
     t.color('white')
     t.write(scores[1], font=("Arial", 15, "normal"))
+    
+def stampCurrentPlayer():
+    t.goto(0, 260)
+    if currentPlayer > 0:
+        t.color('black')
+        t.write(f"black's move", align="center", font=("Arial", 15, "normal"))
+    else:
+        t.color('white')
+        t.write(f"white's move", align="center", font=("Arial", 15, "normal"))
 
 def initialize():
     global gameBoard
@@ -281,8 +283,9 @@ def initialize():
     drawBoard()
     stampBoard()
     stampScores()
-    # update current player as needed
+    # update current player if needed
     stampAllMoves(currentPlayer)
+    stampCurrentPlayer()
     s.update()
 
 def playMove(x,y):
@@ -290,19 +293,22 @@ def playMove(x,y):
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
+    t.clear()
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
-        t.clear()
-        drawBoard()
-        stampScores()
-        stampBoard()
-    else:
-        turtle.onscreenclick(playMove)
-        return
-    currentPlayer *= -1
-    if len(allMoves(gameBoard, currentPlayer)) == 0:
         currentPlayer *= -1
-        # print something about not having moves
+        if len(allMoves(gameBoard, currentPlayer)) == 0:
+            currentPlayer *= -1
+        else:
+            stampCurrentPlayer()
+    else:
+        t.goto(0, 260)
+        t.color('red')
+        t.write(f"invalid move", align="center", font=("Arial", 15, "normal"))
+        turtle.onscreenclick(playMove)
+    drawBoard()
+    stampScores()
+    stampBoard()
     stampAllMoves(currentPlayer)
     s.update()
     turtle.onscreenclick(playMove)
