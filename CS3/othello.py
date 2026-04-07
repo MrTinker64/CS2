@@ -70,6 +70,7 @@ s.tracer(0)
 def drawBoard():
     s.tracer(0)
     s.bgcolor('forest green')
+    t.color('black')
     for i in range(9):
         # columns
         t.goto(i*kCellSize-kHalfBoard, -kHalfBoard)
@@ -110,8 +111,7 @@ def stampPlayer(col, row, player):
         t.color('black')
     else:
         t.color('white')
-    t.shape('circle')
-    t.stamp()
+    t.dot(30)
     gameBoard[row][col] = player
 
 def allMoves(board,player):
@@ -168,14 +168,10 @@ def recursiveCheck(ogCol, ogRow, board, direction, player):
         return False
 
 def stampAllMoves(player):
-    radius = 15
     for move in allMoves(gameBoard, player):
-        t.goto(xFromColumn(move[1]), yFromRow(move[0]) - radius)
-        t.pencolor('black')
-        t.pensize(1)
-        t.pendown()
-        t.circle(radius)
-        t.penup()
+        t.goto(xFromColumn(move[1]), yFromRow(move[0]))
+        t.dot(30, 'black')
+        t.dot(28, 'forest green')
     t.goto(0, 260)
     if currentPlayer > 0:
         t.color('black')
@@ -324,6 +320,5 @@ def MM(board, depth, alpha, beta, max, current, move):
 
 
 initialize()
-# s.tracer(1)
 turtle.onscreenclick(playMove)
 turtle.mainloop()
