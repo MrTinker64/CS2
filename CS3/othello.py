@@ -302,7 +302,7 @@ def playMove(x,y):
         else:
             stampCurrentPlayer()
         if currentPlayer == -1:
-            computer_move = bestMove(gameBoard, currentPlayer)
+            computer_move = bestMove(gameBoard, currentPlayer)[0]
             playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
             return
     else:
