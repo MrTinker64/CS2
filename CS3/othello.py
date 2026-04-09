@@ -299,6 +299,15 @@ def playMove(x,y):
         currentPlayer *= -1
         if len(allMoves(gameBoard, currentPlayer)) == 0:
             currentPlayer *= -1
+            if len(allMoves(gameBoard, currentPlayer)) == 0:
+                drawBoard()
+                stampScores()
+                stampBoard()
+                t.goto(0, 260)
+                t.color('blue')
+                t.write(f"game over", align="center", font=("Arial", 15, "normal"))
+                s.update()
+                return
         else:
             stampCurrentPlayer()
         if currentPlayer == -1:
@@ -314,8 +323,6 @@ def playMove(x,y):
     stampScores()
     stampBoard()
     stampAllMoves(currentPlayer)
-    print(currentPlayer)
-    print(bestMove(gameBoard, currentPlayer))
     s.update()
     turtle.onscreenclick(playMove)
 
@@ -331,7 +338,7 @@ def bestMove(board,player):
     #         best_move = move
     #         best_score = move_score
     # return best_move
-    return MM(board, 3, True, player)
+    return MM(board, 4, True, player)
 
 def MM(board, depth, max, current):
     moves = allMoves(board, current)
