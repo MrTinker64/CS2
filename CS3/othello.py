@@ -332,37 +332,37 @@ def bestMove(board,player):
             best_score = move_score
     return best_move
 
-def MM(board, depth, max, current, move):
+def MM(board, depth, max, current):
     moves = allMoves(board, current)
     opponent = -current
     opp_moves = allMoves(board, opponent)
     
-    if depth is 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [evaluate(board, current), None]
+    if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
+        return [[], evaluate(board, current)]
 
     if len(moves) == 0:
-        MM(board, depth - 1, not max, opponent, move)
+        return MM(board, depth - 1, not max, opponent)
 
-    best_move = None
+    best_move = []
 
     if max:
         best_value = -10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, not max, opponent, move)
+            mmOnBoard = MM(nBoard, depth - 1, not max, opponent)
             if mmOnBoard[1] > best_value:
                 best_value = mmOnBoard[1]
-                best_move = mmOnBoard[0]
+                best_move = m
         return [best_move, best_value]
 
     if not max:
         best_value = 10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, max, opponent, move)
+            mmOnBoard = MM(nBoard, depth - 1, max, opponent)
             if mmOnBoard[1] < best_value:
                 best_value = mmOnBoard[1]
-                best_move = mmOnBoard[0]
+                best_move = m
         return [best_move, best_value]
 
 
