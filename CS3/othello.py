@@ -323,14 +323,15 @@ def evaluate(board, player):
     return calculateScores(board)[int((1-player)/2)]
 
 def bestMove(board,player):
-    best_move = [0, 0]
-    best_score = 0
-    for move in allMoves(board, player):
-        move_score = evaluate(nextBoard(board, player, move), player)
-        if move_score > best_score:
-            best_move = move
-            best_score = move_score
-    return best_move
+    # best_move = [0, 0]
+    # best_score = 0
+    # for move in allMoves(board, player):
+    #     move_score = evaluate(nextBoard(board, player, move), player)
+    #     if move_score > best_score:
+    #         best_move = move
+    #         best_score = move_score
+    # return best_move
+    return MM(board, 3, True, player)
 
 def MM(board, depth, max, current):
     moves = allMoves(board, current)
@@ -338,12 +339,12 @@ def MM(board, depth, max, current):
     opp_moves = allMoves(board, opponent)
     
     if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [[], evaluate(board, current)]
+        return [None, evaluate(board, current)]
 
     if len(moves) == 0:
         return MM(board, depth - 1, not max, opponent)
 
-    best_move = []
+    best_move = None
 
     if max:
         best_value = -10000
@@ -354,8 +355,7 @@ def MM(board, depth, max, current):
                 best_value = mmOnBoard[1]
                 best_move = m
         return [best_move, best_value]
-
-    if not max:
+    else:
         best_value = 10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
