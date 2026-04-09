@@ -349,21 +349,21 @@ def MM(board, depth, max, current, move):
         best_value = -10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth+1, not max, opponent, move)
+            mmOnBoard = MM(nBoard, depth - 1, not max, opponent, move)
             if mmOnBoard[1] > best_value:
                 best_value = mmOnBoard[1]
                 best_move = mmOnBoard[0]
         return [best_move, best_value]
 
-    if min:
-        best value = 10000
-        for each move in moves:
-            get the next board
-            call minimax with depth - 1, max, opponent
-            if the value returned by minimax < best value:
-                update best value
-                set best move to the move returned by minimax
-        return [best move, best value]
+    if not max:
+        best_value = 10000
+        for m in moves:
+            nBoard = nextBoard(board, current, m)
+            mmOnBoard = MM(nBoard, depth - 1, max, opponent, move)
+            if mmOnBoard[1] < best_value:
+                best_value = mmOnBoard[1]
+                best_move = mmOnBoard[0]
+        return [best_move, best_value]
 
 
 
