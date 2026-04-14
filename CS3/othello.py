@@ -338,38 +338,44 @@ def bestMove(board,player):
     #         best_move = move
     #         best_score = move_score
     # return best_move
-    return MM(board, 4, True, player)
+    return MM(board, 4, True, player, -10000, 10000)
 
-def MM(board, depth, max, current):
+def MM(board, depth, maximizing, current, alpha, beta):
     moves = allMoves(board, current)
     opponent = -current
     opp_moves = allMoves(board, opponent)
-    
+
     if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
         return [None, evaluate(board, current)]
 
     if len(moves) == 0:
-        return MM(board, depth - 1, not max, opponent)
+        return MM(board, depth - 1, not maximizing, opponent, alpha, beta)
 
     best_move = None
 
-    if max:
+    if maximizing:
         best_value = -10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, not max, opponent)
+            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
             if mmOnBoard[1] > best_value:
                 best_value = mmOnBoard[1]
                 best_move = m
+            alpha = max(alpha, best_value)
+            if beta <= alpha:
+                break
         return [best_move, best_value]
     else:
         best_value = 10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, max, opponent)
+            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
             if mmOnBoard[1] < best_value:
                 best_value = mmOnBoard[1]
                 best_move = m
+            beta = min(beta, best_value)
+            if beta <= alpha:
+                break
         return [best_move, best_value]
 
 
