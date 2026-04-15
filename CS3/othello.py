@@ -68,7 +68,6 @@ s.tracer(0)
 # Functions
 
 def drawBoard():
-    s.tracer(0)
     s.bgcolor('forest green')
     t.color('black')
     for i in range(9):
@@ -289,45 +288,45 @@ def initialize():
     s.update()
 
 def playMove(x,y):
-    # turtle.onscreenclick(None) # type: ignore
+    turtle.onscreenclick(None) # type: ignore
     global currentPlayer
-    # col = whichColumn(x)
-    # row = whichRow(y)
-    mm2Move = MM2(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
-    row = mm2Move[0]
-    col = mm2Move[1]
+    col = whichColumn(x)
+    row = whichRow(y)
+    # mm2Move = MM2(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
+    # row = mm2Move[0]
+    # col = mm2Move[1]
     t.clear()
-    # if validMove(currentPlayer,row, col):
-    updateGameBoard(currentPlayer, [row, col])
-    currentPlayer *= -1
-    if len(allMoves(gameBoard, currentPlayer)) == 0:
+    if validMove(currentPlayer,row, col):
+        updateGameBoard(currentPlayer, [row, col])
         currentPlayer *= -1
         if len(allMoves(gameBoard, currentPlayer)) == 0:
-            drawBoard()
-            stampScores()
-            stampBoard()
-            t.goto(0, 260)
-            t.color('blue')
-            t.write(f"game over", align="center", font=("Arial", 15, "normal"))
-            s.update()
+            currentPlayer *= -1
+            if len(allMoves(gameBoard, currentPlayer)) == 0:
+                drawBoard()
+                stampScores()
+                stampBoard()
+                t.goto(0, 260)
+                t.color('blue')
+                t.write(f"game over", align="center", font=("Arial", 15, "normal"))
+                s.update()
+                return
+        else:
+            stampCurrentPlayer()
+        if currentPlayer == -1:
+            computer_move = bestMove(gameBoard, currentPlayer)[0]
+            playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
             return
     else:
-        stampCurrentPlayer()
-    if currentPlayer == -1:
-        computer_move = bestMove(gameBoard, currentPlayer)[0]
-        playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
-        return
-    # else:
-    #     t.goto(0, 260)
-    #     t.color('red')
-    #     t.write(f"invalid move", align="center", font=("Arial", 15, "normal"))
-    #     turtle.onscreenclick(playMove)
+        t.goto(0, 260)
+        t.color('red')
+        t.write(f"invalid move", align="center", font=("Arial", 15, "normal"))
+        turtle.onscreenclick(playMove)
     drawBoard()
     stampScores()
     stampBoard()
     stampAllMoves(currentPlayer)
     s.update()
-    # turtle.onscreenclick(playMove)
+    turtle.onscreenclick(playMove)
 
 def evaluate(board, player):
     return calculateScores(board)[int((1-player)/2)]
