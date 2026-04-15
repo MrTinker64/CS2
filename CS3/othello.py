@@ -54,6 +54,12 @@ gameBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
 ]
+bannedMoves = [
+    [1, 0], [0, 1], [1, 1],
+    [1, 7], [0, 6], [1, 6],
+    [7, 1], [6, 0], [6, 1],
+    [6, 7], [7, 6], [6, 6]
+]
 
 
 # Turtle and Screen Initialization
@@ -348,7 +354,7 @@ def MM(board, depth, maximizing, current, alpha, beta):
     opp_moves = allMoves(board, opponent)
 
     if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [None, len(opp_moves)]
+        return [None, len(opp_moves) - evaluate(board, current) / 10]
 
     if len(moves) == 0:
         return MM(board, depth - 1, not maximizing, opponent, alpha, beta)
@@ -360,6 +366,8 @@ def MM(board, depth, maximizing, current, alpha, beta):
         for m in moves:
             nBoard = nextBoard(board, current, m)
             mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            if bannedMoves.__contains__(m):
+                mmOnBoard[1] += 1000
             if mmOnBoard[1] < best_value:
                 best_value = mmOnBoard[1]
                 best_move = m
