@@ -289,42 +289,45 @@ def initialize():
     s.update()
 
 def playMove(x,y):
-    turtle.onscreenclick(None) # type: ignore
+    # turtle.onscreenclick(None) # type: ignore
     global currentPlayer
-    col = whichColumn(x)
-    row = whichRow(y)
+    # col = whichColumn(x)
+    # row = whichRow(y)
+    mm2Move = MM2(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
+    row = mm2Move[0]
+    col = mm2Move[1]
     t.clear()
-    if validMove(currentPlayer,row, col):
-        updateGameBoard(currentPlayer, [row, col])
+    # if validMove(currentPlayer,row, col):
+    updateGameBoard(currentPlayer, [row, col])
+    currentPlayer *= -1
+    if len(allMoves(gameBoard, currentPlayer)) == 0:
         currentPlayer *= -1
         if len(allMoves(gameBoard, currentPlayer)) == 0:
-            currentPlayer *= -1
-            if len(allMoves(gameBoard, currentPlayer)) == 0:
-                drawBoard()
-                stampScores()
-                stampBoard()
-                t.goto(0, 260)
-                t.color('blue')
-                t.write(f"game over", align="center", font=("Arial", 15, "normal"))
-                s.update()
-                return
-        else:
-            stampCurrentPlayer()
-        if currentPlayer == -1:
-            computer_move = bestMove(gameBoard, currentPlayer)[0]
-            playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
+            drawBoard()
+            stampScores()
+            stampBoard()
+            t.goto(0, 260)
+            t.color('blue')
+            t.write(f"game over", align="center", font=("Arial", 15, "normal"))
+            s.update()
             return
     else:
-        t.goto(0, 260)
-        t.color('red')
-        t.write(f"invalid move", align="center", font=("Arial", 15, "normal"))
-        turtle.onscreenclick(playMove)
+        stampCurrentPlayer()
+    if currentPlayer == -1:
+        computer_move = bestMove(gameBoard, currentPlayer)[0]
+        playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
+        return
+    # else:
+    #     t.goto(0, 260)
+    #     t.color('red')
+    #     t.write(f"invalid move", align="center", font=("Arial", 15, "normal"))
+    #     turtle.onscreenclick(playMove)
     drawBoard()
     stampScores()
     stampBoard()
     stampAllMoves(currentPlayer)
     s.update()
-    turtle.onscreenclick(playMove)
+    # turtle.onscreenclick(playMove)
 
 def evaluate(board, player):
     return calculateScores(board)[int((1-player)/2)]
@@ -346,7 +349,7 @@ def MM(board, depth, maximizing, current, alpha, beta):
     opp_moves = allMoves(board, opponent)
 
     if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [None, evaluate(board, current)]
+        return [None, len(opp_moves)]
 
     if len(moves) == 0:
         return MM(board, depth - 1, not maximizing, opponent, alpha, beta)
@@ -354,18 +357,6 @@ def MM(board, depth, maximizing, current, alpha, beta):
     best_move = None
 
     if maximizing:
-        best_value = -10000
-        for m in moves:
-            nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
-            if mmOnBoard[1] > best_value:
-                best_value = mmOnBoard[1]
-                best_move = m
-            alpha = max(alpha, best_value)
-            if beta <= alpha:
-                break
-        return [best_move, best_value]
-    else:
         best_value = 10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
@@ -377,8 +368,56 @@ def MM(board, depth, maximizing, current, alpha, beta):
             if beta <= alpha:
                 break
         return [best_move, best_value]
+    else:
+        best_value = -10000
+        for m in moves:
+            nBoard = nextBoard(board, current, m)
+            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            if mmOnBoard[1] > best_value:
+                best_value = mmOnBoard[1]
+                best_move = m
+            alpha = max(alpha, best_value)
+            if beta <= alpha:
+                break
+        return [best_move, best_value]
+    
+def MM2(board, depth, maximizing, current, alpha, beta):
+    moves = allMoves(board, current)
+    opponent = -current
+    opp_moves = allMoves(board, opponent)
 
+    if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
+        return [None, evaluate(board, current)]
 
+    if len(moves) == 0:
+        return MM2(board, depth - 1, not maximizing, opponent, alpha, beta)
+
+    best_move = None
+
+    if maximizing:
+        best_value = -10000
+        for m in moves:
+            nBoard = nextBoard(board, current, m)
+            mmOnBoard = MM2(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            if mmOnBoard[1] > best_value:
+                best_value = mmOnBoard[1]
+                best_move = m
+            alpha = max(alpha, best_value)
+            if beta <= alpha:
+                break
+        return [best_move, best_value]
+    else:
+        best_value = 10000
+        for m in moves:
+            nBoard = nextBoard(board, current, m)
+            mmOnBoard = MM2(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            if mmOnBoard[1] < best_value:
+                best_value = mmOnBoard[1]
+                best_move = m
+            beta = min(beta, best_value)
+            if beta <= alpha:
+                break
+        return [best_move, best_value]
 
 
 initialize()
