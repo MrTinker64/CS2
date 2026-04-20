@@ -298,9 +298,9 @@ def playMove(x,y):
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
-    # mm2Move = MM2(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
-    # row = mm2Move[0]
-    # col = mm2Move[1]
+    # mmMove = MM(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
+    # row = mmMove[0]
+    # col = mmMove[1]
     t.clear()
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
