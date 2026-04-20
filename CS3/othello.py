@@ -346,7 +346,7 @@ def bestMove(board,player):
     #         best_move = move
     #         best_score = move_score
     # return best_move
-    return MM(board, 5, True, player, -10000, 10000)
+    return MM(board, 4, True, player, -10000, 10000)
 
 def MM(board, depth, maximizing, current, alpha, beta):
     moves = allMoves(board, current)
