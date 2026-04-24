@@ -349,7 +349,7 @@ def bestMove(board,player):
     open_spots = 0
     for list in board:
         open_spots += list.count(0)
-    if open_spots > 10:
+    if open_spots > 20:
         return MM(board, 4, True, player, -10000, 10000)
     else:
         return MMSimple(board, 4, True, player, -10000, 10000)
