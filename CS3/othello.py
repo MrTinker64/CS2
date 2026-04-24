@@ -346,7 +346,13 @@ def bestMove(board,player):
     #         best_move = move
     #         best_score = move_score
     # return best_move
-    return MM(board, 4, True, player, -10000, 10000)
+    open_spots = 0
+    for list in board:
+        open_spots += list.count(0)
+    if open_spots > 10:
+        return MM(board, 4, True, player, -10000, 10000)
+    else:
+        return MMSimple(board, 4, True, player, -10000, 10000)
 
 def MM(board, depth, maximizing, current, alpha, beta):
     moves = allMoves(board, current)
