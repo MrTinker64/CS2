@@ -298,9 +298,6 @@ def playMove(x,y):
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
-    # mmMove = MMSimple(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
-    # row = mmMove[0]
-    # col = mmMove[1]
     t.clear()
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
@@ -318,10 +315,6 @@ def playMove(x,y):
                 return
         else:
             stampCurrentPlayer()
-        if currentPlayer == -1:
-            computer_move = bestMove(gameBoard, currentPlayer)[0]
-            playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
-            return
     else:
         t.goto(0, 260)
         t.color('red')
@@ -333,105 +326,6 @@ def playMove(x,y):
     stampAllMoves(currentPlayer)
     s.update()
     turtle.onscreenclick(playMove)
-
-def evaluate(board, player):
-    return calculateScores(board)[int((1-player)/2)]
-
-def bestMove(board,player):
-    # best_move = [0, 0]
-    # best_score = 0
-    # for move in allMoves(board, player):
-    #     move_score = evaluate(nextBoard(board, player, move), player)
-    #     if move_score > best_score:
-    #         best_move = move
-    #         best_score = move_score
-    # return best_move
-    open_spots = 0
-    for list in board:
-        open_spots += list.count(0)
-    if open_spots > 20:
-        return MM(board, 4, True, player, -10000, 10000)
-    else:
-        return MMSimple(board, 4, True, player, -10000, 10000)
-
-def MM(board, depth, maximizing, current, alpha, beta):
-    moves = allMoves(board, current)
-    opponent = -current
-    opp_moves = allMoves(board, opponent)
-
-    if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [None, len(opp_moves) - evaluate(board, current) / 10]
-
-    if len(moves) == 0:
-        return MM(board, depth - 1, not maximizing, opponent, alpha, beta)
-
-    best_move = None
-
-    if maximizing:
-        best_value = 10000
-        for m in moves:
-            nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
-            if bannedMoves.__contains__(m):
-                mmOnBoard[1] += 1000
-            if mmOnBoard[1] < best_value:
-                best_value = mmOnBoard[1]
-                best_move = m
-            beta = min(beta, best_value)
-            if beta <= alpha:
-                break
-        return [best_move, best_value]
-    else:
-        best_value = -10000
-        for m in moves:
-            nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
-            if mmOnBoard[1] > best_value:
-                best_value = mmOnBoard[1]
-                best_move = m
-            alpha = max(alpha, best_value)
-            if beta <= alpha:
-                break
-        return [best_move, best_value]
-    
-def MMSimple(board, depth, maximizing, current, alpha, beta):
-    moves = allMoves(board, current)
-    opponent = -current
-    opp_moves = allMoves(board, opponent)
-
-    if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [None, evaluate(board, current)]
-
-    if len(moves) == 0:
-        return MMSimple(board, depth - 1, not maximizing, opponent, alpha, beta)
-
-    best_move = None
-
-    if maximizing:
-        best_value = -10000
-        for m in moves:
-            nBoard = nextBoard(board, current, m)
-            mmOnBoard = MMSimple(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
-            if mmOnBoard[1] > best_value:
-                best_value = mmOnBoard[1]
-                best_move = m
-            alpha = max(alpha, best_value)
-            if beta <= alpha:
-                break
-        return [best_move, best_value]
-    else:
-        best_value = 10000
-        for m in moves:
-            nBoard = nextBoard(board, current, m)
-            mmOnBoard = MMSimple(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
-            if mmOnBoard[1] < best_value:
-                best_value = mmOnBoard[1]
-                best_move = m
-            beta = min(beta, best_value)
-            if beta <= alpha:
-                break
-        return [best_move, best_value]
-
 
 initialize()
 turtle.onscreenclick(playMove)
