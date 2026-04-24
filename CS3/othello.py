@@ -298,7 +298,7 @@ def playMove(x,y):
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
-    # mmMove = MM(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
+    # mmMove = MMSimple(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
     # row = mmMove[0]
     # col = mmMove[1]
     t.clear()
@@ -388,7 +388,7 @@ def MM(board, depth, maximizing, current, alpha, beta):
                 break
         return [best_move, best_value]
     
-def MM2(board, depth, maximizing, current, alpha, beta):
+def MMSimple(board, depth, maximizing, current, alpha, beta):
     moves = allMoves(board, current)
     opponent = -current
     opp_moves = allMoves(board, opponent)
@@ -397,7 +397,7 @@ def MM2(board, depth, maximizing, current, alpha, beta):
         return [None, evaluate(board, current)]
 
     if len(moves) == 0:
-        return MM2(board, depth - 1, not maximizing, opponent, alpha, beta)
+        return MMSimple(board, depth - 1, not maximizing, opponent, alpha, beta)
 
     best_move = None
 
@@ -405,7 +405,7 @@ def MM2(board, depth, maximizing, current, alpha, beta):
         best_value = -10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM2(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            mmOnBoard = MMSimple(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
             if mmOnBoard[1] > best_value:
                 best_value = mmOnBoard[1]
                 best_move = m
@@ -417,7 +417,7 @@ def MM2(board, depth, maximizing, current, alpha, beta):
         best_value = 10000
         for m in moves:
             nBoard = nextBoard(board, current, m)
-            mmOnBoard = MM2(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
+            mmOnBoard = MMSimple(nBoard, depth - 1, not maximizing, opponent, alpha, beta)
             if mmOnBoard[1] < best_value:
                 best_value = mmOnBoard[1]
                 best_move = m
