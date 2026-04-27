@@ -290,13 +290,13 @@ def initialize():
     drawBoard()
     stampBoard()
     stampScores()
-    # update current player if needed
     stampAllMoves(currentPlayer)
     stampCurrentPlayer()
-    # mmMove = bestMove(gameBoard, currentPlayer)
-    # row = mmMove[0][0]
-    # col = mmMove[0][1]
-    # playMove(xFromColumn(col), yFromRow(row))
+    # To switch starting player comment out the below 4 lines + change computer move to -1 or 1
+    mmMove = bestMove(gameBoard, currentPlayer)
+    row = mmMove[0][0]
+    col = mmMove[0][1]
+    playMove(xFromColumn(col), yFromRow(row))
     s.update()
 
 def playMove(x,y):
@@ -321,7 +321,7 @@ def playMove(x,y):
                 return
         else:
             stampCurrentPlayer()
-        if currentPlayer == 1:
+        if currentPlayer == 1: # flip when switching starting players
             computer_move = bestMove(gameBoard, currentPlayer)[0]
             playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
             return
