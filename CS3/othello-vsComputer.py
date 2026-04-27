@@ -291,6 +291,10 @@ def initialize():
     # update current player if needed
     stampAllMoves(currentPlayer)
     stampCurrentPlayer()
+    mmMove = bestMove(gameBoard, currentPlayer)
+    row = mmMove[0][0]
+    col = mmMove[0][1]
+    playMove(xFromColumn(col), yFromRow(row))
     s.update()
 
 def playMove(x,y):
@@ -298,9 +302,6 @@ def playMove(x,y):
     global currentPlayer
     col = whichColumn(x)
     row = whichRow(y)
-    # mmMove = MMSimple(gameBoard, 4, True, currentPlayer, -10000, 10000)[0]
-    # row = mmMove[0]
-    # col = mmMove[1]
     t.clear()
     if validMove(currentPlayer,row, col):
         updateGameBoard(currentPlayer, [row, col])
@@ -318,7 +319,7 @@ def playMove(x,y):
                 return
         else:
             stampCurrentPlayer()
-        if currentPlayer == -1:
+        if currentPlayer == 1:
             computer_move = bestMove(gameBoard, currentPlayer)[0]
             playMove(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
             return
