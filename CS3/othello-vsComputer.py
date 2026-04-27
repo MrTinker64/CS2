@@ -293,10 +293,10 @@ def initialize():
     # update current player if needed
     stampAllMoves(currentPlayer)
     stampCurrentPlayer()
-    mmMove = bestMove(gameBoard, currentPlayer)
-    row = mmMove[0][0]
-    col = mmMove[0][1]
-    playMove(xFromColumn(col), yFromRow(row))
+    # mmMove = bestMove(gameBoard, currentPlayer)
+    # row = mmMove[0][0]
+    # col = mmMove[0][1]
+    # playMove(xFromColumn(col), yFromRow(row))
     s.update()
 
 def playMove(x,y):
@@ -366,7 +366,7 @@ def MM(board, depth, maximizing, current, alpha, beta):
     opp_moves = allMoves(board, opponent)
 
     if depth == 0 or (len(moves) == 0 and len(opp_moves) == 0):
-        return [None, len(opp_moves) - evaluate(board, current) / 10]
+        return [None, len(opp_moves)]
 
     if len(moves) == 0:
         return MM(board, depth - 1, not maximizing, opponent, alpha, beta)
