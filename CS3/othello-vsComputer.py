@@ -353,7 +353,7 @@ def bestMove(board,player):
     if open_spots > 20:
         return MM(board, 5, True, player, -10000, 10000)
     else:
-        return MMSimple(board, 4, True, player, -10000, 10000)
+        return MMSimple(board, 5, True, player, -10000, 10000)
 
 def MM(board, depth, maximizing, current, alpha, beta):
     moves = allMoves(board, current)
