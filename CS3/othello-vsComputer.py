@@ -71,6 +71,8 @@ t.penup()
 t.hideturtle()
 s.tracer(0)
 
+computer_move = [0, 0]
+
 # Functions
 
 def drawBoard():
@@ -299,7 +301,7 @@ def initialize():
 
 def playMove(x,y):
     turtle.onscreenclick(None) # type: ignore
-    global currentPlayer
+    global currentPlayer, computer_move
     col = whichColumn(x)
     row = whichRow(y)
     t.clear()
@@ -332,6 +334,9 @@ def playMove(x,y):
     stampScores()
     stampBoard()
     stampAllMoves(currentPlayer)
+    t.goto(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
+    t.color('yellow')
+    t.stamp()
     s.update()
     turtle.onscreenclick(playMove)
 
