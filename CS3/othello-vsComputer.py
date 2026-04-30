@@ -335,7 +335,7 @@ def playMove(x,y):
     stampBoard()
     stampAllMoves(currentPlayer)
     t.goto(xFromColumn(computer_move[1]), yFromRow(computer_move[0]))
-    t.color('yellow')
+    t.color('red')
     t.stamp()
     s.update()
     turtle.onscreenclick(playMove)
