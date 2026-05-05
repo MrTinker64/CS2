@@ -39,6 +39,15 @@ def random_character(model, k_gram):
     weights = [f / total for f in freqs]
     return random.choices(chars, weights=weights, k=1)[0]
 
+def generate_random_text(model, length):
+    seed = random.choice(list(model.keys()))
+    text = seed
+    for i in range(length - len(seed)):
+        next_char = random_character(model, seed)
+        text += next_char
+        seed = seed[1:] + next_char
+    return text
+
 text = 'the thermos is there'
 my_model = build_model(text, 3)
-print(random_character(my_model, 'the') )
+print(generate_random_text(my_model, 20))
