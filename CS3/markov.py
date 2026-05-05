@@ -1,3 +1,5 @@
+import random
+
 def get_k_gram(text, position, k):
     return text[position:position+k]
 
@@ -19,7 +21,7 @@ def add_char_to_model(model, text, position, k):
 def build_model(text, k):
     the_model = {}
     for i in range(len(text)):
-        add_char_to_model(the_model, 'fald fall', i, k)
+        add_char_to_model(the_model, text, i, k)
     return the_model
 
 def next_character_frequency(model, k_gram, character):
@@ -29,6 +31,14 @@ def next_character_frequency(model, k_gram, character):
         return 0
     else:
         return model[k_gram][character]
+    
+def random_character(model, k_gram):
+    chars = list(model[k_gram].keys())
+    freqs = list(model[k_gram].values())
+    total = sum(freqs)
+    weights = [f / total for f in freqs]
+    return random.choices(chars, weights=weights, k=1)[0]
 
-my_model = {'ald': {' ': 1},'fal': {'d': 1,'l': 1}}
-print(next_character_frequency(my_model, 'flu', 'f'))
+text = 'the thermos is there'
+my_model = build_model(text, 3)
+print(random_character(my_model, 'the') )
