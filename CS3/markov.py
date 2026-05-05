@@ -1,5 +1,3 @@
-my_model = {}
-
 def get_k_gram(text, position, k):
     return text[position:position+k]
 
@@ -13,6 +11,10 @@ def add_char_to_model(model, text, position, k):
             model[k_gram][text[position+k]] += 1
         else:
             model[k_gram][text[position+k]] = 1
+            
+# Does the first 3 k_grams and their following letters
+# for i in range(3):
+# 	 	add_char_to_model(my_model, 'fald fall', i, 3)
         
 def build_model(text, k):
     the_model = {}
@@ -20,10 +22,13 @@ def build_model(text, k):
         add_char_to_model(the_model, 'fald fall', i, k)
     return the_model
 
-# Does the first 3 k_grams and their following letters
-# for i in range(3):
-# 	 	add_char_to_model(my_model, 'fald fall', i, 3)
+def next_character_frequency(model, k_gram, character):
+    if k_gram not in model:
+        return 0
+    elif character not in model[k_gram]:
+        return 0
+    else:
+        return model[k_gram][character]
 
-my_model = build_model('fald fall', 3)
-print(my_model)
-print("{'fal': {'d': 1, 'l': 1}, 'ald': {' ': 1}, 'ld ': {'f': 1}, 'd f': {'a': 1}, ' fa': {'l': 1}, 'all': {'f': 1}, 'llf': {'a': 1}, 'lfa': {'l': 1} }")
+my_model = {'ald': {' ': 1},'fal': {'d': 1,'l': 1}}
+print(next_character_frequency(my_model, 'flu', 'f'))
