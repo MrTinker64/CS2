@@ -48,6 +48,7 @@ def generate_random_text(model, length):
         seed = seed[1:] + next_char
     return text
 
-text = 'the thermos is there'
-my_model = build_model(text, 3)
-print(generate_random_text(my_model, 20))
+f = open("complete_shakespeare.txt","r")
+text = f.read()
+my_model = build_model(text, 7)
+print(generate_random_text(my_model, 100))
