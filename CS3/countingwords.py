@@ -20,4 +20,10 @@ def top_n_words(text,n):
     sorted_words = sorted(counts, key=lambda w: counts[w], reverse=True)
     return sorted_words[:n]
 
-print(top_n_words("Hello my name is Hello Hello.", 2))
+def top_n_words_except(counts, n, boring):
+    for bore in boring:
+        del counts[bore]
+    sorted_words = sorted(counts, key=lambda w: counts[w], reverse=True)
+    return sorted_words[:n]
+
+print(top_n_words_except(count_words("Hello my name is Hello Hello."), 2, ["Hello"]))
