@@ -4,5 +4,15 @@ def pig_latin(word):
         return word + "ay"
     else:
         return pig_latin(word[1:] + word[0])
-    
-print(pig_latin('strengths'))
+
+def izzle(word):
+    vowels = "aeiouy"
+    last_vowel = -1
+    for i in range(len(word)):
+        if word[i].lower() in vowels:
+            last_vowel = i
+    if last_vowel <= 0:
+        return word + "izzle"
+    return word[:last_vowel] + "izzle"
+
+print(izzle("Merry Christmas"))
