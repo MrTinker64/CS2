@@ -33,6 +33,8 @@ def average_word_lengths(counts):
         total_length += len(word) * frequency
         total_words += frequency
     return total_length/total_words
-        
 
-print(average_word_lengths(count_words("Hello and all")))
+def word_diversity(counts):
+    return len(counts) / sum(counts.values())
+
+print(word_diversity(count_words("and and")))
