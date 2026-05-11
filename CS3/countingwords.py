@@ -26,4 +26,13 @@ def top_n_words_except(counts, n, boring):
     sorted_words = sorted(counts, key=lambda w: counts[w], reverse=True)
     return sorted_words[:n]
 
-print(top_n_words_except(count_words("Hello my name is Hello Hello."), 2, ["Hello"]))
+def average_word_lengths(counts):
+    total_length = 0
+    total_words = 0
+    for word, frequency in counts.items():
+        total_length += len(word) * frequency
+        total_words += frequency
+    return total_length/total_words
+        
+
+print(average_word_lengths(count_words("Hello and all")))
