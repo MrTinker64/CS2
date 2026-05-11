@@ -15,4 +15,9 @@ def count_words(text):
             words[word] = 1
     return words
 
-print(count_words("Hello my name is Hello Hello."))
+def top_n_words(text,n):
+    counts = count_words(text)
+    sorted_words = sorted(counts, key=lambda w: counts[w], reverse=True)
+    return sorted_words[:n]
+
+print(top_n_words("Hello my name is Hello Hello.", 2))
