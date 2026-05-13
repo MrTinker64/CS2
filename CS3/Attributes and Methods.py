@@ -75,9 +75,8 @@ class Cat(Pet):
             self.lives = 9
         else:
             print("This cat is still alive!")
-
+            
+class HungryCat(Cat):
     def eat(self,thing):
-        if thing == 'chocolate':
-            print(self.name + 'cannot eat' + thing + '!')
-        else:
-            super(Cat,self).eat(thing)
+        super(HungryCat,self).eat(thing)
+        super(HungryCat,self).eat(thing)
