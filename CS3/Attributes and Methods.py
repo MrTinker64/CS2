@@ -1,9 +1,9 @@
 class Student:
     def __init__(self, student_name):       
-      self.name = student_name
-      self.year = 0
-      self.courses = []
-      self.pref_name = student_name
+        self.name = student_name
+        self.year = 0
+        self.courses = []
+        self.pref_name = student_name
 
     def add_course(self, course):
         self.courses += [course]
@@ -23,10 +23,10 @@ class Student:
     
 class Course:
     def __init__(self, name, instructor, term):       
-      self.name = name
-      self.instructor = instructor
-      self.term = term
-      self.roster = []
+        self.name = name
+        self.instructor = instructor
+        self.term = term
+        self.roster = []
       
 bob = Student('Bob')
 john = Student('John')
@@ -38,37 +38,41 @@ CS2 = Course('CS2', 'Parisa','Winter')
 print(CS3.roster)
 
 class Pet:
-   def __init__(self, name,person):       
-     self.name = name
-     self.person = person
-     self.lives = 1
+    def __init__(self, name,person):       
+        self.name = name
+        self.person = person
+        self.lives = 1
 
-   def eat(self, thing):
-      print(self.name+' ate'+thing+'!')
+    def eat(self, thing):
+        print(self.name+' ate'+thing+'!')
 
 class Dog(Pet):
-   def talk(self):
-      print('Woof!')
+    def talk(self):
+        print('Woof!')
 
 
-   def eat(self,thing):
-      if thing == 'chocolate':
-         print(self.name + 'cannot eat' + thing + '!')
-      else:
-         super(Dog,self).eat(thing)
+    def eat(self,thing):
+        if thing == 'chocolate':
+            print(self.name + 'cannot eat' + thing + '!')
+        else:
+            super(Dog,self).eat(thing)
          
          
 class Cat(Pet):
-   def __init__(self, name,person):
-       super(Cat,self)
-       self.lives = 9
-    
-   def talk(self):
-      print('Meow!')
+    def __init__(self, name,person):
+        super(Cat,self)
+        self.lives = 9
+        
+    def talk(self):
+        print('Meow!')
+        
+    def lose_life(self):
+        self.life -= 1
+        
+    def 
 
-
-   def eat(self,thing):
-      if thing == 'chocolate':
-         print(self.name + 'cannot eat' + thing + '!')
-      else:
-         super(Cat,self).eat(thing)
+    def eat(self,thing):
+        if thing == 'chocolate':
+            print(self.name + 'cannot eat' + thing + '!')
+        else:
+            super(Cat,self).eat(thing)
