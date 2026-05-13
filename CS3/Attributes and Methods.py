@@ -69,7 +69,12 @@ class Cat(Pet):
     def lose_life(self):
         self.life -= 1
         
-    def 
+    # Implement the revive method for cats so that it resets a cat’s life to 9 only if the cat has no lives left. Otherwise, it prints, “This cat is still alive!” 
+    def revive(self):
+        if self.lives == 0:
+            self.lives = 9
+        else:
+            print("This cat is still alive!")
 
     def eat(self,thing):
         if thing == 'chocolate':
