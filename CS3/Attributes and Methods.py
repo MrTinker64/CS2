@@ -60,14 +60,14 @@ class Dog(Pet):
          
 class Cat(Pet):
     def __init__(self, name,person):
-        super(Cat,self)
+        super(Cat,self).__init__(name,person)
         self.lives = 9
         
     def talk(self):
         print('Meow!')
         
     def lose_life(self):
-        self.life -= 1
+        self.lives -= 1
         
     # Implement the revive method for cats so that it resets a cat’s life to 9 only if the cat has no lives left. Otherwise, it prints, “This cat is still alive!” 
     def revive(self):
