@@ -67,7 +67,13 @@ class Thing:
 
 
 
-""" Implement the Key class here! """
+class Key(Thing):
+    def use(self, place):
+        if place.locked:
+            place.locked = False
+            print("Unlocked " + place.name)
+        else:
+            print(place.name + " is already unlocked")
 
 
 
