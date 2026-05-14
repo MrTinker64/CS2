@@ -121,8 +121,7 @@ SPECIAL_FORMS = {
     'help': help,
 }
 
-WELCOME_MESSAGE = 'Edit adventure.py to update WELCOME_MESSAGE with your welcome message.'
-"""
+WELCOME_MESSAGE = """
 Example:
 Welcome to the adventure game!
 
