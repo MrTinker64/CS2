@@ -26,8 +26,7 @@ def adv_parse(line):
         return ('unlock', ' '.join(tokens))
     elif command == 'keycode':
         if me.place != first_room:
-            print("Must be in the room with the lockbox to enter the code")
-            return
+            raise SyntaxError("Must be in the room with the lockbox to enter the code")
         return ('keycode', ' '.join(tokens))
     else:
         return (command, ' '.join(tokens))
