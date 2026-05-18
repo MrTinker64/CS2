@@ -5,6 +5,7 @@ class Player:
         """Create a player object."""
         self.name = name
         self.place = place
+        self.backpack = []
         self.won = False
 
     def look(self):
@@ -12,8 +13,16 @@ class Player:
 
     def go_to(self, location):
         """Go to a location if it's among the exits of player's current place and it is unlocked."""
-   
-        "*** YOUR CODE HERE ***"
+        if type(location) != str:
+            print('Location has to be a string.')
+            return
+        destination = self.place.get_neighbor(location)
+        if destination is not self.place:
+            if destination.locked:
+                print(destination.name + ' is locked! You need to unlock it first.')
+            else:
+                self.place = destination
+                self.place.look()
 
 
     def talk_to(self, person):
@@ -21,21 +30,35 @@ class Player:
         """
         if type(person) != str:
             print('Person has to be a string.')
-        "*** YOUR CODE HERE ***"
+            return
+        if person in self.place.characters:
+            print(self.place.characters[person].talk())
+        else:
+            print(person + ' is not here.')
 
 
     def take(self, thing):
         """Take a thing if thing is at player's current place
         """
-        
         if type(thing) != str:
             print('Thing should be a string.')
-        "*** YOUR CODE HERE ***"
+            return
+        if thing in self.place.things:
+            item = self.place.take(thing)
+            self.backpack.append(item)
+            print('You take ' + item.name + '.')
+        else:
+            print(thing + ' is not here.')
 
     def check_backpack(self):
         """Print each item with its description and return a list of item names.
         """
-        "*** YOUR CODE HERE ***"
+        if not self.backpack:
+            print('Your backpack is empty.')
+        else:
+            for item in self.backpack:
+                print(item.name, '-', item.description)
+        return [item.name for item in self.backpack]
 
 
     def unlock(self, place):
@@ -45,6 +68,18 @@ class Player:
             print("Place must be a string")
             return
         key = None
+        for item in self.backpack:
+            if isinstance(item, Key):
+                key = item
+                break
+        if key is None:
+            print("You don't have a key.")
+            return
+        if place not in self.place.exits:
+            print("Can't find " + place + " nearby.")
+            return
+        destination = self.place.exits[place][0]
+        key.use(destination)
         
     def keycode(self, code):
         if type(code) != str:
@@ -53,7 +88,7 @@ class Player:
         if len(code) != 4:
             print("Code must be 4 digits")
             return
-        if code == '1804':
+        if code == '1809':
             self.won = True
         else:
             print("Unfortunately that is not the correct code")
