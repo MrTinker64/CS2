@@ -124,7 +124,11 @@ Dear Heir,
 
 You will only be receiving this message after I've died.
 You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
-I believe in your puzzle solving abilities. Good luck!
+I believe in your puzzle solving abilities. 
+
+Good luck,
+Mrs. G
+
 """
 
 WIN_MESSAGE = """
