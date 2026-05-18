@@ -9,6 +9,7 @@ christina = Character('Christina', 'Sign in!')
 
 # Things:
 coffee = Thing('Coffee', 'The caffienated nectar of the gods.')
+lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
 
 # Keys:
 skeleton_key = Key('Skeleton Key', 'A key that unlocks many doors')
@@ -17,11 +18,10 @@ skeleton_key = Key('Skeleton Key', 'A key that unlocks many doors')
 
 # Places:
 front_desk = Place('Front Desk','I don\'t know why you say goodbye I say hello.', [christina], [coffee])
+first_room = Place('First Room','I don\'t know why you say goodbye I say hello.', [], [lockbox])
 
 # Exits:
-"""Your exits, e.g.:
-front_desk.add_exits([admissions, conference_room, haight_street])
-"""
+first_room.add_exits([front_desk])
 
 # Locked places
 """Your locked places, e.g.:
@@ -29,4 +29,4 @@ front_desk.locked = False
 """
 
 # Player:
-me = Player('BYI',front_desk)
+me = Player('Heir',first_room)

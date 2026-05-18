@@ -24,6 +24,11 @@ def adv_parse(line):
         return ('check_backpack', '')
     elif command == 'unlock':
         return ('unlock', ' '.join(tokens))
+    elif command == 'keycode':
+        if me.place != first_room:
+            print("Must be in the room with the lockbox to enter the code")
+            return
+        return ('keycode', ' '.join(tokens))
     else:
         return (command, ' '.join(tokens))
 
@@ -52,19 +57,11 @@ def help():
         print('   ', usage)
 
 def check_win_state(player):
-    """Checks if the player is in a winning state."""
-    '''Example:
-    if player.place != old_library:
+    if player.place != first_room:
         return False
     print()
-    player_backpack = player.check_backpack()
-    if 'Wallet' in player_backpack and 'Sushi' in player_backpack:
+    if player.won:
         return True
-    else:
-        print()
-        print("Looks like you're missing some items. Can't go to the project party yet!")
-        return False
-    '''
 
 ########
 # REPL #
@@ -105,6 +102,7 @@ COMMAND_FORMATS = {
     'check backpack': 'check backpack',
     'help': 'help',
     'unlock': 'unlock [place]',
+    'keycode': 'keycode [code]',
 }
 
 COMMAND_NUM_ARGS = {
@@ -115,6 +113,7 @@ COMMAND_NUM_ARGS = {
     'check_backpack': 0,
     'help': 0,
     'unlock': 1,
+    'keycode': 1,
 }
 
 SPECIAL_FORMS = {
@@ -122,20 +121,17 @@ SPECIAL_FORMS = {
 }
 
 WELCOME_MESSAGE = """
-Example:
-Welcome to the adventure game!
+Dear Heir,
 
-It's a bright sunny day.
-You are a ??? named {},
-wandering around the Haight looking for food.
-
-""".format(me.name if isinstance(me, Player) else '______')
+You will only be receiving this message after I've died.
+You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
+I believe in your puzzle solving abilities. Good luck!
+"""
 
 WIN_MESSAGE = """
-Congratulations! You won the adventure game!
+Congratulations! You have won your inheritance of this estate and all my holdings totalling $100 million!
 """
 
 
 if __name__ == '__main__':
     read_eval_print_loop()
-

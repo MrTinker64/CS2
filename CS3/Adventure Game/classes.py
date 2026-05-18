@@ -5,6 +5,7 @@ class Player:
         """Create a player object."""
         self.name = name
         self.place = place
+        self.won = False
 
     def look(self):
         self.place.look()
@@ -45,7 +46,17 @@ class Player:
             return
         key = None
         
-        "*** YOUR CODE HERE ***"
+    def keycode(self, code):
+        if type(code) != str:
+            print("Code must be a string")
+            return
+        if len(code) != 4:
+            print("Code must be 4 digits")
+            return
+        if code == '1804':
+            self.won = True
+        else:
+            print("Unfortunately that is not the correct code")
 
 
 class Character:
