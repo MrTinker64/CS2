@@ -81,9 +81,9 @@ def read_eval_print_loop():
         if check_win_state(me):
             print(WIN_MESSAGE)
             return
-        print()
         try:
             line = input('adventure> ')
+            print()
             exp = adv_parse(line)
             adv_eval(exp)
         except (KeyboardInterrupt, EOFError, SystemExit): # If you ctrl-c or ctrl-d

@@ -13,7 +13,7 @@ path = Place('Path','A straight gravel path from the dining room to the lake. Al
 observatory = Place('Observatory','A round room with a large telescope in the middle. On the wall you see a chart with instructions for how to see various celestial bodies.', [])
 workshop = Place('Workshop','You see a remote controller lying on a shelf.', [])
 
-dining_room = Place('Dining Room','A long dining room with a locked box sitting in the middle of the table', [lockbox])
+dining_room = Place('Dining Room','A long room with a long table running down the middle and chairs running all along it. A locked box sits in the middle of the table.', [lockbox])
 kitchen = Place('Kitchen','The kitchen', [])
 pantry = Place('Pantry','A room shaped like a right triangle', [])
 guest_bedroom = Place('Guest Bedroom','A bedroom with a thank you note addressed to Mrs. G.\nThe guest remarked about the unique floorplan of this estate.', [])

@@ -12,7 +12,7 @@ class Player:
 
     def look(self):
         # TODO test this
-        print('You are currently in the ' + self.name)
+        print('You are currently in the ' + self.place.name, end=". ")
         if self.place.name == 'Storage Closet':
             if not 'Flashlight' in self.backpack:
                 print("The room is too dark to see in and the only light has broken.")
@@ -157,6 +157,7 @@ class Place:
 
     def look(self):
         print(self.description)
+        print()
         print('Things:')
         if not self.things:
             print('nothing in particular')
@@ -181,6 +182,7 @@ class Place:
         return self.things.pop(thing)
 
     def check_exits(self):
+        print()
         print('You can exit to:')
         for exit in self.exits:
             print('   ', exit)
