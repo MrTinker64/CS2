@@ -29,7 +29,7 @@ def adv_parse(line):
             raise SyntaxError("Must be in the room with the lockbox to enter the code")
         return ('keycode', ' '.join(tokens))
     elif command == 'meditate':
-        if me.place != bedroom_one and me.place != bedroom_two:
+        if me.place != zendo:
             raise SyntaxError("You are not in the proper headspace to meditate")
         return ('meditate', '')
     else:
