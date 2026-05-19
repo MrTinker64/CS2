@@ -183,7 +183,7 @@ class Place:
 
     def check_exits(self):
         print()
-        print('You can exit to:')
+        print('You can go to:')
         for exit in self.exits:
             print('   ', exit)
 
