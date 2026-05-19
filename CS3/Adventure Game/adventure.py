@@ -25,7 +25,7 @@ def adv_parse(line):
     elif command == 'unlock':
         return ('unlock', ' '.join(tokens))
     elif command == 'keycode':
-        if me.place != dining_room:
+        if not 'Lockbox' in me.backpack and me.place != dining_room:
             raise SyntaxError("Must be in the room with the lockbox to enter the code")
         return ('keycode', ' '.join(tokens))
     elif command == 'meditate':
@@ -62,7 +62,6 @@ def help():
 def check_win_state(player):
     if player.place != dining_room:
         return False
-    print()
     if player.won:
         return True
 
@@ -82,8 +81,9 @@ def read_eval_print_loop():
             print(WIN_MESSAGE)
             return
         try:
-            line = input('adventure> ')
             print()
+            line = input('adventure> ')
+            print("\n")
             exp = adv_parse(line)
             adv_eval(exp)
         except (KeyboardInterrupt, EOFError, SystemExit): # If you ctrl-c or ctrl-d
