@@ -19,7 +19,7 @@ class Player:
                 print("The room is too dark to see in and the only light has broken.")
                 return
             else:
-                print("The room is too dark to see in and the only light bulb has broken. Luckily, you picked up the flashlight from earlier.\nYou turn on your flashlight and see:")
+                print("The room is too dark to see in and the only light bulb has broken. Luckily, you picked up the flashlight from earlier.\nYou turn on your flashlight and it illuminates:")
         else:
             print("You take a look around and see:")
         self.place.look()
