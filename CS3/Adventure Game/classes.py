@@ -12,6 +12,7 @@ class Player:
         self.hasFlashlight = False
 
     def look(self):
+        # TODO test this
         print('You are currently in the ' + self.name)
         if self.place.name == 'Storage Closet':
             if not self.hasFlashlight:
@@ -109,7 +110,8 @@ class Player:
         else:
             print("Unfortunately that is not the correct code")
             
-    def sleep(self):
+    def meditate(self):
+        # TODO make this meditation
         self.night_time = True
         print("You get a good rest. When you wake up it appears to be the dark, early morning.")
         print(f"self.night_time = {self.night_time}")

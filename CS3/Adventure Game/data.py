@@ -17,8 +17,10 @@ bedroom_two = Place('Guest Bedroom','A bedroom with a thank you note addressed t
 path = Place('Path','A straight gravel path from the dining room to the lake. Along the tree-lined path you make out two large circular buildings.', [])
 observatory = Place('Observatory','A round room with a large telescope in the middle. On the wall you see a chart with various planets and stars that **only rise during the early morning**. Each has a instructions next to it of how to see them.', [])
 
-lave = Place('Lake','', [])
+lake = Place('Lake','', [])
 workshop = Place('Workshop','', [])
+storage_closet = Place('Storage Closet','', [])
+zendo = Place('Zendo','', [])
 
 # Exits:
 dining_room.add_exits([bedroom_one, bedroom_two, kitchen, path])
