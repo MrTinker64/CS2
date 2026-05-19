@@ -14,7 +14,7 @@ class Player:
         # TODO test this
         print('You are currently in the ' + self.place.name, end=". ")
         if self.place.name == 'Storage Closet':
-            if not 'Flashlight' in self.backpack:
+            if not any(item.name == 'Flashlight' for item in self.backpack):
                 print("The room is too dark to see in and the only light has broken.")
                 return
             else:
@@ -24,7 +24,7 @@ class Player:
         self.place.look()
         if self.place.name == 'Observatory' and self.night_time:
             print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nSoon you realize that all the objects you're looking at from double star clusters to binary stars or all manner of thin and cigar-shaped galaxies everything looks like either an 8 or a 1.\nBy the time you're done watching it has become day again.")
-        if self.place.name == 'Lake' and 'Remote Controller' in self.backpack:
+        if self.place.name == 'Lake' and any(item.name == 'Remote Controller' for item in self.backpack):
             print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on. Though the left half has been damaged by water you can make out the lake and the building to the right.\nFrom this perspective they look like a 0 and a 9.")
 
     def go_to(self, location):
