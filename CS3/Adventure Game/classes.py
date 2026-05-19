@@ -1,5 +1,8 @@
 # A "simple" adventure game.
 
+# Night time
+night_time = False
+
 class Player:
     def __init__(self, name, place):
         """Create a player object."""
@@ -7,6 +10,7 @@ class Player:
         self.place = place
         self.backpack = []
         self.won = False
+        self.slept = False
 
     def look(self):
         self.place.look()
@@ -92,6 +96,11 @@ class Player:
             self.won = True
         else:
             print("Unfortunately that is not the correct code")
+            
+    def sleep(self):
+        night_time = True
+        print("You get a good rest. When you wake up it appears to be the dark, early morning.")
+        print(f"night_time = {night_time}")
 
 
 class Character:
@@ -130,7 +139,7 @@ class Place:
         self.characters = {character.name: character for character in characters}
         self.things = {thing.name: thing for thing in things}
         self.locked = False
-        self.exits = {} # {'name': (exit, 'description')}
+        self.exits = {}
 
     def look(self):
         print('You are currently at ' + self.name + '. You take a look around and see:')
@@ -169,5 +178,10 @@ class Place:
             print('   ', exit)
 
     def add_exits(self, places):
+        for place in places:
+            self.exits[place.name] = (place, place.description)
+            place.exits[self.name] = (self, self.description)
+            
+    def add_oneway_exits(self, places):
         for place in places:
             self.exits[place.name] = (place, place.description)

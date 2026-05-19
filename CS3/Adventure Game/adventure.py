@@ -28,6 +28,10 @@ def adv_parse(line):
         if me.place != first_room:
             raise SyntaxError("Must be in the room with the lockbox to enter the code")
         return ('keycode', ' '.join(tokens))
+    elif command == 'sleep':
+        if me.place != bedroom_one and me.place != bedroom_two:
+            raise SyntaxError("Must be in a bedroom to sleep")
+        return ('sleep', '')
     else:
         return (command, ' '.join(tokens))
 
@@ -102,6 +106,7 @@ COMMAND_FORMATS = {
     'help': 'help',
     'unlock': 'unlock [place]',
     'keycode': 'keycode [code]',
+    'sleep': 'sleep',
 }
 
 COMMAND_NUM_ARGS = {
@@ -113,6 +118,7 @@ COMMAND_NUM_ARGS = {
     'help': 0,
     'unlock': 1,
     'keycode': 1,
+    'sleep': 0,
 }
 
 SPECIAL_FORMS = {
