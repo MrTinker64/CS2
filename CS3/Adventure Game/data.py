@@ -18,13 +18,13 @@ kitchen = Place('Kitchen','The kitchen', [])
 pantry = Place('Pantry','A room shaped like a right triangle', [])
 guest_bedroom = Place('Guest Bedroom','A bedroom with a thank you note addressed to Mrs. G.\nThe guest remarked about the unique floorplan of this estate.', [])
 
-lake = Place('Lake','', [])
+lake = Place('Lake','A path leads out about 10 feet to an oval shaped lake. You see something in the middle of the lake. When you squint closer it looks like a toyboat.', [])
 architecture_studio = Place('Architecture Studio','Collection of model buildings shaped like letters of the alphabet when viewed from above.', [])
 storage_closet = Place('Storage Closet','', [])
 zendo = Place('Zendo','', [])
 
 # Exits:
-dining_room.add_exits([guest_bedroom, kitchen, path])
+dining_room.add_exits([guest_bedroom, kitchen, path, lake])
 kitchen.add_exits([pantry])
 path.add_exits([observatory, lake])
 
