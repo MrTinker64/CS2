@@ -133,25 +133,18 @@ class Key(Thing):
 
 
 class Place:
-    def __init__(self, name, description, characters, things):
+    def __init__(self, name, description, things):
         self.name = name
         self.description = description
-        self.characters = {character.name: character for character in characters}
         self.things = {thing.name: thing for thing in things}
         self.locked = False
         self.exits = {}
 
     def look(self):
-        print('You are currently at ' + self.name + '. You take a look around and see:')
-        print('Characters:')
-        if not self.characters:
-            print('    no one in particular')
-        else:
-            for character in self.characters:
-                print('   ', character)
+        print('You are currently in ' + self.name + '. You take a look around and see:')
         print('Things:')
         if not self.things:
-            print('    nothing in particular')
+            print('nothing in particular')
         else:
             for thing in self.things.values():
                 print('   ', thing.name, '-', thing.description)
@@ -185,3 +178,10 @@ class Place:
     def add_oneway_exits(self, places):
         for place in places:
             self.exits[place.name] = (place, place.description)
+            
+class Special_Place(Place):
+    def __init__(self, name, description, things):
+        super.__init__(self, name, description, things) # type: ignore
+    
+    def look(self):
+        pass
