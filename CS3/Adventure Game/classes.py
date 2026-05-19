@@ -1,8 +1,5 @@
 # A "simple" adventure game.
 
-# Night time
-night_time = False
-
 class Player:
     def __init__(self, name, place):
         """Create a player object."""
@@ -11,9 +8,19 @@ class Player:
         self.backpack = []
         self.won = False
         self.slept = False
+        self.night_time = False
+        self.hasFlashlight = False
 
     def look(self):
+        if self.place.name == 'Storage':
+            if not self.hasFlashlight:
+                print("The room is too dark to see in and the only light has broken.")
+                return
+            else:
+                print("The room is too dark to see in and the only light has broken. Luckily, you picked up the flasklight from earlier.\nYou turn on your flashlight")
         self.place.look()
+        if self.place.name == 'Observatory' and self.night_time:
+            print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nSoon you realize that all the objects you're looking at are double clusters or binary stars both of which appear to look like the number 8.\nBy the time you're done watching it has become day again.")
 
     def go_to(self, location):
         """Go to a location if it's among the exits of player's current place and it is unlocked."""
@@ -26,7 +33,7 @@ class Player:
                 print(destination.name + ' is locked! You need to unlock it first.')
             else:
                 self.place = destination
-                self.place.look()
+                self.look()
 
 
     def talk_to(self, person):
@@ -51,6 +58,8 @@ class Player:
             item = self.place.take(thing)
             self.backpack.append(item)
             print('You take ' + item.name + '.')
+            if item.name == 'Flashlight':
+                self.hasFlashlight = True
         else:
             print(thing + ' is not here.')
 
@@ -98,9 +107,9 @@ class Player:
             print("Unfortunately that is not the correct code")
             
     def sleep(self):
-        night_time = True
+        self.night_time = True
         print("You get a good rest. When you wake up it appears to be the dark, early morning.")
-        print(f"night_time = {night_time}")
+        print(f"self.night_time = {self.night_time}")
 
 
 class Character:
@@ -141,7 +150,8 @@ class Place:
         self.exits = {}
 
     def look(self):
-        print('You are currently in ' + self.name + '. You take a look around and see:')
+        print('You are currently in the ' + self.name + '. You take a look around and see:')
+        print(self.description)
         print('Things:')
         if not self.things:
             print('nothing in particular')
@@ -178,10 +188,3 @@ class Place:
     def add_oneway_exits(self, places):
         for place in places:
             self.exits[place.name] = (place, place.description)
-            
-class Special_Place(Place):
-    def __init__(self, name, description, things):
-        super.__init__(self, name, description, things) # type: ignore
-    
-    def look(self):
-        pass
