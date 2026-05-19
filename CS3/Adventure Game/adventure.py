@@ -25,9 +25,10 @@ def adv_parse(line):
     elif command == 'unlock':
         return ('unlock', ' '.join(tokens))
     elif command == 'keycode':
-        if not 'Lockbox' in me.backpack and me.place != dining_room:
+        if any(item.name == 'Lockbox' for item in me.backpack) or me.place == dining_room: 
+            return ('keycode', ' '.join(tokens))
+        else:
             raise SyntaxError("Must be in the room with the lockbox to enter the code")
-        return ('keycode', ' '.join(tokens))
     elif command == 'meditate':
         if me.place != zendo:
             raise SyntaxError("You are not in the proper headspace to meditate")

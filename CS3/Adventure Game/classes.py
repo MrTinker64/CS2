@@ -62,7 +62,7 @@ class Player:
         if thing in self.place.things:
             item = self.place.take(thing)
             self.backpack.append(item)
-            print('You take ' + item.name + '.')
+            print('You take the ' + item.name + '.')
             if item.name == 'Flashlight':
                 self.hasFlashlight = True
         else:
