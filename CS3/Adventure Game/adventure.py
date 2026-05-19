@@ -25,7 +25,7 @@ def adv_parse(line):
     elif command == 'unlock':
         return ('unlock', ' '.join(tokens))
     elif command == 'keycode':
-        if me.place != first_room:
+        if me.place != dining_room:
             raise SyntaxError("Must be in the room with the lockbox to enter the code")
         return ('keycode', ' '.join(tokens))
     elif command == 'sleep':
@@ -60,7 +60,7 @@ def help():
         print('   ', usage)
 
 def check_win_state(player):
-    if player.place != first_room:
+    if player.place != dining_room:
         return False
     print()
     if player.won:
