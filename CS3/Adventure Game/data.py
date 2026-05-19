@@ -25,14 +25,14 @@ zendo = Place('Zendo','', [])
 
 # Exits:
 # eight
-path.add_exits([observatory, workshop, dining_room])
+path.add_exits([observatory, dining_room, workshop])
 
 # one
-dining_room.add_exits([guest_bedroom, kitchen])
+dining_room.add_exits([kitchen, lake, guest_bedroom])
 kitchen.add_exits([pantry])
 
 # zero
-lake.add_exits([arch_studio, dining_room])
+lake.add_exits([arch_studio])
 
 # nine
 zendo.add_oneway_exits([arch_studio])
