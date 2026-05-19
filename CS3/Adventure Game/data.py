@@ -3,6 +3,7 @@ from classes import *
 # Things:
 lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
 # TODO remote controller
+# TODO toy boat with blue prints of this house that got water damaged so you can't make them out
 
 # Keys:
 skeleton_key = Key('Skeleton Key', 'A key that unlocks many doors')
@@ -15,7 +16,7 @@ bedroom_one = Place('Master Bedroom','The master bedroom. You see a remote contr
 bedroom_two = Place('Guest Bedroom','A bedroom with a thank you note addressed to Mrs. G.\nThe guest remarked about the unique floorplan of this estate.', [])
 
 path = Place('Path','A straight gravel path from the dining room to the lake. Along the tree-lined path you make out two large circular buildings.', [])
-observatory = Place('Observatory','A round room with a large telescope in the middle. On the wall you see a chart with various planets and stars that **only rise during the early morning**. Each has a instructions next to it of how to see them.', [])
+observatory = Place('Observatory','A round room with a large telescope in the middle. On the wall you see a chart with instructions for how to see various celestial bodies.', [])
 
 lake = Place('Lake','', [])
 workshop = Place('Workshop','', [])
@@ -25,7 +26,8 @@ zendo = Place('Zendo','', [])
 # Exits:
 dining_room.add_exits([bedroom_one, bedroom_two, kitchen, path])
 kitchen.add_exits([pantry])
-path.add_exits([observatory])
+path.add_exits([observatory, lake])
+
 
 # Locked places
 """Your locked places, e.g.:

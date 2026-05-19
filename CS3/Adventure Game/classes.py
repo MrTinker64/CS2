@@ -7,7 +7,6 @@ class Player:
         self.place = place
         self.backpack = []
         self.won = False
-        self.slept = False
         self.night_time = False
         self.hasFlashlight = False
 
@@ -111,7 +110,7 @@ class Player:
             print("Unfortunately that is not the correct code")
             
     def meditate(self):
-        # TODO make this meditation
+        # TODO make this meditation and night time instead of morning
         self.night_time = True
         print("You get a good rest. When you wake up it appears to be the dark, early morning.")
         print(f"self.night_time = {self.night_time}")

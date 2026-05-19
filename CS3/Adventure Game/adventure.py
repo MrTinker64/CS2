@@ -132,7 +132,7 @@ You will only be receiving this message after I've died.
 You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
 I believe in your puzzle solving abilities. 
 
-TODO something about it being the evening
+TODO something about it being middday
 
 Good luck,
 Mrs. G
