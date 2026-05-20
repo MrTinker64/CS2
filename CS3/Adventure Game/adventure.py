@@ -125,25 +125,25 @@ SPECIAL_FORMS = {
 }
 
 WELCOME_MESSAGE = """
-
 Welcome to The Architect's Riddle, Legacy Plans, Estate of Mind
-
 
 ------------------------------------------------------------------------------------------------------------------------
 
-You were left with this message:
+You were left with the following:
+
 
 Dear Heir,
 
-You will only be receiving this message after I've died.
+You will only be receiving this message after I have died.
 You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
-You might wonder why I've set this task before you.
+You might wonder why I have set this task before you.
 As an architect and buddhist I always believed in curiousity and looking at the world from another perspective.
+I must ensure that whomever gains access to the wealth I have accumulated over my life will think the same. 
 
 Good luck,
 
 Mrs. G
-Renowned architect of Rising Fire, the Entire Slate building, and the CisAmerica Pyramid
+Renowned architect for the following projects: the Rising Fire house, the Entire Slate building, and the CisAmerica Pyramid
 
 """
 
