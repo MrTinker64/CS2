@@ -11,8 +11,7 @@ class Player:
         self.hasFlashlight = False
 
     def look(self):
-        # TODO test this
-        # TODO demonstrate it's night time
+        # TODO demonstrate it's night vs day time at the Path and the Lake
         print('You are currently in the ' + self.place.name, end=". ")
         if self.place.name == 'Closet':
             if not any(item.name == 'Flashlight' for item in self.backpack):
