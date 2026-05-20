@@ -141,8 +141,10 @@ You might wonder why I've set this task before you.
 As an architect and buddhist I always believed in curiousity and looking at the world from another perspective.
 
 Good luck,
+
 Mrs. G
 Renowned architect of Rising Fire, the Entire Slate building, and the CisAmerica Pyramid
+
 """
 
 WIN_MESSAGE = """
