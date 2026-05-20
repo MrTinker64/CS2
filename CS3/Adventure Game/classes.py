@@ -11,7 +11,6 @@ class Player:
         self.hasFlashlight = False
 
     def look(self):
-        # TODO demonstrate it's night vs day time at the Path and the Lake
         print('You are currently in the ' + self.place.name, end=". ")
         if self.place.name == 'Closet':
             if not any(item.name == 'Flashlight' for item in self.backpack):
@@ -21,6 +20,10 @@ class Player:
                 print("The room is too dark to see in and the only light bulb has broken.\nLuckily, you picked up the flashlight from earlier. You turn on your flashlight and it illuminates:")
         else:
             print("You take a look around and see:")
+        if isinstance(self.place, Outside_Place) and self.night_time:
+            print(self.place.night_description)
+        else:
+            print(self.place.description)
         if self.place.name == 'Observatory' and self.night_time:
             print()
             print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you see an odd pattern emerging in the objects you're looking at.\nFirst you saw lots of double star clusters and binary stars which looked like an 8.\nFurther down the list there was a variety thin or cigar-shaped galaxies reminding you of a 1.\nBy the time you're done watching both the room, and your brain, have been enlightened.")
@@ -28,10 +31,7 @@ class Player:
             print()
             print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on.\nThough the left half has been damaged by water you can make out the lake and architecture studio on the right half of the sheet.\nFrom the top-down view of the blueprint they look like a 0 and a 9.")
         print()
-        if isinstance(self.place, Outside_Place) and self.night_time:
-            self.place.look_at_night()
-        else:
-            self.place.look()
+        self.place.look()
 
     def go_to(self, location):
         """Go to a location if it's among the exits of player's current place and it is unlocked."""
@@ -139,7 +139,6 @@ class Place:
         self.exits = {}
 
     def look(self):
-        print(self.description)
         print()
         print('Things:')
         if not self.things:
@@ -183,14 +182,3 @@ class Outside_Place(Place):
     def __init__(self, name, description, night_description, things):
         super().__init__(name, description, things)
         self.night_description = night_description
-
-    def look_at_night(self):
-        print(self.night_description)
-        print()
-        print('Things:')
-        if not self.things:
-            print('nothing in particular')
-        else:
-            for thing in self.things.values():
-                print('   ', thing.name, '-', thing.description)
-        self.check_exits()
