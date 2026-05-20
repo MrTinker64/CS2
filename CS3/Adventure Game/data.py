@@ -11,7 +11,7 @@ note = Thing('Note', 'A thank you note addressed to Mrs. G. Most of it is fluffy
 gear_key = Key('Gear Key', 'A gear-shaped item that looks like it might unlock something.')
 
 # Places:
-# TODO path and lake night time descriptions
+# TODO path and lake night time descriptions + make day time descriptions more obviously in the day
 path = Outside_Place('Path','A straight gravel path leading into the woods, it is about 10 ft wide.\nOn either side of the tree-lined path you make out two large circular buildings 30 feet away.', '', [])
 observatory = Place('Observatory','A round room about 20 feet in diameter with a large telescope in the middle.\nOn the wall you see a chart with instructions for how to see various celestial bodies at night.', [flashlight])
 workshop = Place('Workshop','Another circular room 20 feet in diameter. The walls are lined with shelves full of part way finished projects and different tools.\nA remote controller is lying in the middle of a work table near you.', [remote_controller])
