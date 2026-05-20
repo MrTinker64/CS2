@@ -125,6 +125,14 @@ SPECIAL_FORMS = {
 }
 
 WELCOME_MESSAGE = """
+
+Welcome to The Architect's Riddle, Legacy Plans, Estate of Mind
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+You were left with this message:
+
 Dear Heir,
 
 You will only be receiving this message after I've died.
@@ -134,8 +142,7 @@ As an architect and buddhist I always believed in curiousity and looking at the 
 
 Good luck,
 Mrs. G
-Renowned architect of Rising Ice, the Entirely Slate building, and the CisAmerica Pyramid
-
+Renowned architect of Rising Fire, the Entire Slate building, and the CisAmerica Pyramid
 """
 
 WIN_MESSAGE = """
