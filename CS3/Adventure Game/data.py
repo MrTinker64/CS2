@@ -2,9 +2,9 @@ from classes import *
 
 # Things:
 lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
-remote_controller = Thing('Remote Controller', '') # TODO describe these 3
-flashlight = Thing('Flashlight', '')
-snacks = Thing('Snacks', '') # TODO come up with some fun food descriptions. Maybe desserts shaped like punctuation?
+remote_controller = Thing('Remote Controller', 'A circuit board with some 3D printed handholds and two small joysticks. You can\'t see any antenna but you\'re sure there is a connector somewhere in there.')
+flashlight = Thing('Flashlight', 'After fiddling with the buttons for a little bit you figured out there are three modes: dim red, dim white, and bright white light.')
+snacks = Thing('Snacks', 'Animal crackers, but they are shaped like +, -, ÷, x. M&M\'s with little punctuation marks on each one.')
 
 # Keys:
 gear_key = Key('Gear Key', 'A gear-shaped item that looks like it might unlock something.')
