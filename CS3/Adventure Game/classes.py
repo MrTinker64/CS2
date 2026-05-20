@@ -7,7 +7,7 @@ class Player:
         self.place = place
         self.backpack = []
         self.won = False
-        self.night_time = False
+        self.night_time = True
         self.hasFlashlight = False
 
     def look(self):
@@ -28,7 +28,10 @@ class Player:
             print()
             print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on.\nThough the left half has been damaged by water you can make out the lake and architecture studio on the right half of the sheet.\nFrom the top-down view of the blueprint they look like a 0 and a 9.")
         print()
-        self.place.look()
+        if isinstance(self.place, Outside_Place) and self.night_time:
+            self.place.look_at_night()
+        else:
+            self.place.look()
 
     def go_to(self, location):
         """Go to a location if it's among the exits of player's current place and it is unlocked."""
@@ -175,3 +178,19 @@ class Place:
     def add_oneway_exits(self, places):
         for place in places:
             self.exits[place.name] = (place, place.description)
+            
+class Outside_Place(Place):
+    def __init__(self, name, description, night_description, things):
+        super().__init__(name, description, things)
+        self.night_description = night_description
+
+    def look_at_night(self):
+        print(self.night_description)
+        print()
+        print('Things:')
+        if not self.things:
+            print('nothing in particular')
+        else:
+            for thing in self.things.values():
+                print('   ', thing.name, '-', thing.description)
+        self.check_exits()
