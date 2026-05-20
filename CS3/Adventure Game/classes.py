@@ -12,6 +12,7 @@ class Player:
 
     def look(self):
         # TODO test this
+        # TODO demonstrate it's night time
         print('You are currently in the ' + self.place.name, end=". ")
         if self.place.name == 'Storage Closet':
             if not any(item.name == 'Flashlight' for item in self.backpack):
@@ -100,9 +101,8 @@ class Player:
             print("Unfortunately that is not the correct code")
             
     def meditate(self):
-        # TODO make this meditation and night time instead of morning
         self.night_time = True
-        print("You get a good rest. When you wake up it appears to be the dark, early morning.")
+        print("At first you sit uncomfortably on the cushion, unsure of what to do. As you slow down and focus on your breathing the world starts to fade away.\nYou open your eyes and notice it\'s now dark out. Through the window you see stars twinkling up above.")
         print(f"self.night_time = {self.night_time}")
 
 

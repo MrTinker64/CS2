@@ -129,12 +129,12 @@ Dear Heir,
 
 You will only be receiving this message after I've died.
 You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
-I believe in your puzzle solving abilities.
-
-TODO something about it being middday and she was a renowned architect
+You might wonder why I've set this task before you.
+As an architect and buddhist I always believed in curiousity and looking at the world from another perspective.
 
 Good luck,
 Mrs. G
+Renowned architect of Rising Ice, the Entirely Slate building, and the CisAmerica Pyramid
 
 """
 

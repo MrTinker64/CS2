@@ -12,7 +12,7 @@ gear_key = Key('Gear Key', 'A gear-shaped item that looks like it might unlock s
 
 # Places:
 path = Place('Path','A straight gravel path leading into the woods, it is about 10 ft wide. One either side of the tree-lined path you make out two large circular buildings 30 feet away.', [])
-observatory = Place('Observatory','A round room with a large telescope in the middle 20 feet in diameter. On the wall you see a chart with instructions for how to see various celestial bodies.', [flashlight])
+observatory = Place('Observatory','A round room with a large telescope in the middle 20 feet in diameter. On the wall you see a chart with instructions for how to see various celestial bodies at night.', [flashlight])
 workshop = Place('Workshop','Another circular room 20 feet in diameter. The walls are lined with shelves full of part way finished projects and different tools. A remote controller is lying in the middle of a work table near you.', [remote_controller])
 
 dining_room = Place('Dining Room','An ornately carved long room. Standing in the center it stretches 15 ft in either direction and is 10 ft wide.\nThere is a long table running down the middle and chairs all around it. A locked box sits in the middle of the table.\nTo your right is the kitchen, the left is a bedroom, ahead is a path into the woods, and behind is a beautiful lake.', [lockbox])
