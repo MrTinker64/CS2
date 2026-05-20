@@ -24,10 +24,10 @@ class Player:
             print("You take a look around and see:")
         if self.place.name == 'Observatory' and self.night_time:
             print()
-            print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you an odd patter emerging in the objects you're looking at, first you saw lots of double star clusters and binary stars which looked like an 8. Further down the list there was a variety thin or cigar-shaped galaxies reminding you of a 1.\nBy the time you're done watching both the room, and your brain, have been enlightened.")
-        if self.place.name == 'Lake' and any(item.name == 'Remote Controller' for item in self.backpack):
+            print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you see an odd pattern emerging in the objects you're looking at.\nFirst you saw lots of double star clusters and binary stars which looked like an 8.\nFurther down the list there was a variety thin or cigar-shaped galaxies reminding you of a 1.\nBy the time you're done watching both the room, and your brain, have been enlightened.")
+        if self.place.name == 'Lake' and any(item.name == 'RC' for item in self.backpack):
             print()
-            print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on. Though the left half has been damaged by water you can make out the lake and the building to the right.\nFrom this perspective they look like a 0 and a 9.")
+            print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on.\nThough the left half has been damaged by water you can make out the lake and architecture studio on the right half of the sheet.\nFrom the top-down view of the blueprint they look like a 0 and a 9.")
         print()
         self.place.look()
 

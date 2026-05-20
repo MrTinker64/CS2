@@ -148,7 +148,13 @@ Renowned architect for the following projects: the Rising Fire house, the Entire
 """
 
 WIN_MESSAGE = """
-Congratulations! You have won your inheritance of this estate and all my holdings totalling $100 million!
+*************************************************************************************
+
+Congratulations! You have won your inheritance: ownership this estate and $10 billion
+
+*************************************************************************************
+
+
 """
 
 

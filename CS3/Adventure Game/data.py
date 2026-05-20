@@ -2,7 +2,7 @@ from classes import *
 
 # Things:
 lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
-remote_controller = Thing('Remote Controller', 'A circuit board with some 3D printed handholds and two small joysticks. You can\'t see any antenna but you\'re sure there is a connector somewhere in there.')
+remote_controller = Thing('RC', 'aka Remote Controller - A circuit board with some 3D printed handholds and two small joysticks.\nYou can\'t see any antenna but you\'re sure there is a connector somewhere in there.')
 flashlight = Thing('Flashlight', 'After fiddling with the buttons for a little bit you figured out there are three modes: dim red, dim white, and bright white.')
 snacks = Thing('Snacks', 'Animal crackers, but they are shaped like +, -, ÷, x.\nM&M\'s with little punctuation marks on each one.\nCheez-its shaped like triangles, circles, hexagons, and all sorts of shapes in addition to squares.')
 note = Thing('Note', 'A thank you note addressed to Mrs. G. Most of it is fluffy niceties, but you notice the guest talked at unusual length about layout of this estate. They must have been an architect as well.')
@@ -13,7 +13,7 @@ gear_key = Key('Gear Key', 'A gear-shaped item that looks like it might unlock s
 # Places:
 path = Place('Path','A straight gravel path leading into the woods, it is about 10 ft wide.\nOn either side of the tree-lined path you make out two large circular buildings 30 feet away.', [])
 observatory = Place('Observatory','A round room about 20 feet in diameter with a large telescope in the middle.\nOn the wall you see a chart with instructions for how to see various celestial bodies at night.', [flashlight])
-workshop = Place('Workshop','Another circular room 20 feet in diameter. The walls are lined with shelves full of part way finished projects and different tools. A remote controller is lying in the middle of a work table near you.', [remote_controller])
+workshop = Place('Workshop','Another circular room 20 feet in diameter. The walls are lined with shelves full of part way finished projects and different tools.\nA remote controller is lying in the middle of a work table near you.', [remote_controller])
 
 dining_room = Place('Dining Room','A long room full of ornate carvings, it stretches 15 ft in either direction and is 10 ft wide.\nThere is a long dinner table taking up nearly the entire length of the room. A locked box sits on the table in front of you.\nTo your right is the kitchen, the left is a bedroom, ahead is a path into the woods, and behind is a beautiful lake.', [lockbox])
 kitchen = Place('Kitchen','A clean, modern looking kitchen that is a 10x10 foot square with a door to your left. Lots of stainless-steel surfaces and spotless white tile floors. You check the cupboard and find some snacks.', [snacks])
