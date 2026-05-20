@@ -41,18 +41,6 @@ class Player:
                 self.look()
 
 
-    def talk_to(self, person):
-        """Talk to person if person is at player's current place.
-        """
-        if type(person) != str:
-            print('Person has to be a string.')
-            return
-        if person in self.place.characters:
-            print(self.place.characters[person].talk())
-        else:
-            print(person + ' is not here.')
-
-
     def take(self, thing):
         """Take a thing if thing is at player's current place
         """
@@ -116,15 +104,6 @@ class Player:
         self.night_time = True
         print("You get a good rest. When you wake up it appears to be the dark, early morning.")
         print(f"self.night_time = {self.night_time}")
-
-
-class Character:
-    def __init__(self, name, message):
-        self.name = name
-        self.message = message
-
-    def talk(self):
-        return self.message
 
 
 class Thing:

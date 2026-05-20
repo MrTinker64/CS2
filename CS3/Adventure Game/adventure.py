@@ -14,7 +14,7 @@ def adv_parse(line):
     if not tokens:
         raise SyntaxError('No command given')
     command = tokens.pop(0)
-    if command in ('talk', 'go'):
+    if command == 'go':
         if not tokens or tokens[0] != 'to':
             raise SyntaxError('Did you mean "{}"?'.format(COMMAND_FORMATS[command]))
         return (command + '_to', ' '.join(tokens[1:]))
@@ -102,7 +102,6 @@ COMMAND_FORMATS = {
     'look': 'look',
     'go': 'go to [place]',
     'take': 'take [thing]',
-    'talk': 'talk to [character]',
     'check backpack': 'check backpack',
     'help': 'help',
     'unlock': 'unlock [place]',
@@ -114,7 +113,6 @@ COMMAND_NUM_ARGS = {
     'look': 0,
     'go_to': 1,
     'take': 1,
-    'talk_to': 1,
     'check_backpack': 0,
     'help': 0,
     'unlock': 1,
