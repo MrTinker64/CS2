@@ -7,7 +7,7 @@ class Player:
         self.place = place
         self.backpack = []
         self.won = False
-        self.night_time = True
+        self.night_time = False
         self.hasFlashlight = False
 
     def look(self):

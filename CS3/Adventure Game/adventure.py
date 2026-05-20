@@ -145,7 +145,7 @@ Good luck,
 Mrs. G
 Renowned architect for the following projects: the Rising Fire house, the Entire Slate building, and the CisAmerica Pyramid
 
-P.S. I will leave you with one hint. An architect\'s best friend was a piece of graph paper and a pencil.
+P.S. I will leave you with one hint. An architect\'s best friend is a piece of graph paper and a pencil.
 
 """
 
