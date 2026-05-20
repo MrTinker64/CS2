@@ -14,19 +14,22 @@ class Player:
         # TODO test this
         # TODO demonstrate it's night time
         print('You are currently in the ' + self.place.name, end=". ")
-        if self.place.name == 'Storage Closet':
+        if self.place.name == 'Closet':
             if not any(item.name == 'Flashlight' for item in self.backpack):
                 print("The room is too dark to see in and the only light has broken.")
                 return
             else:
-                print("The room is too dark to see in and the only light bulb has broken. Luckily, you picked up the flashlight from earlier.\nYou turn on your flashlight and it illuminates:")
+                print("The room is too dark to see in and the only light bulb has broken.\nLuckily, you picked up the flashlight from earlier. You turn on your flashlight and it illuminates:")
         else:
             print("You take a look around and see:")
-        self.place.look()
         if self.place.name == 'Observatory' and self.night_time:
-            print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nSoon you realize that all the objects you're looking at from double star clusters to binary stars or all manner of thin and cigar-shaped galaxies everything looks like either an 8 or a 1.\nBy the time you're done watching it has become day again.")
+            print()
+            print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you an odd patter emerging in the objects you're looking at, first you saw lots of double star clusters and binary stars which looked like an 8. Further down the list there was a variety thin or cigar-shaped galaxies reminding you of a 1.\nBy the time you're done watching both the room, and your brain, have been enlightened.")
         if self.place.name == 'Lake' and any(item.name == 'Remote Controller' for item in self.backpack):
+            print()
             print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on. Though the left half has been damaged by water you can make out the lake and the building to the right.\nFrom this perspective they look like a 0 and a 9.")
+        print()
+        self.place.look()
 
     def go_to(self, location):
         """Go to a location if it's among the exits of player's current place and it is unlocked."""
@@ -102,8 +105,7 @@ class Player:
             
     def meditate(self):
         self.night_time = True
-        print("At first you sit uncomfortably on the cushion, unsure of what to do. As you slow down and focus on your breathing the world starts to fade away.\nYou open your eyes and notice it\'s now dark out. Through the window you see stars twinkling up above.")
-        print(f"self.night_time = {self.night_time}")
+        print("At first you sit uncomfortably on the cushion, unsure of what to do. As you slow down and focus on your breathing the world starts to\n\nfade away\n\nYou open your eyes and notice it\'s now dark out. Through the window you see stars twinkling up above.")
 
 
 class Thing:
