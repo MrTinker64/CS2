@@ -12,6 +12,7 @@ class Player:
 
     def look(self):
         print('You are currently in the ' + self.place.name, end=". ")
+        # TODO match new layout
         if self.place.name == 'Closet':
             if not any(item.name == 'Flashlight' for item in self.backpack):
                 print("The room is too dark to see in and the only light has broken.")
