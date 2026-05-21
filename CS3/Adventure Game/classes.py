@@ -3,7 +3,7 @@
 WIN_MESSAGE_MONEY = """
 *******************************************************************
 
-Congratulations! You have unlocked your inheritance of $2.3 billion.
+Congratulations! You have unlocked your inheritance of $100 million.
 
 *******************************************************************
 
@@ -131,7 +131,7 @@ class Player:
             self.wonEstate = True
             print(WIN_MESSAGE_ESTATE)
             if not self.wonMoney:
-                print("Keep playing to get $2.3 billion.\n\n")
+                print("Keep playing to get $100 million.\n\n")
         else:
             print("Unfortunately that is not the correct code")
             
