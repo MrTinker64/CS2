@@ -4,7 +4,7 @@ from classes import *
 lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
 remote_controller = Thing('RC', 'aka Remote Controller - A circuit board with some 3D printed handholds, two small joysticks, and a fat antenna. You wonder what is it for?')
 flashlight = Thing('Flashlight', 'Pretty standard flashlight. Looks like there\'s a sensor so it will automatically turn on when dark.')
-telescope_manual = Thing('Manual', 'Instruction manual for how to operate the telescope. It looks rather complicated, but you know you\'re smart enough to figure it out.')
+telescope_manual = Thing('Manual', 'Instruction manual for how to operate the telescope.')
 snacks = Thing('Snacks', 'Animal crackers, but they are shaped like +, -, ÷, x.\n           - M&M\'s with little punctuation marks on each one.\n           - Cheez-its shaped like triangles, circles, hexagons, and all sorts of shapes in addition to squares.')
 note = Thing('Note', 'A thank you note addressed to Mrs. G. Most of it is fluffy niceties, but you notice the guest talked at unusual length about layout of this estate. They must have been an architect as well.')
 
@@ -13,7 +13,7 @@ gear_key = Key('Gear Key', 'A gear-shaped item that looks like it might unlock s
 
 # Places:
 path = Outside_Place('Path','A straight and narrow gravel path leading into the woods with rays of sunlight streaming through the trees. You make out two large circular buildings 30 feet away, one on each side of the path.', 'The tree tops, previously full of sunlight, are now dark and mysterious in the night.\nA straight and narrow gravel path, lined with lights, leads into the woods. You make out two large circular buildings 30 feet away, one on each side of the path.', [])
-observatory = Place('Observatory','A round room about 25 feet in diameter with a large telescope in the middle.\nOn the wall you see a chart with instructions for how to see various celestial bodies **at night**.', [flashlight, telescope_manual])
+observatory = Place('Observatory','A round room about 25 feet in diameter with a large telescope in the middle.\nOn the wall you see a chart with instructions for how to see various celestial bodies at night.', [flashlight, telescope_manual])
 workshop = Place('Workshop','Another circular room 25 feet in diameter. The walls are lined with shelves full of part way finished projects and different tools.\nA remote controller is lying in the middle of a work table near you.', [remote_controller])
 
 dining_room = Place('Dining Room','You stand in the middle of a long room full of ornate carvings. It stretches 15 ft in either direction and is 10 ft wide.\nThere is a long dinner table taking up nearly the entire length of the room. A locked box sits on the table in front of you.\nTo your right is the kitchen, the left is a bedroom, ahead is a path into the woods, and behind is a beautiful lake.', [lockbox])
