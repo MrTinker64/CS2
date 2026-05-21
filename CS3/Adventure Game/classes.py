@@ -17,7 +17,7 @@ class Player:
                 print("The room is too dark to see in and the only light has broken.")
                 return
             else:
-                print("The room is too dark to see in and the only light bulb has broken.\n\n\nLuckily, you picked up the flashlight from earlier. You turn on your flashlight and it illuminates:")
+                print("The room is too dark to see in and the only light bulb has broken.\n\nLuckily, you picked up the flashlight from earlier.\nYou turn on your flashlight and it illuminates:\n")
         else:
             print("You take a look around and see:")
         if isinstance(self.place, Outside_Place) and self.night_time:

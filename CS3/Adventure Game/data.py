@@ -23,7 +23,7 @@ guest_bedroom = Place('Guest Bedroom','A huge bedroom, similar in size to the di
 
 lake = Outside_Place('Lake','A path leads out about 10 feet to an oval shaped lake laying perpendicular to you.\nHowever, lake might be a generous term as it is only 30 feet across and 50 feet long.\nOn the far side of the lake is what looks like an artist\'s studio, also 50 feet long.\nAs you walk along the path around the lake, you see something in the middle of the glittering lake.\nAs you squint against the glare, it looks like a little toy boat.', 'You walk into the cool night air onto a path that leads out about 10 feet to an oval shaped lake laying perpendicular to you.\nHowever, lake might be a generous term as it is only 30 feet across and 50 feet long.\nOn the far side of the lake is what looks like an artist\'s studio, also 50 feet long.\nAs you walk along the path around the lake, you see something in the middle of the lake, glittering in the starlight.\nAs you squint against the moon\'s glare, it looks like a little toy boat.', [])
 arch_studio = Place('Studio','Such a large space for architecture emphasizes the love Mrs. G had for it. Standing in the center of the 10ft wide space you are overwhelmed by the volume of cutting mats, sketches, and miniature buildings.\nMost of the miniature buildings seem to resemble letters of the alphabet when viewed from above.\nYou can just make out another door at the far right edge of the studio, leading away from the lake.', [])
-storage_closet = Place('Closet','A messy, dusty room full of shelves overflowing with pens, paper, foamcore, rulers, and old models. One of the models looks vaguely like a number, but has been crushed out of shape. This room is also 10 ft wide.\nThe back wall is 20 ft away, to it\'s left you see a door which seems to be magically free of all the dust and clutter inhabiting the rest of the room.', [])
+storage_closet = Place('Closet','A messy, dusty room full of shelves overflowing with pens, paper, foamcore, rulers, and old models.\nOne of the models looks vaguely like a number, but has been crushed out of shape. This room is also 10 ft wide.\nThe back wall is 20 ft away, to it\'s left you see a door which seems to be magically free of all the dust and clutter inhabiting the rest of the room.', [])
 zendo = Place('Zendo','The room is spacious, forming a 20x20 ft square. The walls to your right and across from you have floor to ceiling windows.\nTo your left is a lowered 10x10 ft garden. Between the windows and the garden is a 2nd door leading back to the Studio.\nThe wooden floors are completely empty save for a small round cushion sitting on a mat in the corner formed by the widnows.\nIt feels very peaceful here.', [])
 
 # Exits:
@@ -46,4 +46,5 @@ storage_closet.add_exits([arch_studio, zendo])
 workshop.locked = True
 
 # Player:
-me = Player('Heir',dining_room)
+me = Player('Heir',storage_closet)
+me.backpack.append(flashlight)
