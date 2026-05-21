@@ -137,7 +137,9 @@ Dear Heir,
 You will only be receiving this message after I have died.
 You are the heir to my expansive estate, but before you can claim it you must unlock the box sitting in front of you.
 You might wonder why I have locked your inheritance behind a puzzle.
-As an architect and buddhist I always believed in curiousity and looking at the world from a different perspective.
+As an architect and buddhist I have always held the following two beliefs:
+ - the world can be seen from many perspectives
+ - everything is done with intent
 I must ensure that whomever gains access to the wealth I have accumulated over my life will think the same.
 
 Good luck,
@@ -148,6 +150,7 @@ Renowned architect for the following projects: the Rising Fire house, the Entire
 P.S. I will leave you with one hint. An architect\'s best friend is a piece of graph paper and a pencil.
 
 """
+# P.S. I will leave you with one hint. An architect\'s best friend is a piece of graph paper for precise drawings and a pencil to capture what they see.
 
 WIN_MESSAGE = """
 *************************************************************************************
