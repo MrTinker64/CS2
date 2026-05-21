@@ -8,7 +8,6 @@ class Player:
         self.backpack = []
         self.won = False
         self.night_time = False
-        self.hasFlashlight = False
 
     def look(self):
         print('You are currently in the ' + self.place.name, end=". ")
@@ -18,7 +17,7 @@ class Player:
                 print("The room is too dark to see in and the only light has broken.")
                 return
             else:
-                print("The room is too dark to see in and the only light bulb has broken.\nLuckily, you picked up the flashlight from earlier. You turn on your flashlight and it illuminates:")
+                print("The room is too dark to see in and the only light bulb has broken.\n\n\nLuckily, you picked up the flashlight from earlier. You turn on your flashlight and it illuminates:")
         else:
             print("You take a look around and see:")
         if isinstance(self.place, Outside_Place) and self.night_time:
@@ -61,8 +60,7 @@ class Player:
             item = self.place.take(thing)
             self.backpack.append(item)
             print('You take the ' + item.name + '.')
-            if item.name == 'Flashlight':
-                self.hasFlashlight = True
+
         else:
             print(thing + ' is not here.')
 
