@@ -91,7 +91,8 @@ class Player:
             print("Can't find " + place + " nearby.")
             return
         destination = self.place.exits[place][0]
-        key.use(destination)
+        if key.use(destination):
+            self.backpack.remove(key)
         
     def keycode(self, code):
         if type(code) != str:
@@ -125,8 +126,10 @@ class Key(Thing):
         if place.locked:
             place.locked = False
             print("Unlocked " + place.name)
+            return True
         else:
             print(place.name + " is already unlocked")
+            return False
 
 
 
