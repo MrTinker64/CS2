@@ -2,10 +2,10 @@ from classes import *
 
 # Things:
 lockbox = Thing('Lockbox', 'A locked box with 4 dials all set to 0')
-remote_controller = Thing('RC', 'aka Remote Controller - A circuit board with some 3D printed handholds and two small joysticks.\nYou can\'t see any antenna but you\'re sure there is a connector somewhere in there.')
-flashlight = Thing('Flashlight', 'After fiddling with the buttons for a little bit you figured out there are three modes: dim red, dim white, and bright white.')
+remote_controller = Thing('RC', 'aka Remote Controller - A circuit board with some 3D printed handholds, two small joysticks, and a fat antenna. You wonder what is it for?')
+flashlight = Thing('Flashlight', 'Pretty standard flashlight. Looks like there\'s a sensor so it will automatically turn on when dark.')
 telescope_manual = Thing('Manual', 'Instruction manual for how to operate the telescope. It looks rather complicated, but you know you\'re smart enough to figure it out.')
-snacks = Thing('Snacks', 'Animal crackers, but they are shaped like +, -, ÷, x.\nM&M\'s with little punctuation marks on each one.\nCheez-its shaped like triangles, circles, hexagons, and all sorts of shapes in addition to squares.')
+snacks = Thing('Snacks', 'Animal crackers, but they are shaped like +, -, ÷, x.\n           - M&M\'s with little punctuation marks on each one.\n           - Cheez-its shaped like triangles, circles, hexagons, and all sorts of shapes in addition to squares.')
 note = Thing('Note', 'A thank you note addressed to Mrs. G. Most of it is fluffy niceties, but you notice the guest talked at unusual length about layout of this estate. They must have been an architect as well.')
 
 # Keys:
