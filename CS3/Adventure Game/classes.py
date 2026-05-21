@@ -103,7 +103,7 @@ class Player:
         if len(code) != 4:
             print("Code must be 4 digits")
             return
-        if code == '8109':
+        if code == '9018':
             self.won = True
         else:
             print("Unfortunately that is not the correct code")
