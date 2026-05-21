@@ -46,5 +46,4 @@ storage_closet.add_exits([arch_studio, zendo])
 workshop.locked = True
 
 # Player:
-me = Player('Heir',storage_closet)
-me.backpack.append(flashlight)
+me = Player('Heir',dining_room)

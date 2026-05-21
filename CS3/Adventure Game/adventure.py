@@ -60,12 +60,6 @@ def help():
     for usage in COMMAND_FORMATS.values():
         print('   ', usage)
 
-def check_win_state(player):
-    if player.place != dining_room:
-        return False
-    if player.won:
-        return True
-
 ########
 # REPL #
 ########
@@ -78,8 +72,8 @@ def read_eval_print_loop():
 
     help()
     while True:
-        if check_win_state(me):
-            print(WIN_MESSAGE)
+        if me.wonMoney and me.wonEstate:
+            print("\nThank you for playing The Architect's Riddle.\n\n\n\n")
             return
         try:
             print()
@@ -125,6 +119,7 @@ SPECIAL_FORMS = {
 }
 
 WELCOME_MESSAGE = """
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 Welcome to The Architect's Riddle
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -151,16 +146,6 @@ P.S. I will leave you with one hint. An architect\'s best friend is a piece of g
 
 """
 # graph paper for precise drawings and a pencil to capture what they see.
-
-WIN_MESSAGE = """
-*************************************************************************************
-
-Congratulations! You have won your inheritance: ownership this estate and $10 billion
-
-*************************************************************************************
-
-
-"""
 
 
 if __name__ == '__main__':

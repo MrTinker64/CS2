@@ -1,12 +1,33 @@
 # A "simple" adventure game.
 
+WIN_MESSAGE_MONEY = """
+*******************************************************************
+
+Congratulations! You have unlocked your inheritance of $10 billion.
+
+*******************************************************************
+
+
+"""
+
+WIN_MESSAGE_ESTATE = """
+******************************************************************
+
+Congratulations! You have unlocked your inheritance of the estate. 
+
+******************************************************************
+
+
+"""
+
 class Player:
     def __init__(self, name, place):
         """Create a player object."""
         self.name = name
         self.place = place
         self.backpack = []
-        self.won = False
+        self.wonMoney = False
+        self.wonEstate = False
         self.night_time = False
 
     def look(self):
@@ -26,12 +47,12 @@ class Player:
         if self.place.name == 'Observatory':
             print()
             if self.night_time:
-                print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you see an odd pattern emerging in the objects you're looking at.\nFirst there was a variety thin or cigar-shaped galaxies reminding you of a 1.\nFurther down the list you saw lots of double star clusters and binary stars which all looked like an 8.")
+                print("Now that it is the early morning you are able to look through the telescope at the celestial objects listed on the wall.\nEventually you see an odd pattern emerging in the objects you're looking at.\nFirst you see lots of double star clusters and binary stars which all look like an 8.\nFurther down the list there was a variety thin or cigar-shaped galaxies reminding you of a 1.")
             else:
                 print("Unfortunately you can't use the telescope right now because it is daytime.")
         if self.place.name == 'Lake' and any(item.name == 'RC' for item in self.backpack):
             print()
-            print("You use the remote controller to drive the toy boat over to you. Sitting inside are some blueprints.\nThe blue prints seem to be for the very estate that your standing on.\nThough the right half has been damaged by water you can make out the lake and architecture studio on the left half of the sheet.\nFrom the top-down view of the blueprint they look like a 9 and a 0.")
+            print("You use the remote controller to drive the toy boat over to you. Sitting inside is a notepad with some scribbled numbers.\nThough it has been partially damaged by the water you can make out part of the code --27.")
         print()
         self.place.look()
 
@@ -101,8 +122,16 @@ class Player:
         if len(code) != 4:
             print("Code must be 4 digits")
             return
-        if code == '9018':
-            self.won = True
+        if code == '8127':
+            self.wonMoney = True
+            print(WIN_MESSAGE_MONEY)
+            if not self.wonEstate:
+                print("Keep playing to get the estate.\n\n")
+        elif code == '9018':
+            self.wonEstate = True
+            print(WIN_MESSAGE_ESTATE)
+            if not self.wonMoney:
+                print("Keep playing to get $10 billion.\n\n")
         else:
             print("Unfortunately that is not the correct code")
             
