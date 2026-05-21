@@ -72,6 +72,7 @@ def read_eval_print_loop():
 
     help()
     while True:
+        print("OUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED\nOUTDATED")
         if me.wonMoney and me.wonEstate:
             print("\nThank you for playing The Architect's Riddle.\n\n\n\n")
             return
