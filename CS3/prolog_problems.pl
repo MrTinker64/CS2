@@ -18,15 +18,21 @@ father(b,d).
 father(b,e).
 father(c,f).
 
-
+sibling(X,Y) :- father(Z,X), father(Z,Y), X \= Y.
+cousin(X,Y) :- father(A,X), father(B,Y), sibling(A,B).
+grandchild(X,Y) :- father(Y,Z), father(Z,X).
+descendant(X,Y) :- father(Y,X).
+descendant(X,Y) :- father(Y,Z), descendant(X,Z).
 
 /* 
 Problem 2.
 Write the a prolog rule to calculate the sum of two numbers: sum(A,B,C) where C is the sum of A and B.
 
-sum(A,B,C) :-    .
+sum(A,B,C) :-    C is A + B.
 
 */
+
+sum(A,B,C) :- C is A + B.
 
 
 /*
@@ -38,6 +44,11 @@ the words abalone, abandon, anagram, connect, elegant, enhance
 /* (a) Enter the information for the other words using the model below.*/
 
 word(abalone,a,b,a,l,o,n,e).
+word(abandon,a,b,a,n,d,o,n).
+word(anagram,a,n,a,g,r,a,m).
+word(connect,c,o,n,n,e,c,t).
+word(elegant,e,l,e,g,a,n,t).
+word(enhance,e,n,h,a,n,c,e).
 
 
 /* (b) Complete the predicate crosswd  that has 6 inputs, that computes all the 
@@ -49,8 +60,12 @@ crosswd(V1,V2,V3,H1,H2,H3) :-   word(V1,_,A,_,B,_,C,_),
                                 ...
 */
 
-
-
+crosswd(V1,V2,V3,H1,H2,H3) :- word(V1,_,A,_,B,_,C,_),
+                                word(H1,_,A,_,D,_,G,_),
+                                word(V2,_,D,_,E,_,F,_),
+                                word(H2,_,B,_,E,_,H,_),
+                                word(V3,_,G,_,H,_,I,_),
+                                word(H3,_,C,_,F,_,I,_).
 
 
 /* 
@@ -74,8 +89,13 @@ factorial(N, F) :-
 
 fib(0,0).
 fib(1,1).
-
-
+fib(N, F) :-
+    N > 1,
+    N1 is N - 1,
+    N2 is N - 2,
+    fib(N1, F1),
+    fib(N2, F2),
+    F is F1 + F2.
 
 
 /*
@@ -86,7 +106,9 @@ is the sum of all the elements of L.
             K = 10
 */
 sumlist([], 0).
-
+sumlist([H|T], N) :-
+    sumlist(T, N1),
+    N is H + N1.
 
 /*
 Problem 6. 
@@ -98,7 +120,9 @@ elements in L up to the same position.
 
 */
 
-
-
-
+add_up_list(L, K) :- add_up_list(L, 0, K).
+add_up_list([], _, []).
+add_up_list([H|T], Acc, [S|K]) :-
+    S is Acc + H,
+    add_up_list(T, S, K).
 
